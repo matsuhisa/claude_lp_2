@@ -1,0 +1,402 @@
+<title>そらいろ桃園 | 旬の桃ギフト</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --color-primary: #E8825A;
+    --color-primary-dark: #C25F3B;
+    --color-secondary: #4A3B32;
+    --color-accent: #F4A950;
+    --color-background: #FFFBF7;
+    --color-surface: #FFF1E6;
+    --color-text-primary: #3A2B22;
+    --color-text-secondary: #7A6A5D;
+    --color-border: #F0DCC9;
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-pill: 999px;
+    --space: 8px;
+    --font-heading: "Hiragino Maru Gothic ProN", "BIZ UDPGothic", "Yu Gothic", "Meiryo", sans-serif;
+    --font-body: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 { font-family: var(--font-heading); margin: 0; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 calc(var(--space) * 3); }
+
+  /* Header */
+  header.site {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255, 251, 247, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--color-border);
+  }
+  header.site .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: calc(var(--space) * 2);
+    padding-bottom: calc(var(--space) * 2);
+  }
+  .brand {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--color-secondary);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(var(--space) * 1.5) calc(var(--space) * 3);
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    text-decoration: none;
+    min-height: 44px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary {
+    background: var(--color-primary);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(232, 130, 90, 0.35);
+  }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(232, 130, 90, 0.45); }
+  .btn-ghost {
+    background: transparent;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary-dark);
+  }
+  header.site .btn-primary { padding: calc(var(--space) * 1) calc(var(--space) * 2.25); font-size: 0.9rem; }
+
+  /* Hero */
+  .hero {
+    padding: calc(var(--space) * 9) 0 calc(var(--space) * 8);
+    background:
+      radial-gradient(circle at 85% 20%, rgba(244, 169, 80, 0.25), transparent 55%),
+      radial-gradient(circle at 10% 80%, rgba(232, 130, 90, 0.18), transparent 50%),
+      var(--color-background);
+    text-align: center;
+  }
+  .hero .eyebrow {
+    display: inline-block;
+    padding: calc(var(--space)*0.75) calc(var(--space)*2);
+    border-radius: var(--radius-pill);
+    background: var(--color-surface);
+    color: var(--color-primary-dark);
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: calc(var(--space) * 3);
+    letter-spacing: 0.05em;
+  }
+  .hero h1 {
+    font-size: clamp(1.9rem, 4.5vw, 3rem);
+    font-weight: 800;
+    color: var(--color-secondary);
+    max-width: 20ch;
+    margin: 0 auto calc(var(--space) * 3);
+    line-height: 1.5;
+  }
+  .hero p.lead {
+    max-width: 46ch;
+    margin: 0 auto calc(var(--space) * 5);
+    color: var(--color-text-secondary);
+    font-size: 1.05rem;
+  }
+
+  section { padding: calc(var(--space) * 9) 0; }
+  .section-head { text-align: center; max-width: 44ch; margin: 0 auto calc(var(--space) * 7); }
+  .section-head .kicker {
+    display: block;
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    margin-bottom: calc(var(--space) * 1.5);
+  }
+  .section-head h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--color-secondary);
+  }
+
+  /* Audience */
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: calc(var(--space) * 3);
+  }
+  .audience-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: calc(var(--space) * 4);
+    text-align: center;
+    border: 1px solid var(--color-border);
+  }
+  .audience-card .mark {
+    font-size: 1.6rem;
+    margin-bottom: calc(var(--space) * 2);
+  }
+  .audience-card p { margin: 0; color: var(--color-text-primary); font-weight: 600; }
+
+  /* Product lineup */
+  .lineup-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: calc(var(--space) * 4);
+  }
+  .lineup-card {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: calc(var(--space) * 4);
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space) * 2);
+  }
+  .lineup-card .num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .lineup-card h3 { font-size: 1.15rem; color: var(--color-secondary); }
+  .lineup-card .subtitle { color: var(--color-primary-dark); font-size: 0.85rem; font-weight: 700; }
+  .lineup-card .feature { color: var(--color-text-secondary); font-size: 0.95rem; flex-grow: 1; }
+  .lineup-card .product {
+    border-top: 1px dashed var(--color-border);
+    padding-top: calc(var(--space) * 2);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  /* Story */
+  .story {
+    background: var(--color-secondary);
+    color: #fff;
+    border-radius: var(--radius-lg);
+    padding: calc(var(--space) * 6);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: calc(var(--space) * 4);
+  }
+  .story .kicker { color: var(--color-accent); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em; }
+  .story h2 { font-size: clamp(1.3rem, 2.6vw, 1.7rem); margin-top: calc(var(--space)*1.5); max-width: 28ch; }
+  .story .btn-ghost { border-color: var(--color-accent); color: var(--color-accent); }
+
+  /* Articles */
+  .article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: calc(var(--space) * 3);
+  }
+  .article-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    padding: calc(var(--space) * 3.5);
+    border: 1px solid var(--color-border);
+    text-decoration: none;
+    display: block;
+  }
+  .article-card .tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-primary-dark);
+  }
+  .article-card h3 {
+    font-size: 1rem;
+    margin-top: calc(var(--space) * 1.5);
+    color: var(--color-text-primary);
+    line-height: 1.6;
+  }
+
+  /* Final CTA */
+  .final-cta {
+    text-align: center;
+    background: var(--color-surface);
+  }
+  .final-cta h2 { font-size: clamp(1.4rem, 3vw, 2rem); color: var(--color-secondary); margin-bottom: calc(var(--space)*2); }
+  .final-cta p { color: var(--color-text-secondary); margin-bottom: calc(var(--space)*4); }
+
+  footer.site {
+    background: var(--color-secondary);
+    color: rgba(255,255,255,0.75);
+    padding: calc(var(--space) * 6) 0 calc(var(--space) * 4);
+    font-size: 0.85rem;
+  }
+  footer.site .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: calc(var(--space) * 3);
+  }
+  footer.site nav a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.75);
+    margin-right: calc(var(--space) * 3);
+  }
+  footer.site .copyright { width: 100%; margin-top: calc(var(--space)*3); color: rgba(255,255,255,0.5); }
+
+  @media (max-width: 640px) {
+    section { padding: calc(var(--space)*7) 0; }
+    .story { padding: calc(var(--space)*4); flex-direction: column; align-items: flex-start; }
+  }
+</style>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand">そらいろ桃園</div>
+    <a class="btn btn-primary" href="#lineup">今すぐ旬の桃を予約する</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">2026年 夏の桃予約 受付中</span>
+      <h1>一生に一度は食べたい、究極のひと玉。<br>旬を閉じ込めた、とろける甘さを産地から。</h1>
+      <p class="lead">スーパーの桃では物足りない方へ。木の上で完熟させた、一玉ずつ愛情を込めた桃を産地直送でお届けします。</p>
+      <a class="btn btn-primary" href="#lineup">今すぐ旬の桃を予約する</a>
+    </div>
+  </section>
+
+  <section id="audience">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">こんな方に選ばれています</span>
+        <h2>大切な瞬間に、外さない一玉を</h2>
+      </div>
+      <div class="audience-grid">
+        <div class="audience-card">
+          <div class="mark">🍑</div>
+          <p>自分へのご褒美に、極上の一玉を。</p>
+        </div>
+        <div class="audience-card">
+          <div class="mark">🎁</div>
+          <p>お中元や暑中見舞いに、外さないギフトを。</p>
+        </div>
+        <div class="audience-card">
+          <div class="mark">👨‍👩‍👧</div>
+          <p>大切なご家族の団らんに、特別なデザートを。</p>
+        </div>
+        <div class="audience-card">
+          <div class="mark">✨</div>
+          <p>産地直送の鮮度と味を求める、本物志向の方へ。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="lineup" style="background: var(--color-surface);">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Lineup</span>
+        <h2>好みで選べる、4種の旬の桃</h2>
+      </div>
+      <div class="lineup-grid">
+        <article class="lineup-card">
+          <div class="num">1</div>
+          <h3>あかつき</h3>
+          <div class="subtitle">王道の風格</div>
+          <p class="feature">甘みが強く、肉質が緻密。日持ちも良いため、ギフト人気No.1。</p>
+          <div class="product">【特選】あかつき 3kg箱(6〜9玉入)</div>
+        </article>
+        <article class="lineup-card">
+          <div class="num">2</div>
+          <h3>川中島白桃</h3>
+          <div class="subtitle">大玉の満足感</div>
+          <p class="feature">ずっしりと大きく、食べ応え抜群。しっかりした食感と濃厚な甘みが特徴。</p>
+          <div class="product">【極大玉】川中島白桃 プレミアム 5kg箱</div>
+        </article>
+        <article class="lineup-card">
+          <div class="num">3</div>
+          <h3>黄金桃</h3>
+          <div class="subtitle">トロピカルな香り</div>
+          <p class="feature">黄色の果肉。マンゴーのような芳醇な香りと、酸味と甘みの絶妙なバランス。</p>
+          <div class="product">【希少種】黄金桃 食べ比べセット</div>
+        </article>
+        <article class="lineup-card">
+          <div class="num">4</div>
+          <h3>なつっこ</h3>
+          <div class="subtitle">驚きの糖度</div>
+          <p class="feature">酸味が少なく、とにかく甘さが際立つ。なめらかな口当たりで、お子様にも大人気。</p>
+          <div class="product">【家庭用】なつっこ お得用パック</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="story">
+    <div class="wrap">
+      <div class="story">
+        <div>
+          <span class="kicker">生産者インタビュー</span>
+          <h2>桃と対話し、一玉ずつに愛情を。私たちが「木の上完熟」にこだわる理由。</h2>
+        </div>
+        <a class="btn btn-ghost" href="#">インタビューを読む</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="articles">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">桃をもっと楽しむ</span>
+        <h2>桃に関する読みもの</h2>
+      </div>
+      <div class="article-grid">
+        <a class="article-card" href="#">
+          <span class="tag">保存・食べ方</span>
+          <h3>プロが教える!桃を一番美味しく食べるための3つのコツ</h3>
+        </a>
+        <a class="article-card" href="#">
+          <span class="tag">栄養・美容</span>
+          <h3>実は美容の味方?桃に含まれる栄養素と嬉しい効果</h3>
+        </a>
+        <a class="article-card" href="#">
+          <span class="tag">食べ頃ガイド</span>
+          <h3>硬い桃が好き?柔らかい桃が好き?自分好みの追熟ガイド</h3>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="wrap">
+      <h2>今年の桃は、もう決まりましたか?</h2>
+      <p>気になる品種だけでも、まずはラインナップをチェックしてみてください。</p>
+      <a class="btn btn-primary" href="#lineup">品種をチェックする</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <nav>
+      <a href="#lineup">商品ラインナップ</a>
+      <a href="#story">生産者インタビュー</a>
+      <a href="#articles">桃に関する読みもの</a>
+    </nav>
+    <div class="copyright">© 2026 そらいろ桃園</div>
+  </div>
+</footer>
