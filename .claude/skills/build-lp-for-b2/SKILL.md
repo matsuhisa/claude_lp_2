@@ -1,50 +1,50 @@
 ---
 name: build-lp-for-b2
-description: Build a self-contained, single-file HTML B2B landing page (LP) styled with this project's brand tokens. Use this skill whenever the user asks to create, draft, redesign, or update a landing page, product page, sales page, or marketing page for a B2B product, service, or offer — even if they don't say "landing page" explicitly (e.g. "make a page for our new feature launch", "I need something to send to prospects", "build a page pitching X to enterprise customers", "LP作って"). Always read `.claude/tokens/brand.json` first for brand colors, fonts, and voice before writing any HTML.
+description: このプロジェクトのブランドトークンを使って、単体HTMLファイルで完結するB2B向けランディングページ(LP)を作成するスキル。ユーザーがB2Bの製品・サービス・案件についてランディングページ、製品ページ、セールスページ、マーケティングページの作成・下書き・リデザイン・更新を依頼したときは、「ランディングページ」と明示していなくても必ずこのスキルを使うこと(例:「新機能ローンチ用のページを作って」「見込み客に送るページが欲しい」「エンタープライズ顧客向けにXを訴求するページを作りたい」「LP作って」)。HTMLを書き始める前に、必ず先に `.claude/tokens/brand.json` を読み、ブランドカラー・フォント・トーンを確認すること。
 ---
 
 # Build LP for B2B
 
-Produces a single self-contained HTML file for a B2B landing page, styled using this project's brand tokens, following a conversion-focused B2B section structure. Can optionally be published via the Artifact tool for instant preview/sharing.
+このプロジェクトのブランドトークンを使い、コンバージョン重視のB2B向けセクション構成に沿って、単体で完結するHTMLファイル1本のランディングページを生成します。Artifactツールで即座に公開・プレビュー・共有することもできます。
 
-## Before you start
+## 作業開始前に
 
-1. **Read `.claude/tokens/brand.json`** in this project. It holds brand colors, fonts, logo, radius, spacing, and voice/tone for every LP built with this skill — treat it as the single source of truth for styling.
-   - If fields still contain `TODO:` placeholders, tell the user which ones are missing and ask for the real values (or ask them to fill in the file) before finalizing colors. Silently using placeholder colors produces an off-brand page, which defeats the point of having tokens.
+1. **プロジェクト内の `.claude/tokens/brand.json` を読む。** ここには、このスキルで作るすべてのLPに共通するブランドカラー・フォント・ロゴ・角丸・余白・トーン&マナーが定義されています。スタイリングの唯一の情報源として扱ってください。
+   - まだ `TODO:` のプレースホルダーが残っているフィールドがあれば、どの項目が未設定かをユーザーに伝え、実際の値を教えてもらう(またはファイルを埋めてもらう)ようお願いしてから色を確定してください。プレースホルダーの色をそのまま黙って使うと、ブランドと合わないページになってしまい、トークンを用意した意味がなくなります。
 
-2. **Ask the user for the content basics** if not already given in the conversation:
-   - Product/service name and one-line value proposition
-   - Target buyer persona (e.g. "IT director at mid-size SaaS companies")
-   - Primary CTA (e.g. "Book a demo", "Start free trial", "Contact sales")
-   - Any real proof points: customer logos, testimonials, case study stats, pricing tiers
-   - Whether this is for a specific campaign/channel (affects tone and urgency)
+2. **コンテンツの基本情報を確認する**(会話内で既に得られていない場合):
+   - 製品/サービス名と一文での価値提案
+   - ターゲットとなる購買担当者像(例:「中堅SaaS企業のIT部門責任者」)
+   - 主要なCTA(例:「デモを予約する」「無料トライアルを始める」「営業に問い合わせる」)
+   - 実際に使える実績情報:顧客ロゴ、導入事例の声、事例の数値、料金プラン
+   - 特定のキャンペーン/チャネル向けかどうか(トーンや訴求の強さに影響)
 
-## Section structure
+## セクション構成
 
-Default to this order — it's a standard B2B conversion structure — unless the user asks for something different:
+以下は標準的なB2Bコンバージョン構成です。ユーザーから別の指定がない限り、この順序をデフォルトとしてください:
 
-1. **Hero** — headline, subheadline, primary CTA, optional hero visual
-2. **Problem / pain points** — 2-4 pain points the persona recognizes
-3. **Solution / key features** — 3-6 features tied to outcomes, not just capabilities
-4. **How it works** — short 3-4 step flow
-5. **Social proof** — customer logos or case study stats
-6. **Testimonials** (optional) — only if the user provides real quotes
-7. **Pricing** (optional) — only if the user provides real tiers
-8. **FAQ** — 4-6 objections a B2B buyer would actually have (security, integration, implementation time, pricing, contract terms)
-9. **Final CTA** — repeat the primary CTA, lower-friction framing
-10. **Footer** — company info, links
+1. **Hero(ファーストビュー)** — 見出し、サブ見出し、主要CTA、任意のビジュアル
+2. **課題/ペインポイント** — ターゲットが「自分ごと」と感じる課題を2〜4個
+3. **ソリューション/主要機能** — 単なる機能列挙ではなく、成果に紐づく機能を3〜6個
+4. **利用の流れ** — 3〜4ステップの簡潔なフロー
+5. **社会的証明** — 顧客ロゴまたは事例の数値
+6. **お客様の声(任意)** — ユーザーから実際の引用を提供された場合のみ
+7. **料金(任意)** — ユーザーから実際のプラン情報を提供された場合のみ
+8. **FAQ** — B2Bの購買担当者が実際に持つ懸念を4〜6個(セキュリティ、既存システムとの連携、導入期間、料金、契約条件など)
+9. **最終CTA** — 主要CTAを、より心理的ハードルの低い言い回しで再掲
+10. **フッター** — 会社情報、リンク
 
-Skip sections the user has no real content for rather than filling them with filler — an LP with 7 solid sections beats one with 10 where 3 are empty-sounding.
+実データのないセクションは、無理に埋めずに省略してください。中身の薄い10セクションより、内容の濃い7セクションの方が優れています。
 
-## Output requirements
+## 出力要件
 
-- **Single self-contained HTML file**: inline `<style>`, inline or data-URI assets, no external CDN/font/script dependencies. This also makes it publishable as an Artifact, which has a strict CSP.
-- **Apply brand tokens directly** as CSS custom properties at the top of the stylesheet, sourced from `.claude/tokens/brand.json`. Don't invent colors or fonts that aren't in the token file.
-- **Mobile-responsive**: stacked layout on narrow viewports, no horizontal scroll, tap-friendly CTA buttons.
-- **Real, specific copy** — no lorem ipsum, no generic "Feature 1 / Feature 2" placeholders. If there isn't enough detail for a section, ask the user rather than inventing stats, logos, or customer names.
-- **Never fabricate social proof** — customer names, logos, testimonial quotes, or metrics must come from the user. Making these up is misleading even as a draft.
-- **Accessible**: semantic HTML (`<header>`, `<section>`, `<nav>`, heading hierarchy), sufficient color contrast using the token colors, alt text on images.
+- **単体で完結する1つのHTMLファイル**: `<style>` はインライン、アセットもインラインまたはdata URI化し、外部CDN・外部フォント・外部スクリプトへの依存を持たせないこと。これによりArtifactとしても公開可能になります(Artifactは厳格なCSPを課すため)。
+- **ブランドトークンをそのまま適用**: `.claude/tokens/brand.json` の値をスタイルシート冒頭のCSSカスタムプロパティとして反映すること。トークンファイルにない色やフォントを勝手に作らないこと。
+- **モバイル対応**: 狭い画面では縦積みレイアウトにし、横スクロールが発生しないようにする。CTAボタンはタップしやすいサイズにする。
+- **具体的で本物のコピー** — lorem ipsumや「機能1/機能2」のような汎用プレースホルダーは使わないこと。あるセクションの情報が不足している場合は、勝手に数値やロゴ、顧客名を作らず、ユーザーに確認すること。
+- **社会的証明のねつ造は禁止** — 顧客名、ロゴ、お客様の声、数値は必ずユーザー提供のものを使うこと。下書きであっても、これらを作り話にするのは誤解を招く行為です。
+- **アクセシビリティ**: セマンティックなHTML(`<header>`、`<section>`、`<nav>`、見出し階層)を使い、トークンの色で十分なコントラストを確保し、画像にはalt属性を付けること。
 
-## After building
+## 作成後
 
-Ask the user whether they'd like the page published as an Artifact for instant preview/sharing. If yes, use the Artifact tool — load the `artifact-design` skill first, per its own instructions, and use `logo.faviconEmoji` from the token file as the favicon. Otherwise, just save the HTML file at the path the user specifies.
+ページをArtifactとして公開し、即座にプレビュー・共有できるようにするかをユーザーに確認してください。希望する場合は Artifact ツールを使い、その指示に従って先に `artifact-design` スキルを読み込んだ上で、トークンファイルの `logo.faviconEmoji` をfaviconとして使用してください。希望しない場合は、ユーザーが指定したパスにHTMLファイルを保存するだけで構いません。
