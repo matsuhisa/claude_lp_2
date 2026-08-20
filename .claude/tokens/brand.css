@@ -1,0 +1,36 @@
+/*
+ * brand.css — design tokens for build-lp-for-b2 (colors, typography, radius, spacing).
+ * The build-lp-for-b2 skill reads this file before building any landing page and
+ * inlines these custom properties into the generated HTML's <style> block.
+ * Fill in the TODO values with this brand's real tokens; colors must be valid hex codes.
+ * Non-visual info (company name, tagline, logo, voice & tone) lives in brand.json.
+ */
+:root {
+  /* Colors */
+  --color-primary: #0B5FFF; /* TODO */
+  --color-primary-dark: #0842B8; /* TODO */
+  --color-secondary: #111827; /* TODO */
+  --color-accent: #F59E0B; /* TODO */
+  --color-background: #FFFFFF; /* TODO */
+  --color-surface: #F9FAFB; /* TODO */
+  --color-text-primary: #111827; /* TODO */
+  --color-text-secondary: #6B7280; /* TODO */
+  --color-border: #E5E7EB; /* TODO */
+  --color-success: #16A34A; /* TODO */
+  --color-danger: #DC2626; /* TODO */
+
+  /* Typography */
+  --font-heading: "Inter", sans-serif; /* TODO */
+  --font-body: "Inter", sans-serif; /* TODO */
+  --font-base-size: 16px;
+  --font-scale-ratio: 1.25;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* Spacing */
+  --space: 8px;
+}

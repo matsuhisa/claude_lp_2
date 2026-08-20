@@ -1,5 +1,5 @@
 {
-  "_instructions": "Fill in the TODO values below with this brand's real tokens. The build-lp-for-b2 skill reads this file before building any landing page. Colors must be valid hex codes (e.g. #0B5FFF). Do not delete keys — leave a reasonable default if a value truly doesn't apply.",
+  "_instructions": "Fill in the TODO values below with this brand's real info. The build-lp-for-b2 skill reads this file (non-visual brand info) together with tokens/brand.css (colors, typography, radius, spacing) before building any landing page. Do not delete keys — leave a reasonable default if a value truly doesn't apply.",
 
   "meta": {
     "brandName": "TODO: Company name",
@@ -7,41 +7,11 @@
     "website": "TODO: https://example.com"
   },
 
-  "colors": {
-    "primary": "TODO: #0B5FFF",
-    "primaryDark": "TODO: #0842B8",
-    "secondary": "TODO: #111827",
-    "accent": "TODO: #F59E0B",
-    "background": "TODO: #FFFFFF",
-    "surface": "TODO: #F9FAFB",
-    "textPrimary": "TODO: #111827",
-    "textSecondary": "TODO: #6B7280",
-    "border": "TODO: #E5E7EB",
-    "success": "TODO: #16A34A",
-    "danger": "TODO: #DC2626"
-  },
-
-  "typography": {
-    "fontFamilyHeading": "TODO: e.g. 'Inter', sans-serif",
-    "fontFamilyBody": "TODO: e.g. 'Inter', sans-serif",
-    "baseSizePx": 16,
-    "scaleRatio": 1.25
-  },
-
   "logo": {
     "lightSrc": "TODO: path or data URI to logo for use on light backgrounds",
     "darkSrc": "TODO: path or data URI to logo for use on dark backgrounds",
     "faviconEmoji": "TODO: one or two emoji to use as favicon when publishing as an Artifact"
   },
-
-  "radius": {
-    "sm": "6px",
-    "md": "12px",
-    "lg": "20px",
-    "pill": "999px"
-  },
-
-  "spacingUnitPx": 8,
 
   "voiceAndTone": {
     "description": "TODO: e.g. 'Confident and concise. Speaks directly to technical decision-makers. No hype, no jargon, no exclamation points.'"

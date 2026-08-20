@@ -1,0 +1,21 @@
+/*
+ * brand.draft.css — grayscale color palette for content-draft.md based drafts.
+ * The build-lp-for-b2 skill uses these color tokens INSTEAD OF brand.css's colors
+ * when generating draft.html from a content-draft.md (colors not yet decided).
+ * Typography / radius / spacing still come from brand.css.
+ * Once colors are finalized, stop using this file and regenerate against brand.css.
+ */
+:root {
+  --color-primary: #111827;
+  --color-primary-dark: #000000;
+  --color-secondary: #374151;
+  --color-accent: #6B7280;
+  --color-success: #4B5563;
+  --color-danger: #4B5563;
+
+  --color-background: #FFFFFF;
+  --color-surface: #F3F4F6;
+  --color-text-primary: #111827;
+  --color-text-secondary: #6B7280;
+  --color-border: #D1D5DB;
+}
