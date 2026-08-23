@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Style Guide</title>
+<!--
+  トークン・ユーティリティの確認用ページ。値は複製せず、実ファイルを <link> で
+  読み込んで表示する(brand.css / brand.draft.css / rules/utility/*.css を更新
+  すれば、このページの表示も自動で追従する)。
+  トークン(semantic/primitive)や utility に増減があった場合、このページの
+  スウォッチ・サンプルは手動で追記/削除が必要。
+-->
+<link id="palette-css" rel="stylesheet" href="tokens/brand.css">
+<link rel="stylesheet" href="rules/utility/u-typography.css">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 40px;
+    max-width: 960px;
+    margin-inline: auto;
+    background: var(--color-background);
+    color: var(--color-text-primary);
+    font-family: var(--font-family-sans-serif);
+    line-height: 1.6;
+  }
+  h1, h2, h3 { font-family: var(--font-family-sans-serif); margin: 0 0 8px; }
+  h1 { font-size: 28px; }
+  h2 {
+    font-size: 18px;
+    margin-top: 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-border-secondary);
+  }
+  h3 { font-size: 13px; color: var(--color-text-secondary); margin: 24px 0 8px; }
+  header.page {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  header.page p { margin: 4px 0 0; color: var(--color-text-secondary); font-size: 14px; }
+  button#toggle-palette {
+    font: inherit;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    border: var(--border-width-medium) solid var(--color-border-primary);
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  section.block { margin-bottom: 48px; }
+
+  /* Colors */
+  .swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+  }
+  .swatch {
+    border: var(--border-width-medium) solid var(--color-border-secondary);
+    border-radius: var(--radius-medium);
+    overflow: hidden;
+  }
+  .swatch__color { height: 64px; }
+  .swatch__meta { padding: 8px 10px; }
+  .swatch__meta .name { display: block; font-size: 13px; font-weight: 600; }
+  .swatch__meta .value {
+    display: block;
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  /* Typography */
+  .font-sample { padding: 16px 0; border-bottom: 1px dashed var(--color-border-secondary); }
+  .font-sample:last-child { border-bottom: none; }
+  .font-sample .value {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  .font-sample .sample-text { font-family: var(--font-family-sans-serif); }
+
+  /* token rows (border-width / radius / opacity-shadow) */
+  .token-row { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; }
+  .token-box {
+    width: 88px;
+    height: 88px;
+    background: var(--color-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    text-align: center;
+  }
+  .token-label {
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  .token-note {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    font-style: italic;
+  }
+
+  /* primitive: spacing */
+  .space-row { display: flex; align-items: flex-end; gap: 8px; flex-wrap: wrap; }
+  .space-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .space-box { width: 16px; background: var(--color-accent); }
+
+  /* primitive: font size scale */
+  .fontsize-row { display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; }
+  .fontsize-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+
+  /* Utilities */
+  .util-sample {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--color-border-secondary);
+  }
+  .util-sample:last-child { border-bottom: none; }
+  .util-sample__preview {
+    padding: 12px;
+    border: var(--border-width-medium) solid var(--color-border-secondary);
+    border-radius: var(--radius-small);
+    background: var(--color-surface);
+  }
+  .util-sample__preview p { margin: 0; }
+  .util-sample pre {
+    margin: 0;
+    padding: 10px 12px;
+    background: var(--color-surface);
+    border: var(--border-width-medium) solid var(--color-border-secondary);
+    border-radius: var(--radius-small);
+    font-size: 12px;
+    overflow-x: auto;
+  }
+</style>
+</head>
+<body>
+
+<header class="page">
+  <div>
+    <h1>Style Guide</h1>
+    <p>build-lp-for-b2 のブランドトークン・ユーティリティクラスの確認用ページ。</p>
+  </div>
+  <button id="toggle-palette" type="button">brand.draft.css を確認</button>
+</header>
+
+<section class="block" id="colors">
+  <h2>Colors (semantic)</h2>
+  <div class="swatch-grid">
+    <div class="swatch"><div class="swatch__color" style="background: var(--color-primary)"></div><div class="swatch__meta"><span class="name">primary</span><span class="value" data-var="--color-primary"></span></div></div>
+    <div class="swatch"><div class="swatch__color" style="background: var(--color-primary-dark)"></div><div class="swatch__meta"><span class="name">primary-dark</span><span class="value" data-var="--color-primary-dark"></span></div></div>
+    <div class="swatch"><div class="swatch__color" style="background: var(--color-secondary)"></div><div class="swatch__meta"><span class="name">secondary</span><span class="value" data-var="--color-secondary"></span></div></div>
+    <div class="swatch"><div class="swatch__color" style="background: var(--color-accent)"></div><div class="swatch__meta"><span class="name">accent</span><span class="value" data-var="--color-accent"></span></div></div>
+    <div class="swatch"><div class="swatch__color" style="background: var(--color-success)"></div><div class="swatch__meta"><span class="name">success</span><span class="value" data-var="--color-success"></span></div></div>
+    <div class="swatch"><div class="swatch__color" style="background: var(--color-danger)"></div><div class="swatch__meta"><span class="name">danger</span><span class="value" data-var="--color-danger"></span></div></div>
+    <div class="swatch"><div class="swatch__color" style="background: var(--color-background); border-bottom: 1px solid var(--color-border-secondary);"></div><div class="swatch__meta"><span class="name">background</span><span class="value" data-var="--color-background"></span></div></div>
+    <div class="swatch"><div class="swatch__color" style="background: var(--color-surface)"></div><div class="swatch__meta"><span class="name">surface</span><span class="value" data-var="--color-surface"></span></div></div>
+    <div class="swatch"><div class="swatch__color" style="background: var(--color-text-primary)"></div><div class="swatch__meta"><span class="name">text-primary</span><span class="value" data-var="--color-text-primary"></span></div></div>
+    <div class="swatch"><div class="swatch__color" style="background: var(--color-text-secondary)"></div><div class="swatch__meta"><span class="name">text-secondary</span><span class="value" data-var="--color-text-secondary"></span></div></div>
+    <div class="swatch"><div class="swatch__color" style="background: var(--color-border-primary)"></div><div class="swatch__meta"><span class="name">border-primary</span><span class="value" data-var="--color-border-primary"></span></div></div>
+    <div class="swatch"><div class="swatch__color" style="background: var(--color-border-secondary)"></div><div class="swatch__meta"><span class="name">border-secondary</span><span class="value" data-var="--color-border-secondary"></span></div></div>
+  </div>
+</section>
+
+<section class="block" id="typography-tokens">
+  <h2>Typography (semantic)</h2>
+  <div class="font-sample">
+    <span class="value" data-var="--font-heading-1"></span>
+    <span class="sample-text" style="font-size: var(--font-heading-1); font-weight: 700;">見出し1の見本 ABC 123</span>
+  </div>
+  <div class="font-sample">
+    <span class="value" data-var="--font-heading-2"></span>
+    <span class="sample-text" style="font-size: var(--font-heading-2); font-weight: 700;">見出し2の見本 ABC 123</span>
+  </div>
+  <div class="font-sample">
+    <span class="value" data-var="--font-heading-3"></span>
+    <span class="sample-text" style="font-size: var(--font-heading-3); font-weight: 700;">見出し3の見本 ABC 123</span>
+  </div>
+  <div class="font-sample">
+    <span class="value" data-var="--font-body"></span>
+    <span class="sample-text" style="font-size: var(--font-body);">本文の見本 ABC 123</span>
+  </div>
+  <div class="font-sample">
+    <span class="value" data-var="--font-label"></span>
+    <span class="sample-text" style="font-size: var(--font-label);">ラベルの見本 ABC 123</span>
+  </div>
+  <div class="font-sample">
+    <span class="value" data-var="--font-label-small"></span>
+    <span class="sample-text" style="font-size: var(--font-label-small);">ラベル(small)の見本 ABC 123</span>
+  </div>
+</section>
+
+<section class="block" id="border-radius">
+  <h2>Border width / Radius</h2>
+  <h3>border-width</h3>
+  <div class="token-row">
+    <div>
+      <div class="token-box" style="border: var(--border-width-medium) solid var(--color-border-primary);">medium</div>
+      <div class="token-label" data-var="--border-width-medium"></div>
+    </div>
+    <div>
+      <div class="token-box" style="border: var(--border-width-large) solid var(--color-border-primary);">large</div>
+      <div class="token-label" data-var="--border-width-large"></div>
+    </div>
+    <div>
+      <div class="token-box" style="border: var(--border-width-extra-large) solid var(--color-border-primary);">extra-large</div>
+      <div class="token-label" data-var="--border-width-extra-large"></div>
+    </div>
+  </div>
+  <h3>radius</h3>
+  <div class="token-row">
+    <div>
+      <div class="token-box" style="border: var(--border-width-medium) solid var(--color-border-secondary); border-radius: var(--radius-small);">small</div>
+      <div class="token-label" data-var="--radius-small"></div>
+    </div>
+    <div>
+      <div class="token-box" style="border: var(--border-width-medium) solid var(--color-border-secondary); border-radius: var(--radius-medium);">medium</div>
+      <div class="token-label" data-var="--radius-medium"></div>
+    </div>
+    <div>
+      <div class="token-box" style="border: var(--border-width-medium) solid var(--color-border-secondary); border-radius: var(--radius-large);">large</div>
+      <div class="token-label" data-var="--radius-large"></div>
+    </div>
+    <div>
+      <div class="token-box" style="border: var(--border-width-medium) solid var(--color-border-secondary); border-radius: var(--radius-full);">full</div>
+      <div class="token-label" data-var="--radius-full"></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="elevation">
+  <h2>Elevation (box-shadow)</h2>
+  <div class="token-row">
+    <div>
+      <div class="token-box" style="box-shadow: var(--elevation-low); border-radius: var(--radius-medium);">low</div>
+      <div class="token-label" data-var="--elevation-low"></div>
+    </div>
+    <div>
+      <div class="token-box" style="box-shadow: var(--elevation-high); border-radius: var(--radius-medium);">high</div>
+      <div class="token-label" data-var="--elevation-high"></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="primitive-font">
+  <h2>Primitive: Font</h2>
+  <h3>font-family-sans-serif</h3>
+  <p class="token-label" data-var="--font-family-sans-serif"></p>
+  <p style="font-family: var(--font-family-sans-serif); font-size: 20px;">吾輩は猫である。名前はまだ無い。ABC 123</p>
+
+  <h3>font-size scale</h3>
+  <div class="fontsize-row">
+    <div class="fontsize-item"><span style="font-size: var(--font-size-12);">Aa</span><span class="token-label" data-var="--font-size-12"></span></div>
+    <div class="fontsize-item"><span style="font-size: var(--font-size-16);">Aa</span><span class="token-label" data-var="--font-size-16"></span></div>
+    <div class="fontsize-item"><span style="font-size: var(--font-size-20);">Aa</span><span class="token-label" data-var="--font-size-20"></span></div>
+    <div class="fontsize-item"><span style="font-size: var(--font-size-24);">Aa</span><span class="token-label" data-var="--font-size-24"></span></div>
+    <div class="fontsize-item"><span style="font-size: var(--font-size-32);">Aa</span><span class="token-label" data-var="--font-size-32"></span></div>
+    <div class="fontsize-item"><span style="font-size: var(--font-size-40);">Aa</span><span class="token-label" data-var="--font-size-40"></span></div>
+    <div class="fontsize-item"><span style="font-size: var(--font-size-48);">Aa</span><span class="token-label" data-var="--font-size-48"></span></div>
+    <div class="fontsize-item"><span style="font-size: var(--font-size-64);">Aa</span><span class="token-label" data-var="--font-size-64"></span></div>
+  </div>
+</section>
+
+<section class="block" id="primitive-spacing">
+  <h2>Primitive: Spacing</h2>
+  <div class="space-row">
+    <div class="space-item"><div class="space-box" style="height: var(--spacing-8);"></div><span class="token-label" data-var="--spacing-8"></span></div>
+    <div class="space-item"><div class="space-box" style="height: var(--spacing-16);"></div><span class="token-label" data-var="--spacing-16"></span></div>
+    <div class="space-item"><div class="space-box" style="height: var(--spacing-20);"></div><span class="token-label" data-var="--spacing-20"></span></div>
+    <div class="space-item"><div class="space-box" style="height: var(--spacing-24);"></div><span class="token-label" data-var="--spacing-24"></span></div>
+    <div class="space-item"><div class="space-box" style="height: var(--spacing-32);"></div><span class="token-label" data-var="--spacing-32"></span></div>
+    <div class="space-item"><div class="space-box" style="height: var(--spacing-40);"></div><span class="token-label" data-var="--spacing-40"></span></div>
+    <div class="space-item"><div class="space-box" style="height: var(--spacing-48);"></div><span class="token-label" data-var="--spacing-48"></span></div>
+    <div class="space-item"><div class="space-box" style="height: var(--spacing-64);"></div><span class="token-label" data-var="--spacing-64"></span></div>
+    <div class="space-item"><div class="space-box" style="height: var(--spacing-80);"></div><span class="token-label" data-var="--spacing-80"></span></div>
+    <div class="space-item"><div class="space-box" style="height: var(--spacing-104);"></div><span class="token-label" data-var="--spacing-104"></span></div>
+  </div>
+</section>
+
+<section class="block" id="utilities">
+  <h2>Utilities (rules/utility/u-typography.css)</h2>
+
+  <div class="util-sample">
+    <div class="util-sample__preview"><p class="u-headline-1">u-headline-1 のサンプル文章</p></div>
+    <pre><code>&lt;p class="u-headline-1"&gt;...&lt;/p&gt;</code></pre>
+  </div>
+
+  <div class="util-sample">
+    <div class="util-sample__preview"><p class="u-headline-2">u-headline-2 のサンプル文章</p></div>
+    <pre><code>&lt;p class="u-headline-2"&gt;...&lt;/p&gt;</code></pre>
+  </div>
+
+  <div class="util-sample">
+    <div class="util-sample__preview"><p class="u-headline-3">u-headline-3 のサンプル文章</p></div>
+    <pre><code>&lt;p class="u-headline-3"&gt;...&lt;/p&gt;</code></pre>
+  </div>
+
+  <div class="util-sample">
+    <div class="util-sample__preview"><p class="u-text-body-large">u-text-body-large のサンプル文章です。行間が広めの本文用です。行間が広めの本文用です。</p></div>
+    <pre><code>&lt;p class="u-text-body-large"&gt;...&lt;/p&gt;</code></pre>
+  </div>
+
+  <div class="util-sample">
+    <div class="util-sample__preview"><p class="u-text-body-medium">u-text-body-medium のサンプル文章です。標準的な行間の本文用です。標準的な行間の本文用です。</p></div>
+    <pre><code>&lt;p class="u-text-body-medium"&gt;...&lt;/p&gt;</code></pre>
+  </div>
+
+  <div class="util-sample">
+    <div class="util-sample__preview"><p class="u-text-body-small">u-text-body-small のサンプル文章です。行間が詰まった本文用です。行間が詰まった本文用です。</p></div>
+    <pre><code>&lt;p class="u-text-body-small"&gt;...&lt;/p&gt;</code></pre>
+  </div>
+
+  <div class="util-sample">
+    <div class="util-sample__preview">
+      <p class="u-text-normal">u-text-normal のテキスト</p>
+      <p class="u-text-bold">u-text-bold のテキスト</p>
+    </div>
+    <pre><code>&lt;p class="u-text-normal"&gt;...&lt;/p&gt;
+&lt;p class="u-text-bold"&gt;...&lt;/p&gt;</code></pre>
+  </div>
+
+  <div class="util-sample">
+    <div class="util-sample__preview">
+      <p class="u-text-left">u-text-left</p>
+      <p class="u-text-center">u-text-center</p>
+      <p class="u-text-right">u-text-right</p>
+    </div>
+    <pre><code>&lt;p class="u-text-left"&gt;...&lt;/p&gt;
+&lt;p class="u-text-center"&gt;...&lt;/p&gt;
+&lt;p class="u-text-right"&gt;...&lt;/p&gt;</code></pre>
+  </div>
+</section>
+
+<script>
+(function () {
+  var paletteLink = document.getElementById('palette-css');
+  var toggleBtn = document.getElementById('toggle-palette');
+  var isDraft = false;
+
+  function renderTokenValues() {
+    var styles = getComputedStyle(document.documentElement);
+    document.querySelectorAll('[data-var]').forEach(function (el) {
+      var varName = el.getAttribute('data-var');
+      var value = styles.getPropertyValue(varName).trim();
+      el.textContent = varName + ': ' + (value === '' ? '(未設定)' : value);
+    });
+  }
+
+  paletteLink.addEventListener('load', renderTokenValues);
+  renderTokenValues();
+
+  toggleBtn.addEventListener('click', function () {
+    isDraft = !isDraft;
+    paletteLink.href = isDraft ? 'tokens/brand.draft.css' : 'tokens/brand.css';
+    toggleBtn.textContent = isDraft ? 'brand.css に戻す' : 'brand.draft.css を確認';
+  });
+})();
+</script>
+
+</body>
+</html>

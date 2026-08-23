@@ -1,0 +1,62 @@
+/*
+ * u-typography.css — FLOCSS の u-* (utility) レイヤー。文字まわりの見た目だけを
+ * 変える単機能クラス。.claude/rules/coding.md の命名規約に従う。
+ * 生成時は、実際に使うクラスだけを <style> にコピーする(未使用分は含めない)。
+ * 色・フォントは brand.css / brand.draft.css の --color-* / --font-* トークンを参照する。
+ */
+
+
+/* headline */
+/*
+ - 画面で一番目立たせたいのは、Display
+ - headline は、1〜2を使う想定
+ - カードのタイトルぐらいは、title なんだけれど、Webなので headline3 ぐらい
+ */
+.u-headline-1 {
+  font-size: var(--font-heading-1);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+}
+
+.u-headline-2 {
+  font-size: var(--font-heading-2);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+}
+
+.u-headline-3 {
+  font-size: var(--font-heading-3);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+}
+
+/* body */
+.u-text-body-large {
+  font-size: var(--font-body);
+  font-weight: 400;
+  line-height: 2;
+}
+
+.u-text-body-medium {
+  font-size: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.u-text-body-small {
+  font-size: var(--font-body);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* ウェイト */
+.u-text-normal { font-weight: 400; }
+.u-text-bold { font-weight: 700; }
+
+/* 配置 */
+.u-text-center { text-align: center; }
+.u-text-left { text-align: left; }
+.u-text-right { text-align: right; }

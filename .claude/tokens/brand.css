@@ -6,31 +6,59 @@
  * Non-visual info (company name, tagline, logo, voice & tone) lives in brand.json.
  */
 :root {
-  /* Colors */
+  /* semantic */
   --color-primary: #0B5FFF; /* TODO */
   --color-primary-dark: #0842B8; /* TODO */
   --color-secondary: #111827; /* TODO */
   --color-accent: #F59E0B; /* TODO */
+  --color-success: #16A34A; /* TODO */
+  --color-danger: #DC2626; /* TODO */
+
   --color-background: #FFFFFF; /* TODO */
   --color-surface: #F9FAFB; /* TODO */
   --color-text-primary: #111827; /* TODO */
   --color-text-secondary: #6B7280; /* TODO */
-  --color-border: #E5E7EB; /* TODO */
-  --color-success: #16A34A; /* TODO */
-  --color-danger: #DC2626; /* TODO */
+  --color-border-primary: #374151; /* TODO */
+  --color-border-secondary: #D1D5DB; /* TODO */
 
-  /* Typography */
-  --font-heading: "Inter", sans-serif; /* TODO */
-  --font-body: "Inter", sans-serif; /* TODO */
-  --font-base-size: 16px;
-  --font-scale-ratio: 1.25;
+  --font-heading-1: var(--font-size-32);
+  --font-heading-2: var(--font-size-24);
+  --font-heading-3: var(--font-size-20);
+  --font-body: var(--font-size-16);
+  --font-label: var(--font-size-16);
+  --font-label-small: var(--font-size-12);
 
-  /* Radius */
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-pill: 999px;
+  --border-width-medium: 1px;
+  --border-width-large: 2px;
+  --border-width-extra-large: 4px;
 
-  /* Spacing */
-  --space: 8px;
+  --radius-small: 4px;
+  --radius-medium: 8px;
+  --radius-large: 16px;
+  --radius-full: 50%;
+
+  --elevation-low: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+  --elevation-high: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.30);
+
+  /* primitive */
+  --spacing-104: 104px;
+  --spacing-80: 80px;
+  --spacing-64: 64px;
+  --spacing-48: 48px;
+  --spacing-40: 40px;
+  --spacing-32: 32px;
+  --spacing-24: 24px;
+  --spacing-20: 20px;
+  --spacing-16: 16px;
+  --spacing-8: 8px;
+
+  --font-family-sans-serif: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --font-size-64: 64px;
+  --font-size-48: 48px;
+  --font-size-40: 40px;
+  --font-size-32: 32px;
+  --font-size-24: 24px;
+  --font-size-20: 20px;
+  --font-size-16: 16px;
+  --font-size-12: 12px;
 }
