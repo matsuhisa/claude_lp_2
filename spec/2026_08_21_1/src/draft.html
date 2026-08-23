@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>そらいろ桃園 | 旬の桃予約(ドラフト)</title>
+<style>
+  :root {
+    /* colors — draft palette (tokens/brand.draft.css) */
+    --color-primary: #111827;
+    --color-primary-dark: #000000;
+    --color-secondary: #374151;
+    --color-accent: #6B7280;
+    --color-success: #4B5563;
+    --color-danger: #4B5563;
+    --color-background: #FFFFFF;
+    --color-surface: #F3F4F6;
+    --color-text-primary: #111827;
+    --color-text-secondary: #6B7280;
+    --color-border-primary: #374151;
+    --color-border-secondary: #D1D5DB;
+
+    /* typography / radius / border / elevation / spacing — tokens/brand.css */
+    --font-heading-1: var(--font-size-32);
+    --font-heading-2: var(--font-size-24);
+    --font-heading-3: var(--font-size-20);
+    --font-body: var(--font-size-16);
+    --font-label: var(--font-size-16);
+    --font-label-small: var(--font-size-12);
+
+    --border-width-medium: 1px;
+    --border-width-large: 2px;
+    --border-width-extra-large: 4px;
+
+    --radius-small: 4px;
+    --radius-medium: 8px;
+    --radius-large: 16px;
+    --radius-full: 50%;
+
+    --elevation-low: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+    --elevation-high: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.30);
+
+    --spacing-104: 104px;
+    --spacing-80: 80px;
+    --spacing-64: 64px;
+    --spacing-48: 48px;
+    --spacing-40: 40px;
+    --spacing-32: 32px;
+    --spacing-24: 24px;
+    --spacing-20: 20px;
+    --spacing-16: 16px;
+    --spacing-8: 8px;
+
+    --font-family-sans-serif: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+    --font-size-64: 64px;
+    --font-size-48: 48px;
+    --font-size-40: 40px;
+    --font-size-32: 32px;
+    --font-size-24: 24px;
+    --font-size-20: 20px;
+    --font-size-16: 16px;
+    --font-size-12: 12px;
+  }
+
+  /* utility (rules/utility/u-typography.css — used classes only) */
+  .u-headline-1 { font-size: var(--font-heading-1); font-weight: 700; line-height: 1.4; letter-spacing: 0.1em; }
+  .u-headline-2 { font-size: var(--font-heading-2); font-weight: 700; line-height: 1.4; letter-spacing: 0.1em; }
+  .u-headline-3 { font-size: var(--font-heading-3); font-weight: 700; line-height: 1.4; letter-spacing: 0.1em; }
+  .u-text-body-large { font-size: var(--font-body); font-weight: 400; line-height: 2; }
+  .u-text-body-medium { font-size: var(--font-body); font-weight: 400; line-height: 1.6; }
+  .u-text-body-small { font-size: var(--font-body); font-weight: 400; line-height: 1.4; }
+  .u-text-normal { font-weight: 400; }
+  .u-text-bold { font-weight: 700; }
+  .u-text-center { text-align: center; }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-text-primary);
+    font-family: var(--font-family-sans-serif);
+  }
+  h1, h2, h3 { margin: 0; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 var(--spacing-24); }
+
+  /* c-button */
+  .c-button {
+    display: inline-block;
+    padding: var(--spacing-16) var(--spacing-32);
+    border-radius: var(--radius-full);
+    font-size: var(--font-label);
+    font-weight: 700;
+    border: var(--border-width-medium) solid transparent;
+    cursor: pointer;
+  }
+  .c-button--primary { background: var(--color-primary); color: var(--color-background); }
+  .c-button--ghost { background: transparent; border-color: var(--color-border-primary); color: var(--color-text-primary); }
+
+  /* c-card */
+  .c-card {
+    background: var(--color-surface);
+    border: var(--border-width-medium) solid var(--color-border-secondary);
+    border-radius: var(--radius-medium);
+    padding: var(--spacing-24);
+  }
+  .c-card .mark { font-size: var(--font-size-32); margin-bottom: var(--spacing-8); }
+  .c-card .num { color: var(--color-text-secondary); font-size: var(--font-label-small); margin-bottom: var(--spacing-8); }
+  .c-card .u-headline-3 { display: block; margin-bottom: var(--spacing-8); }
+  .c-card .product { margin-top: var(--spacing-16); font-weight: 700; }
+
+  /* c-kicker */
+  .c-kicker {
+    display: inline-block;
+    font-size: var(--font-label-small);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-8);
+  }
+
+  /* c-tag */
+  .c-tag {
+    display: inline-block;
+    font-size: var(--font-label-small);
+    color: var(--color-text-secondary);
+    background: var(--color-background);
+    border: var(--border-width-medium) solid var(--color-border-secondary);
+    border-radius: var(--radius-full);
+    padding: var(--spacing-8) var(--spacing-16);
+    margin-bottom: var(--spacing-8);
+  }
+
+  /* p-site-header */
+  header.site {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: var(--border-width-medium) solid var(--color-border-secondary);
+  }
+  header.site .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--spacing-16);
+    padding-bottom: var(--spacing-16);
+  }
+  .c-brand { font-weight: 700; font-size: var(--font-label); }
+
+  section { padding: var(--spacing-64) 0; }
+  section + section { border-top: var(--border-width-medium) solid var(--color-border-secondary); }
+  .section-head { text-align: center; margin-bottom: var(--spacing-40); }
+  .section-head .u-headline-2 { display: block; margin-top: var(--spacing-8); }
+
+  /* hero */
+  .hero { text-align: center; }
+  .hero .u-headline-1 { display: block; margin-bottom: var(--spacing-32); }
+
+  /* p-audience-grid / p-lineup-grid / p-articles-grid */
+  .p-audience-grid, .p-lineup-grid, .p-articles-grid {
+    display: grid;
+    gap: var(--spacing-24);
+  }
+  .p-audience-grid { grid-template-columns: repeat(2, 1fr); text-align: center; }
+  .p-audience-grid .c-card { text-align: center; }
+  .p-lineup-grid { grid-template-columns: repeat(2, 1fr); }
+  .p-articles-grid { grid-template-columns: repeat(3, 1fr); }
+  .c-article-card { display: block; }
+  .c-article-card .u-headline-3 { margin-top: var(--spacing-8); }
+
+  /* story */
+  .story { text-align: center; }
+  .story .wrap { max-width: 720px; }
+  .story .c-kicker { display: block; }
+  .story .u-headline-2 { display: block; margin: var(--spacing-16) 0; }
+  .story .u-text-body-medium { margin: var(--spacing-16) 0 var(--spacing-24); }
+
+  /* final-cta */
+  .final-cta { text-align: center; background: var(--color-surface); }
+  .final-cta .u-headline-2 { display: block; margin-bottom: var(--spacing-24); }
+
+  /* p-site-footer */
+  footer.site {
+    padding: var(--spacing-40) 0;
+    text-align: center;
+    color: var(--color-text-secondary);
+  }
+  footer.site p { margin: var(--spacing-8) 0; }
+
+  @media (max-width: 640px) {
+    .p-audience-grid, .p-lineup-grid, .p-articles-grid { grid-template-columns: 1fr; }
+    header.site .wrap { flex-direction: column; gap: var(--spacing-16); }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="c-brand">そらいろ桃園</div>
+    <a class="c-button c-button--primary" href="#lineup">今すぐ旬の桃を予約する</a>
+  </div>
+</header>
+
+<main>
+
+  <section id="hero" class="hero">
+    <div class="wrap">
+      <h1 class="u-headline-1">一生に一度は食べたい、究極のひと玉。<br>旬を閉じ込めた、とろける甘さを産地から。</h1>
+      <a class="c-button c-button--primary" href="#lineup">今すぐ旬の桃を予約する</a>
+    </div>
+  </section>
+
+  <section id="audience" class="audience">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="c-kicker">こんな方に選ばれています</span>
+      </div>
+      <div class="p-audience-grid">
+        <div class="c-card">
+          <div class="mark">🍑</div>
+          <p class="u-text-body-medium">30代〜50代の女性(主婦・働く女性)の方へ。</p>
+        </div>
+        <div class="c-card">
+          <div class="mark">🎁</div>
+          <p class="u-text-body-medium">自分へのご褒美や、家族への特別なデザートを探している方へ。</p>
+        </div>
+        <div class="c-card">
+          <div class="mark">💌</div>
+          <p class="u-text-body-medium">お中元や暑中見舞いなど、大切な人への「外さないギフト」を探している方へ。</p>
+        </div>
+        <div class="c-card">
+          <div class="mark">✨</div>
+          <p class="u-text-body-medium">スーパーの桃では満足できず、産地直送の鮮度と味を重視する本物志向の方へ。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="lineup" class="lineup">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="c-kicker">Lineup</span>
+        <h2 class="u-headline-2">好みで選べる、4種の旬の桃</h2>
+      </div>
+      <div class="p-lineup-grid">
+        <article class="c-card">
+          <div class="num">1</div>
+          <h3 class="u-headline-3">あかつき</h3>
+          <p class="u-text-body-medium u-text-bold">王道の風格</p>
+          <p class="u-text-body-medium">甘みが強く、肉質が緻密。日持ちも良いため、ギフト人気No.1。</p>
+          <div class="product">【特選】あかつき 3kg箱(6〜9玉入)</div>
+        </article>
+        <article class="c-card">
+          <div class="num">2</div>
+          <h3 class="u-headline-3">川中島白桃</h3>
+          <p class="u-text-body-medium u-text-bold">大玉の満足感</p>
+          <p class="u-text-body-medium">ずっしりと大きく、食べ応え抜群。しっかりした食感と濃厚な甘みが特徴。</p>
+          <div class="product">【極大玉】川中島白桃 プレミアム 5kg箱</div>
+        </article>
+        <article class="c-card">
+          <div class="num">3</div>
+          <h3 class="u-headline-3">黄金桃</h3>
+          <p class="u-text-body-medium u-text-bold">トロピカルな香り</p>
+          <p class="u-text-body-medium">黄色の果肉。マンゴーのような芳醇な香りと、酸味と甘みの絶妙なバランス。</p>
+          <div class="product">【希少種】黄金桃 食べ比べセット</div>
+        </article>
+        <article class="c-card">
+          <div class="num">4</div>
+          <h3 class="u-headline-3">なつっこ</h3>
+          <p class="u-text-body-medium u-text-bold">驚きの糖度</p>
+          <p class="u-text-body-medium">酸味が少なく、とにかく甘さが際立つ。なめらかな口当たりで、お子様にも大人気。</p>
+          <div class="product">【家庭用】なつっこ お得用パック</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="story" class="story">
+    <div class="wrap">
+      <span class="c-kicker">生産者インタビュー</span>
+      <h2 class="u-headline-2">桃と対話し、一玉ずつに愛情を。私たちが「木の上完熟」にこだわる理由。</h2>
+      <p class="u-text-body-medium">[TODO: インタビュー本文・生産者からのコメントを追加]</p>
+      <a class="c-button c-button--ghost" href="#">インタビューを読む</a>
+    </div>
+  </section>
+
+  <section id="articles" class="articles">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="c-kicker">桃に関する読みもの</span>
+        <h2 class="u-headline-2">桃をもっと楽しむ</h2>
+      </div>
+      <div class="p-articles-grid">
+        <a class="c-article-card c-card" href="#">
+          <span class="c-tag">保存・食べ方</span>
+          <h3 class="u-headline-3">プロが教える!桃を一番美味しく食べるための3つのコツ</h3>
+        </a>
+        <a class="c-article-card c-card" href="#">
+          <span class="c-tag">栄養・美容</span>
+          <h3 class="u-headline-3">実は美容の味方?桃に含まれる栄養素と嬉しい効果</h3>
+        </a>
+        <a class="c-article-card c-card" href="#">
+          <span class="c-tag">食べ頃ガイド</span>
+          <h3 class="u-headline-3">硬い桃が好き?柔らかい桃が好き?自分好みの追熟ガイド</h3>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="final-cta" class="final-cta">
+    <div class="wrap">
+      <h2 class="u-headline-2">今年の桃は、もう決まりましたか?</h2>
+      <a class="c-button c-button--primary" href="#lineup">今すぐ旬の桃を予約する</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p class="u-text-body-small">© 2026 そらいろ桃園</p>
+    <p class="u-text-body-small">[TODO: 会社情報・特定商取引法に基づく表記・SNSリンクなど]</p>
+  </div>
+</footer>
+
+</body>
+</html>
