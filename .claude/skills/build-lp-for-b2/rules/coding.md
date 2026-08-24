@@ -14,7 +14,7 @@
 - クラス名は、略称をさける
   - ボタンであれば、`.c-button` にする。`btn` などにしない
 - 固有のクラス名は、そのセクションの役割を表す英単語1〜2語にする(例: `hero`, `final-cta`)。連番や意味のない名前(`.section1`, `.box2`)は、原則使わない。
-- `u-*`(utility)の実装は `.claude/rules/utility/u-*.css` に置く(例: `u-typography.css`)。新しいユーティリティ群を作る場合もこの命名(`utility/u-<用途>.css`)に揃える。`c-*` / `p-*` の実装が増えたら、同様に `component/c-*.css` / `project/p-*.css` を作る。
+- `u-*`(utility)の実装は `.claude/skills/build-lp-for-b2/rules/utility/u-*.css` に置く(例: `u-typography.css`)。新しいユーティリティ群を作る場合もこの命名(`utility/u-<用途>.css`)に揃える。`c-*` / `p-*` の実装が増えたら、同様に `component/c-*.css` / `project/p-*.css` を作る。
 
 
 ## HTMLセクションの方針

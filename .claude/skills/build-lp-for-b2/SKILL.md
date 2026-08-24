@@ -1,6 +1,6 @@
 ---
 name: build-lp-for-b2
-description: このプロジェクトのブランドトークンを使って、単体HTMLファイルで完結するB2B向けランディングページ(LP)を作成するスキル。ユーザーがB2Bの製品・サービス・案件についてランディングページ、製品ページ、セールスページ、マーケティングページの作成・下書き・リデザイン・更新を依頼したときは、「ランディングページ」と明示していなくても必ずこのスキルを使うこと(例:「新機能ローンチ用のページを作って」「見込み客に送るページが欲しい」「エンタープライズ顧客向けにXを訴求するページを作りたい」「LP作って」)。HTMLを書き始める前に、必ず先に `.claude/tokens/brand.css`(色・フォント・角丸・余白)、`.claude/tokens/brand.json`(社名・タグライン・ロゴ・トーン)、`.claude/rules/coding.md`(CSSクラス命名・HTMLセクション構造の規約)を読み、ブランドとコーディングルールを確認すること。
+description: このプロジェクトのブランドトークンを使って、単体HTMLファイルで完結するB2B向けランディングページ(LP)を作成するスキル。ユーザーがB2Bの製品・サービス・案件についてランディングページ、製品ページ、セールスページ、マーケティングページの作成・下書き・リデザイン・更新を依頼したときは、「ランディングページ」と明示していなくても必ずこのスキルを使うこと(例:「新機能ローンチ用のページを作って」「見込み客に送るページが欲しい」「エンタープライズ顧客向けにXを訴求するページを作りたい」「LP作って」)。HTMLを書き始める前に、必ず先に `.claude/skills/build-lp-for-b2/tokens/brand.css`(色・フォント・角丸・余白)、`.claude/skills/build-lp-for-b2/tokens/brand.json`(社名・タグライン・ロゴ・トーン)、`.claude/skills/build-lp-for-b2/rules/coding.md`(CSSクラス命名・HTMLセクション構造の規約)を読み、ブランドとコーディングルールを確認すること。
 ---
 
 # Build LP for B2B
@@ -9,9 +9,9 @@ description: このプロジェクトのブランドトークンを使って、�
 
 ## 作業開始前に
 
-1. **プロジェクト内の `.claude/tokens/brand.css`、`.claude/tokens/brand.json`、`.claude/rules/coding.md`、`.claude/rules/utility/` 配下の `u-*.css` を読む。** 色・フォント・角丸・余白などの見た目のデザイントークンは `brand.css` の CSS カスタムプロパティ(`:root { --color-primary: ...; }` など)、社名・タグライン・ロゴ・トーン&マナーなど見た目以外のブランド情報は `brand.json` に定義されています。この2ファイルをスタイリング・ブランド情報の唯一の情報源として扱ってください。
+1. **プロジェクト内の `.claude/skills/build-lp-for-b2/tokens/brand.css`、`.claude/skills/build-lp-for-b2/tokens/brand.json`、`.claude/skills/build-lp-for-b2/rules/coding.md`、`.claude/skills/build-lp-for-b2/rules/utility/` 配下の `u-*.css` を読む。** 色・フォント・角丸・余白などの見た目のデザイントークンは `brand.css` の CSS カスタムプロパティ(`:root { --color-primary: ...; }` など)、社名・タグライン・ロゴ・トーン&マナーなど見た目以外のブランド情報は `brand.json` に定義されています。この2ファイルをスタイリング・ブランド情報の唯一の情報源として扱ってください。
    - どちらかのファイルに `TODO` のプレースホルダー(値やコメント)が残っている項目があれば、どの項目が未設定かをユーザーに伝え、実際の値を教えてもらう(またはファイルを埋めてもらう)ようお願いしてから確定してください。プレースホルダーの値をそのまま黙って使うと、ブランドと合わないページになってしまい、トークンを用意した意味がなくなります。
-   - ただし、下記「`spec/` フォルダーからの入力」で `content-draft.md` を元にドラフトを作る場合は、`brand.css` の色トークンの代わりに `.claude/tokens/brand.draft.css` のグレースケール配色を使うこと。フォント・角丸・余白(`brand.css` のそれ以外のトークン)と `brand.json` の内容は通常どおり読み込む。
+   - ただし、下記「`spec/` フォルダーからの入力」で `content-draft.md` を元にドラフトを作る場合は、`brand.css` の色トークンの代わりに `.claude/skills/build-lp-for-b2/tokens/brand.draft.css` のグレースケール配色を使うこと。フォント・角丸・余白(`brand.css` のそれ以外のトークン)と `brand.json` の内容は通常どおり読み込む。
 
 2. **コンテンツの基本情報を確認する**(会話内・`spec/` 配下のファイルで既に得られていない場合):
    - 製品/サービス名と一文での価値提案
@@ -39,14 +39,14 @@ spec/<取り組み名>/
 
 - **`content.md` を元に作る場合**: 確定原稿として扱う。通常どおり `brand.css` のブランドカラーを反映したフルカラーのLPを生成する。
 - **`content-draft.md` を元に作る場合**: ドラフト段階として扱う。
-  - 配色は `brand.css` の色トークンではなく、`.claude/tokens/brand.draft.css` のグレースケール配色のみを使う。色は別途決める前提のため、`brand.css` の色トークンやユーザーに聞いていない色を勝手に使わないこと。
+  - 配色は `brand.css` の色トークンではなく、`.claude/skills/build-lp-for-b2/tokens/brand.draft.css` のグレースケール配色のみを使う。色は別途決める前提のため、`brand.css` の色トークンやユーザーに聞いていない色を勝手に使わないこと。
   - `content-draft.md` の内容自体、未確定・整理中であることが多い。不足している情報は無理に埋めず、`[TODO: ...]` のように明示してよい(ねつ造しないという原則は維持する)。
 
 **出力先:** 生成したHTMLファイルは `spec/<取り組み名>/src/` に保存する。ファイル名は、`content-draft.md` を元にしたドラフトの場合は `draft.html`、`content.md` を元にした確定版の場合は `index.html` とする。
 
 ## ドラフト時のグレースケール配色
 
-`content-draft.md` からドラフトを作る場合の配色は `.claude/tokens/brand.draft.css` を参照(状態色も使わずニュートラルに統一したグレースケールパレット)。
+`content-draft.md` からドラフトを作る場合の配色は `.claude/skills/build-lp-for-b2/tokens/brand.draft.css` を参照(状態色も使わずニュートラルに統一したグレースケールパレット)。
 
 配色が確定したら(`content.md` への移行、または `brand.css` の更新後)、同じ構成のまま `brand.css` の本来の色に差し替えて再生成する。
 
@@ -70,13 +70,13 @@ spec/<取り組み名>/
 ## 出力要件
 
 - **単体で完結する1つのHTMLファイル**: `<style>` はインライン、アセットもインラインまたはdata URI化し、外部CDN・外部フォント・外部スクリプトへの依存を持たせないこと。これによりArtifactとしても公開可能になります(Artifactは厳格なCSPを課すため)。
-- **ブランドトークンをそのまま適用**: `.claude/tokens/brand.css`(ドラフト時は色のみ `.claude/tokens/brand.draft.css`)の `:root` カスタムプロパティを、生成するHTMLの `<style>` 冒頭にそのまま(値を書き換えずに)貼り込むこと。トークンファイルにない色やフォントを勝手に作らないこと。
+- **ブランドトークンをそのまま適用**: `.claude/skills/build-lp-for-b2/tokens/brand.css`(ドラフト時は色のみ `.claude/skills/build-lp-for-b2/tokens/brand.draft.css`)の `:root` カスタムプロパティを、生成するHTMLの `<style>` 冒頭にそのまま(値を書き換えずに)貼り込むこと。トークンファイルにない色やフォントを勝手に作らないこと。
 - **モバイル対応**: 狭い画面では縦積みレイアウトにし、横スクロールが発生しないようにする。CTAボタンはタップしやすいサイズにする。
 - **具体的で本物のコピー** — lorem ipsumや「機能1/機能2」のような汎用プレースホルダーは使わないこと。あるセクションの情報が不足している場合は、勝手に数値やロゴ、顧客名を作らず、ユーザーに確認すること。
 - **社会的証明のねつ造は禁止** — 顧客名、ロゴ、お客様の声、数値は必ずユーザー提供のものを使うこと。下書きであっても、これらを作り話にするのは誤解を招く行為です。
 - **アクセシビリティ**: セマンティックなHTML(`<header>`、`<section>`、`<nav>`、見出し階層)を使い、トークンの色で十分なコントラストを確保し、画像にはalt属性を付けること。
-- **コーディングルール**: CSSクラス命名・HTMLセクション構造は `.claude/rules/coding.md` に従うこと。
-- **ユーティリティクラス**: `.claude/rules/utility/u-*.css`(例: `u-typography.css`)に定義済みの `u-*` クラスがあれば、独自クラスを新設せずそれを使う。生成するHTMLで実際に使うクラスの定義だけを `<style>` にコピーし、ファイル全体を丸ごと貼り込まない。
+- **コーディングルール**: CSSクラス命名・HTMLセクション構造は `.claude/skills/build-lp-for-b2/rules/coding.md` に従うこと。
+- **ユーティリティクラス**: `.claude/skills/build-lp-for-b2/rules/utility/u-*.css`(例: `u-typography.css`)に定義済みの `u-*` クラスがあれば、独自クラスを新設せずそれを使う。生成するHTMLで実際に使うクラスの定義だけを `<style>` にコピーし、ファイル全体を丸ごと貼り込まない。
 
 ## 作成後
 

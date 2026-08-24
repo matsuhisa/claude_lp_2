@@ -1,6 +1,6 @@
 /*
  * u-typography.css — FLOCSS の u-* (utility) レイヤー。文字まわりの見た目だけを
- * 変える単機能クラス。.claude/rules/coding.md の命名規約に従う。
+ * 変える単機能クラス。.claude/skills/build-lp-for-b2/rules/coding.md の命名規約に従う。
  * 生成時は、実際に使うクラスだけを <style> にコピーする(未使用分は含めない)。
  * 色・フォントは brand.css / brand.draft.css の --color-* / --font-* トークンを参照する。
  */
