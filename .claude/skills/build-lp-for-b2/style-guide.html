@@ -4,14 +4,17 @@
 <meta charset="UTF-8">
 <title>Style Guide</title>
 <!--
-  トークン・ユーティリティの確認用ページ。値は複製せず、実ファイルを <link> で
-  読み込んで表示する(brand.css / brand.draft.css / rules/utility/*.css を更新
-  すれば、このページの表示も自動で追従する)。
+  トークン・ユーティリティ・コンポーネントの確認用ページ。値は複製せず、実ファイルを
+  <link> で読み込んで表示する(brand.css / brand.draft.css / rules/styles/*.css /
+  rules/component/*/*.css を更新すれば、このページの表示も自動で追従する)。
   トークン(semantic/primitive)や utility に増減があった場合、このページの
   スウォッチ・サンプルは手動で追記/削除が必要。
+  コンポーネントを追加した場合は、下記 <link> に1行追加し、Components セクションに
+  サブセクションを1つ追加する。
 -->
 <link id="palette-css" rel="stylesheet" href="tokens/brand.css">
-<link rel="stylesheet" href="rules/utility/u-typography.css">
+<link rel="stylesheet" href="rules/styles/u-typography.css">
+<link rel="stylesheet" href="rules/component/c-cta-link/c-cta-link.css">
 <style>
   * { box-sizing: border-box; }
   body {
@@ -154,7 +157,7 @@
 <header class="page">
   <div>
     <h1>Style Guide</h1>
-    <p>build-lp-for-b2 のブランドトークン・ユーティリティクラスの確認用ページ。</p>
+    <p>build-lp-for-b2 のブランドトークン・ユーティリティクラス・コンポーネントの確認用ページ。</p>
   </div>
   <button id="toggle-palette" type="button">brand.draft.css を確認</button>
 </header>
@@ -293,7 +296,7 @@
 </section>
 
 <section class="block" id="utilities">
-  <h2>Utilities (rules/utility/u-typography.css)</h2>
+  <h2>Utilities (rules/styles/u-typography.css)</h2>
 
   <div class="util-sample">
     <div class="util-sample__preview"><p class="u-headline-1">u-headline-1 のサンプル文章</p></div>
@@ -343,6 +346,21 @@
     <pre><code>&lt;p class="u-text-left"&gt;...&lt;/p&gt;
 &lt;p class="u-text-center"&gt;...&lt;/p&gt;
 &lt;p class="u-text-right"&gt;...&lt;/p&gt;</code></pre>
+  </div>
+</section>
+
+<section class="block" id="components">
+  <h2>Components (rules/component/*/*.css)</h2>
+
+  <h3>c-cta-link</h3>
+  <div class="util-sample">
+    <div class="util-sample__preview">
+      <a href="#" class="c-cta-link">今すぐ予約する</a>
+      &nbsp;
+      <a href="#" class="c-cta-link c-cta-link--secondary">詳しく見る</a>
+    </div>
+    <pre><code>&lt;a href="#" class="c-cta-link"&gt;今すぐ予約する&lt;/a&gt;
+&lt;a href="#" class="c-cta-link c-cta-link--secondary"&gt;詳しく見る&lt;/a&gt;</code></pre>
   </div>
 </section>
 

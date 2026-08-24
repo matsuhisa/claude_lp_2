@@ -1,0 +1,15 @@
+.c-cta-link {
+  color: var(--color-text-white);
+  font-size: var(--font-label);
+  font-weight: 400;
+  line-height: 1.4;
+
+  background-color: var(--color-surface-primary);
+  border-radius: var(--radius-medium);
+
+  &.c-cta-link--secondary {
+    color: var(--color-text-primary);
+    background-color: #ffffff;
+    border-color: var(--color-border-primary);
+  }
+}
