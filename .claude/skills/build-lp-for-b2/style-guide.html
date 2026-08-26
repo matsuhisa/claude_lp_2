@@ -44,17 +44,8 @@
     margin-bottom: 40px;
   }
   header.page p { margin: 4px 0 0; color: var(--color-text-secondary); font-size: 14px; }
-  button#toggle-palette {
-    font: inherit;
-    font-size: 14px;
-    padding: 8px 16px;
-    border-radius: var(--radius-full);
-    border: var(--border-width-medium) solid var(--color-border-primary);
-    background: var(--color-surface);
-    color: var(--color-text-primary);
-    cursor: pointer;
-    white-space: nowrap;
-  }
+  /* ボタン自体の見た目は c-cta-link(component) を使う。折り返し防止だけページ側で足す */
+  #toggle-palette { white-space: nowrap; }
   section.block { margin-bottom: 48px; }
 
   /* Colors */
@@ -159,7 +150,7 @@
     <h1>Style Guide</h1>
     <p>build-lp-for-b2 のブランドトークン・ユーティリティクラス・コンポーネントの確認用ページ。</p>
   </div>
-  <button id="toggle-palette" type="button">brand.draft.css を確認</button>
+  <button id="toggle-palette" type="button" class="c-cta-link c-cta-link--secondary">brand.draft.css を確認</button>
 </header>
 
 <section class="block" id="colors">

@@ -1,15 +1,25 @@
 .c-cta-link {
   color: var(--color-text-white);
   font-size: var(--font-label);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.4;
+  text-decoration: none;
 
   background-color: var(--color-surface-primary);
+  border: var(--border-width-medium) solid transparent;
   border-radius: var(--radius-medium);
+
+  padding: var(--spacing-16) var(--spacing-32);
 
   &.c-cta-link--secondary {
     color: var(--color-text-primary);
     background-color: #ffffff;
     border-color: var(--color-border-primary);
+  }
+
+  &.c-cta-link--tertiary {
+    color: var(--color-text-primary);
+    background-color: transparent;
+    border-color: none;
   }
 }
