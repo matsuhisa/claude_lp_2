@@ -6,6 +6,7 @@
 ## CSSクラス命名
 
 - FLOCSS、BEM を基本にする
+  - ヘッダー・フッターなどページ全体の骨格を決める class （ layout ）は、`l-*` が接頭辞になる
   - 使い回す class （ component ）は、`c-*` が接頭辞になる
     - Block には margin を含めない
   - component を複数集めてレイアウトを決める class （ project ）は、 `p-*` が接頭辞になる
@@ -16,6 +17,7 @@
 - 固有のクラス名は、そのセクションの役割を表す英単語1〜2語にする(例: `hero`, `final-cta`)。連番や意味のない名前(`.section1`, `.box2`)は、原則使わない。
 - `u-*`(utility)の実装は `.claude/skills/build-lp-for-b2/rules/styles/u-*.css` に置く(例: `u-typography.css`)。新しいユーティリティ群を作る場合もこの命名(`styles/u-<用途>.css`)に揃える。
 - `c-*`(component)は `component/c-<名前>/` にコンポーネントごとのディレクトリを作り、`c-<名前>.html` と `c-<名前>.css` を1組にして置く(html/cssを一緒に編集できるように)。`c-<名前>.html` には、必須/任意のフィールドが決まっている場合、TypeScriptの `interface` 風コメント(必須はそのまま、任意は `field?: type` + `// 任意`)とマークアップを同じファイルに置く。プレースホルダーはJSXに合わせて単一の波括弧 `{value}` を使い、属性値もクォートで囲まず `attr={value}` の形にする(例: `.claude/skills/build-lp-for-b2/rules/component/c-cta-link/c-cta-link.html` + `c-cta-link.css`)。`p-*` の実装が増えたら、同様に `project/p-<名前>/p-<名前>.css` を作る。
+- `l-*`(layout)は `layout/l-<名前>/` にディレクトリを作り、`l-<名前>.html` と `l-<名前>.css` を1組にして置く。ページ全体で1回しか使わない前提の骨格(ヘッダー・フッターなど)が対象で、`c-*`/`p-*` と同じくpropsが決まっている場合はTypeScriptの `interface` 風コメントを添える(例: `layout/l-header/l-header.html` + `l-header.css`)。
 
 
 ## レスポンシブ / ブレイクポイント
