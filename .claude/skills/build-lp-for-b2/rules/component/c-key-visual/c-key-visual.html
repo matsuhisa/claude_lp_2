@@ -1,0 +1,24 @@
+<!--
+
+- サイトのキービジュアル
+  - 画像とタイトルとかキャッチコピーが表示される
+  - スマートフォンとPCで画像が異なる
+
+interface KeyVisual {
+  title: string;
+  subTitle?: string; // 任意
+  imageUrlSmartPhone: string;
+  imageUrlPc: string;
+}
+-->
+
+<div class="c-key-visual">
+  <picture class="c-key-visual__media">
+    <source media="(min-width: 769px)" srcset={imageUrlPc} />
+    <img class="c-key-visual__image" src={imageUrlSmartPhone} alt="" />
+  </picture>
+  <div class="c-key-visual__body">
+    <p class="c-key-visual__title">{title}</p>
+    <p class="c-key-visual__sub-title">{subTitle}</p>
+  </div>
+</div>

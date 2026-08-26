@@ -1,0 +1,20 @@
+<!--
+- ヘッダーに表示されるロゴ
+  - ロゴと一緒に、ページタイトルとかキャッチコピーとか短いテキストが出ることがある
+
+interface Header {
+  logoImageUrl: string;
+  logoAlt: string;
+  logoUrl: string;
+  withString?: string; // 任意: ロゴと一緒に、ページタイトルとかキャッチコピーとか短いテキスト
+}
+-->
+
+<header class="l-header">
+  <div class="l-header__inner">
+    <a href={logoUrl} class="l-header__logo">
+      <img class="l-header__logo-image" src={logoImageUrl} alt={logoAlt} />
+    </a>
+    <p class="l-header__with-string">{withString}</p>
+  </div>
+</header>

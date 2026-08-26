@@ -1,4 +1,18 @@
-<section class="p-section">
+<!--
+- コンテンツの集まり
+  - LP は、複数個のセクションで成立する
+  - セクションには種類がある（ modifier になる ）
+    - 通常
+    - 通常と背景が異なる
+  - inner が PC と スマートフォンで padding が異なる
+
+interface Section {
+  children: ;
+  sectionType: string;
+}
+-->
+
+<section class="p-section {sectionType}">
   <div class="p-section__inner">
     <div class="p-section__body">
       {children}

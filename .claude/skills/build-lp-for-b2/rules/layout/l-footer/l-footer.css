@@ -1,0 +1,17 @@
+.l-footer {
+  padding: var(--spacing-24) var(--spacing-20);
+  background-color: var(--color-secondary);
+  color: var(--color-text-white);
+  text-align: center;
+}
+
+.l-footer__copyright {
+  margin: 0;
+  font-size: var(--font-label-small);
+}
+
+@media (min-width: 769px) {
+  .l-footer {
+    padding: var(--spacing-32);
+  }
+}

@@ -1,0 +1,12 @@
+.p-products {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-16);
+}
+
+@media (min-width: 769px) {
+  .p-products {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-24);
+  }
+}
