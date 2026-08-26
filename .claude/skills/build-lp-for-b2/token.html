@@ -2,19 +2,15 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>Style Guide</title>
+<title>Token Guide</title>
 <!--
-  トークン・ユーティリティ・コンポーネントの確認用ページ。値は複製せず、実ファイルを
-  <link> で読み込んで表示する(brand.css / brand.draft.css / rules/styles/*.css /
-  rules/component/*/*.css を更新すれば、このページの表示も自動で追従する)。
-  トークン(semantic/primitive)や utility に増減があった場合、このページの
-  スウォッチ・サンプルは手動で追記/削除が必要。
-  コンポーネントを追加した場合は、下記 <link> に1行追加し、Components セクションに
-  サブセクションを1つ追加する。
+  ブランドトークン(semantic/primitive)の確認用ページ。値は複製せず、実ファイルを
+  <link> で読み込んで表示する(brand.css / brand.draft.css を更新すれば、このページの
+  表示も自動で追従する)。トークンに増減があった場合、このページのスウォッチ/サンプルは
+  手動で追記/削除が必要。
+  Utilities・Components の確認は components.html を参照。
 -->
 <link id="palette-css" rel="stylesheet" href="tokens/brand.css">
-<link rel="stylesheet" href="rules/styles/u-typography.css">
-<link rel="stylesheet" href="rules/component/c-cta-link/c-cta-link.css">
 <style>
   * { box-sizing: border-box; }
   body {
@@ -44,8 +40,17 @@
     margin-bottom: 40px;
   }
   header.page p { margin: 4px 0 0; color: var(--color-text-secondary); font-size: 14px; }
-  /* ボタン自体の見た目は c-cta-link(component) を使う。折り返し防止だけページ側で足す */
-  #toggle-palette { white-space: nowrap; }
+  #toggle-palette {
+    white-space: nowrap;
+    padding: 8px 16px;
+    border: var(--border-width-medium) solid var(--color-border-primary);
+    border-radius: var(--radius-medium);
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    font-family: var(--font-family-sans-serif);
+    font-size: 13px;
+    cursor: pointer;
+  }
   section.block { margin-bottom: 48px; }
 
   /* Colors */
@@ -114,43 +119,16 @@
   /* primitive: font size scale */
   .fontsize-row { display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; }
   .fontsize-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-
-  /* Utilities */
-  .util-sample {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px dashed var(--color-border-secondary);
-  }
-  .util-sample:last-child { border-bottom: none; }
-  .util-sample__preview {
-    padding: 12px;
-    border: var(--border-width-medium) solid var(--color-border-secondary);
-    border-radius: var(--radius-small);
-    background: var(--color-surface);
-  }
-  .util-sample__preview p { margin: 0; }
-  .util-sample pre {
-    margin: 0;
-    padding: 10px 12px;
-    background: var(--color-surface);
-    border: var(--border-width-medium) solid var(--color-border-secondary);
-    border-radius: var(--radius-small);
-    font-size: 12px;
-    overflow-x: auto;
-  }
 </style>
 </head>
 <body>
 
 <header class="page">
   <div>
-    <h1>Style Guide</h1>
-    <p>build-lp-for-b2 のブランドトークン・ユーティリティクラス・コンポーネントの確認用ページ。</p>
+    <h1>Token Guide</h1>
+    <p>build-lp-for-b2 のブランドトークン(色・タイポグラフィ・余白など)の確認用ページ。Utilities・Componentsは <a href="components.html">components.html</a> を参照。</p>
   </div>
-  <button id="toggle-palette" type="button" class="c-cta-link c-cta-link--secondary">brand.draft.css を確認</button>
+  <button id="toggle-palette" type="button">brand.draft.css を確認</button>
 </header>
 
 <section class="block" id="colors">
@@ -283,75 +261,6 @@
     <div class="space-item"><div class="space-box" style="height: var(--spacing-64);"></div><span class="token-label" data-var="--spacing-64"></span></div>
     <div class="space-item"><div class="space-box" style="height: var(--spacing-80);"></div><span class="token-label" data-var="--spacing-80"></span></div>
     <div class="space-item"><div class="space-box" style="height: var(--spacing-104);"></div><span class="token-label" data-var="--spacing-104"></span></div>
-  </div>
-</section>
-
-<section class="block" id="utilities">
-  <h2>Utilities (rules/styles/u-typography.css)</h2>
-
-  <div class="util-sample">
-    <div class="util-sample__preview"><p class="u-headline-1">u-headline-1 のサンプル文章</p></div>
-    <pre><code>&lt;p class="u-headline-1"&gt;...&lt;/p&gt;</code></pre>
-  </div>
-
-  <div class="util-sample">
-    <div class="util-sample__preview"><p class="u-headline-2">u-headline-2 のサンプル文章</p></div>
-    <pre><code>&lt;p class="u-headline-2"&gt;...&lt;/p&gt;</code></pre>
-  </div>
-
-  <div class="util-sample">
-    <div class="util-sample__preview"><p class="u-headline-3">u-headline-3 のサンプル文章</p></div>
-    <pre><code>&lt;p class="u-headline-3"&gt;...&lt;/p&gt;</code></pre>
-  </div>
-
-  <div class="util-sample">
-    <div class="util-sample__preview"><p class="u-text-body-large">u-text-body-large のサンプル文章です。行間が広めの本文用です。行間が広めの本文用です。</p></div>
-    <pre><code>&lt;p class="u-text-body-large"&gt;...&lt;/p&gt;</code></pre>
-  </div>
-
-  <div class="util-sample">
-    <div class="util-sample__preview"><p class="u-text-body-medium">u-text-body-medium のサンプル文章です。標準的な行間の本文用です。標準的な行間の本文用です。</p></div>
-    <pre><code>&lt;p class="u-text-body-medium"&gt;...&lt;/p&gt;</code></pre>
-  </div>
-
-  <div class="util-sample">
-    <div class="util-sample__preview"><p class="u-text-body-small">u-text-body-small のサンプル文章です。行間が詰まった本文用です。行間が詰まった本文用です。</p></div>
-    <pre><code>&lt;p class="u-text-body-small"&gt;...&lt;/p&gt;</code></pre>
-  </div>
-
-  <div class="util-sample">
-    <div class="util-sample__preview">
-      <p class="u-text-normal">u-text-normal のテキスト</p>
-      <p class="u-text-bold">u-text-bold のテキスト</p>
-    </div>
-    <pre><code>&lt;p class="u-text-normal"&gt;...&lt;/p&gt;
-&lt;p class="u-text-bold"&gt;...&lt;/p&gt;</code></pre>
-  </div>
-
-  <div class="util-sample">
-    <div class="util-sample__preview">
-      <p class="u-text-left">u-text-left</p>
-      <p class="u-text-center">u-text-center</p>
-      <p class="u-text-right">u-text-right</p>
-    </div>
-    <pre><code>&lt;p class="u-text-left"&gt;...&lt;/p&gt;
-&lt;p class="u-text-center"&gt;...&lt;/p&gt;
-&lt;p class="u-text-right"&gt;...&lt;/p&gt;</code></pre>
-  </div>
-</section>
-
-<section class="block" id="components">
-  <h2>Components (rules/component/*/*.css)</h2>
-
-  <h3>c-cta-link</h3>
-  <div class="util-sample">
-    <div class="util-sample__preview">
-      <a href="#" class="c-cta-link">今すぐ予約する</a>
-      &nbsp;
-      <a href="#" class="c-cta-link c-cta-link--secondary">詳しく見る</a>
-    </div>
-    <pre><code>&lt;a href="#" class="c-cta-link"&gt;今すぐ予約する&lt;/a&gt;
-&lt;a href="#" class="c-cta-link c-cta-link--secondary"&gt;詳しく見る&lt;/a&gt;</code></pre>
   </div>
 </section>
 
