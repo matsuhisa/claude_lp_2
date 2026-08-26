@@ -44,6 +44,8 @@ spec/<取り組み名>/
 
 **出力先:** 生成したHTMLファイルは `spec/<取り組み名>/src/` に保存する。ファイル名は、`content-draft.md` を元にしたドラフトの場合は `draft.html`、`content.md` を元にした確定版の場合は `index.html` とする。
 
+**再生成(2回目以降の実行):** 既存の `draft.html` / `index.html` は上書きせずそのまま残す。そのうえで、実行日+連番のファイル `draft_<YYYYMMDD>_<連番>.html`(確定版は `index_<YYYYMMDD>_<連番>.html`)を同じ `src/` に追加保存し、実行ごとの履歴として残す。連番は同日中の実行回数で `1` から採番する(例: 2026-08-27の1回目なら `draft_20260827_1.html`、同日2回目なら `draft_20260827_2.html`)。
+
 ## ドラフト時のグレースケール配色
 
 `content-draft.md` からドラフトを作る場合の配色は `.claude/skills/build-lp-for-b2/tokens/brand.draft.css` を参照(状態色も使わずニュートラルに統一したグレースケールパレット)。

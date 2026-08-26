@@ -20,6 +20,6 @@
   &.c-cta-link--tertiary {
     color: var(--color-text-primary);
     background-color: transparent;
-    border-color: none;
+    border-color: transparent;
   }
 }
