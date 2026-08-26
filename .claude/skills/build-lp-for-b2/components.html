@@ -15,13 +15,16 @@
 <link rel="stylesheet" href="tokens/brand.css">
 <link rel="stylesheet" href="rules/styles/reset.css">
 <link rel="stylesheet" href="rules/styles/u-typography.css">
+<link rel="stylesheet" href="rules/styles/u-list.css">
 <link rel="stylesheet" href="rules/component/c-cta-link/c-cta-link.css">
 <link rel="stylesheet" href="rules/component/c-product-card/c-product-card.css">
 <link rel="stylesheet" href="rules/component/c-key-visual/c-key-visual.css">
+<link rel="stylesheet" href="rules/component/c-faq-item/c-faq-item.css">
 <link rel="stylesheet" href="rules/layout/l-header/l-header.css">
 <link rel="stylesheet" href="rules/layout/l-footer/l-footer.css">
 <link rel="stylesheet" href="rules/project/p-section/p-section.css">
 <link rel="stylesheet" href="rules/project/p-products/p-products.css">
+<link rel="stylesheet" href="rules/project/p-faq/p-faq.css">
 <style>
   * { box-sizing: border-box; }
   body {
@@ -197,6 +200,30 @@
 &lt;p class="u-text-center"&gt;...&lt;/p&gt;
 &lt;p class="u-text-right"&gt;...&lt;/p&gt;</code></pre>
   </div>
+
+  <div class="sample">
+    <div class="sample__preview">
+      <ul class="u-list">
+        <li>本キャンペーンは予告なく変更・終了する場合があります。</li>
+        <li>価格はすべて税込表示です。</li>
+      </ul>
+    </div>
+    <pre><code>&lt;ul class="u-list"&gt;
+  &lt;li&gt;...&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+  </div>
+
+  <div class="sample">
+    <div class="sample__preview">
+      <ul class="u-list u-list--note">
+        <li>本キャンペーンは予告なく変更・終了する場合があります。</li>
+        <li>価格はすべて税込表示です。</li>
+      </ul>
+    </div>
+    <pre><code>&lt;ul class="u-list u-list--note"&gt;
+  &lt;li&gt;...&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+  </div>
 </section>
 
 <section class="block" id="components">
@@ -249,6 +276,20 @@
     &lt;p class="c-key-visual__sub-title"&gt;{subTitle}&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
+  </div>
+
+  <h3>c-faq-item</h3>
+  <div class="sample sample--full">
+    <div class="sample__preview">
+      <article class="c-faq-item">
+        <h3 class="c-faq-item__question">導入までどのくらいの期間がかかりますか?</h3>
+        <p class="c-faq-item__answer">お申し込みから最短2週間でご利用いただけます。既存システムとの連携が必要な場合は、別途スケジュールをご相談させてください。</p>
+      </article>
+    </div>
+    <pre><code>&lt;article class="c-faq-item"&gt;
+  &lt;h3 class="c-faq-item__question"&gt;{question}&lt;/h3&gt;
+  &lt;p class="c-faq-item__answer"&gt;{answer}&lt;/p&gt;
+&lt;/article&gt;</code></pre>
   </div>
 </section>
 
@@ -306,6 +347,25 @@
       </div>
     </div>
     <pre><code>&lt;div class="p-products"&gt;
+  {children}
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <h3>p-faq</h3>
+  <div class="sample sample--layout">
+    <div class="sample__preview">
+      <div class="p-faq">
+        <article class="c-faq-item">
+          <h3 class="c-faq-item__question">セキュリティ体制について教えてください。</h3>
+          <p class="c-faq-item__answer">第三者機関による監査を定期的に受けており、通信・保存データはすべて暗号化されています。</p>
+        </article>
+        <article class="c-faq-item">
+          <h3 class="c-faq-item__question">既存システムと連携できますか?</h3>
+          <p class="c-faq-item__answer">主要なSaaSとのAPI連携に対応しています。個別の連携要件についてはお問い合わせください。</p>
+        </article>
+      </div>
+    </div>
+    <pre><code>&lt;div class="p-faq"&gt;
   {children}
 &lt;/div&gt;</code></pre>
   </div>

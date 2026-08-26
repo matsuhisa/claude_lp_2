@@ -1,0 +1,36 @@
+.c-faq-item {
+  padding: var(--spacing-24) 0;
+  border-bottom: var(--border-width-medium) solid var(--color-border-secondary);
+}
+
+.c-faq-item__question {
+  position: relative;
+  margin: 0 0 var(--spacing-8);
+  padding-left: 1.6em;
+  color: var(--color-text-primary);
+  font-size: var(--font-heading-3);
+  font-weight: 700;
+
+  &::before {
+    content: "Q";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+  }
+}
+
+.c-faq-item__answer {
+  position: relative;
+  margin: 0;
+  padding-left: 1.6em;
+  color: var(--color-text-secondary);
+  font-size: var(--font-body);
+  line-height: 1.6;
+
+  &::before {
+    content: "A";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+  }
+}
