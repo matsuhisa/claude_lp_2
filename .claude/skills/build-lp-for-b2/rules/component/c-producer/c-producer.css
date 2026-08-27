@@ -1,0 +1,44 @@
+.c-producer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-16);
+}
+
+.c-producer__photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-medium);
+  object-fit: cover;
+}
+
+.c-producer__name {
+  margin: 0;
+  font-size: var(--font-heading-3);
+  font-weight: 700;
+}
+
+.c-producer__varieties {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-8);
+}
+
+.c-producer__variety {
+  display: inline-block;
+  padding: var(--spacing-8) var(--spacing-16);
+  border: var(--border-width-medium) solid var(--color-border-secondary);
+  border-radius: var(--radius-full);
+  color: var(--color-text-secondary);
+  font-size: var(--font-label-small);
+}
+
+.c-producer__description {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-body);
+  line-height: 1.6;
+}
+
+.c-producer__link {
+  align-self: flex-start;
+}
