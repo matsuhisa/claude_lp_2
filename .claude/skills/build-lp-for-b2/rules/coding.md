@@ -28,6 +28,16 @@
 - モバイルファーストで書く。まずスマートフォン向けのスタイルを通常のルールとして書き、PC向けの上書きを `@media (min-width: 769px) { ... }` に書く。
 - CSSカスタムプロパティ(`var(--...)`)は `@media` の条件式内では使えないため、`tokens/brand.css` にブレイクポイント用の変数は作らない。`769px` の値は各コンポーネント/セクションのCSS内で直接書き、このルール(coding.md)を唯一の基準とする。
 
+## ダミー画像(placehold.jp)
+
+- 実画像(写真・ロゴなど)がまだ用意されていない箇所は、[placehold.jp](https://placehold.jp/) のダミー画像を `<img src>` / CSSの `background-image` にそのまま使ってよい。
+  - この用途に限り、外部URLへの依存を許可する(SKILL.mdの「単体で完結する1つのHTMLファイル」ルールの例外)。ただし、Artifactとして公開すると画像はCSPでブロックされ表示されないため、最終納品前に実画像へ差し替えること。差し替え漏れを防ぐため、`text` パラメータで用途がわかるラベルを必ず入れる(下記参照)。
+- URLフォーマット: `https://placehold.jp/{フォントサイズ}/{背景色}/{文字色}/{幅}x{高さ}.png?text={ラベル}`
+  - `{幅}x{高さ}` は、そのコンポーネントで実際に使う想定サイズ(px)に合わせる(例: `c-key-visual` のPC用背景なら `1200x450`)
+  - 配色は `d1d5db`(背景)/ `6b7280`(文字)で統一する(トークンの `--color-border-secondary` / `--color-text-secondary` に近いグレー)
+  - `{ラベル}` には、何の画像かひと目でわかる文言をローマ字/英語で入れる(例: `key-visual-pc`, `logo`, `product-1`)。日本語は使わない。
+- 例: `<img src="https://placehold.jp/24/d1d5db/6b7280/1200x450.png?text=key-visual-pc" alt="">`
+
 ## HTMLセクションの方針
 
 - 1セクション = `SKILL.md` の「セクション構成」の1項目に対応する `<section>` 要素1つ。複数の項目を1つの `<section>` に詰め込まない。
