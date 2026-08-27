@@ -1,0 +1,25 @@
+.c-avatar {
+  display: inline-block;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+
+  &.c-avatar--small {
+    width: var(--spacing-32);
+    height: var(--spacing-32);
+  }
+
+  &.c-avatar--medium {
+    width: var(--spacing-48);
+    height: var(--spacing-48);
+  }
+
+  &.c-avatar--large {
+    width: var(--spacing-64);
+    height: var(--spacing-64);
+  }
+
+  &.c-avatar--extra-large {
+    width: var(--spacing-104);
+    height: var(--spacing-104);
+  }
+}

@@ -1,0 +1,16 @@
+<!--
+- 円形のアバター画像
+  - img要素に直接クラスを付与して使う(ラッパー要素なし)
+  - サイズはmodifierで指定する(いずれか1つを必ず付与する)
+    - c-avatar--small
+    - c-avatar--medium
+    - c-avatar--large
+    - c-avatar--extra-large
+
+interface Avatar {
+  imageUrl: string;
+  alt: string;
+}
+-->
+
+<img class="c-avatar c-avatar--medium" src={imageUrl} alt={alt} />
