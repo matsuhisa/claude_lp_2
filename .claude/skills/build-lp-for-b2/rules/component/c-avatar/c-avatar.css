@@ -1,5 +1,6 @@
 .c-avatar {
   display: inline-block;
+  flex-shrink: 0;
   border-radius: var(--radius-full);
   object-fit: cover;
 
