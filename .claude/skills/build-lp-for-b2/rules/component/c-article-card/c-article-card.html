@@ -1,0 +1,23 @@
+<!--
+- 情報記事(読みものコンテンツ)へのリンクカード
+  - サムネイル画像は1〜2枚
+
+interface ArticleCard {
+  href: string;
+  title: string;
+  thumbnailUrl: string;
+  thumbnailUrl2?: string; // 任意: サムネイル2枚目
+  description: string; // 30文字程度
+}
+-->
+
+<a href={href} class="c-article-card">
+  <div class="c-article-card__thumbnails">
+    <img class="c-article-card__thumbnail" src={thumbnailUrl} alt="" />
+    <img class="c-article-card__thumbnail" src={thumbnailUrl2} alt="" />
+  </div>
+  <div class="c-article-card__body">
+    <h3 class="c-article-card__title">{title}</h3>
+    <p class="c-article-card__description">{description}</p>
+  </div>
+</a>

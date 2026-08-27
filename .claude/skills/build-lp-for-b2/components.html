@@ -20,11 +20,13 @@
 <link rel="stylesheet" href="rules/component/c-product-card/c-product-card.css">
 <link rel="stylesheet" href="rules/component/c-key-visual/c-key-visual.css">
 <link rel="stylesheet" href="rules/component/c-faq-item/c-faq-item.css">
+<link rel="stylesheet" href="rules/component/c-article-card/c-article-card.css">
 <link rel="stylesheet" href="rules/layout/l-header/l-header.css">
 <link rel="stylesheet" href="rules/layout/l-footer/l-footer.css">
 <link rel="stylesheet" href="rules/project/p-section/p-section.css">
 <link rel="stylesheet" href="rules/project/p-products/p-products.css">
 <link rel="stylesheet" href="rules/project/p-faq/p-faq.css">
+<link rel="stylesheet" href="rules/project/p-articles/p-articles.css">
 <style>
   * { box-sizing: border-box; }
   body {
@@ -291,6 +293,32 @@
   &lt;p class="c-faq-item__answer"&gt;{answer}&lt;/p&gt;
 &lt;/article&gt;</code></pre>
   </div>
+
+  <h3>c-article-card</h3>
+  <div class="sample sample--full">
+    <div class="sample__preview">
+      <a href="#" class="c-article-card">
+        <div class="c-article-card__thumbnails">
+          <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=thumbnail-1" alt="">
+          <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=thumbnail-2" alt="">
+        </div>
+        <div class="c-article-card__body">
+          <h3 class="c-article-card__title">プロが教える!桃を一番美味しく食べるための3つのコツ</h3>
+          <p class="c-article-card__description">保存方法や冷やし方をプロが解説します。</p>
+        </div>
+      </a>
+    </div>
+    <pre><code>&lt;a href={href} class="c-article-card"&gt;
+  &lt;div class="c-article-card__thumbnails"&gt;
+    &lt;img class="c-article-card__thumbnail" src={thumbnailUrl} alt="" /&gt;
+    &lt;img class="c-article-card__thumbnail" src={thumbnailUrl2} alt="" /&gt;
+  &lt;/div&gt;
+  &lt;div class="c-article-card__body"&gt;
+    &lt;h3 class="c-article-card__title"&gt;{title}&lt;/h3&gt;
+    &lt;p class="c-article-card__description"&gt;{description}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/a&gt;</code></pre>
+  </div>
 </section>
 
 <section class="block" id="project">
@@ -366,6 +394,83 @@
       </div>
     </div>
     <pre><code>&lt;div class="p-faq"&gt;
+  {children}
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <h3>p-articles</h3>
+  <div class="sample sample--layout">
+    <div class="sample__preview">
+      <div class="p-articles">
+        <a href="#" class="c-article-card">
+          <div class="c-article-card__thumbnails">
+            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=thumbnail-1" alt="">
+          </div>
+          <div class="c-article-card__body">
+            <h3 class="c-article-card__title">実は美容の味方?桃に含まれる栄養素と嬉しい効果</h3>
+            <p class="c-article-card__description">カリウムや食物繊維の働きを紹介します。</p>
+          </div>
+        </a>
+        <a href="#" class="c-article-card">
+          <div class="c-article-card__thumbnails">
+            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=thumbnail-1" alt="">
+            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=thumbnail-2" alt="">
+          </div>
+          <div class="c-article-card__body">
+            <h3 class="c-article-card__title">硬い桃が好き?柔らかい桃が好き?自分好みの追熟ガイド</h3>
+            <p class="c-article-card__description">食べ頃の見分け方をわかりやすく解説。</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <pre><code>&lt;div class="p-articles"&gt;
+  {children}
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <h3>p-articles (p-articles--4-columns)</h3>
+  <div class="sample sample--layout">
+    <div class="sample__preview">
+      <div class="p-articles p-articles--4-columns">
+        <a href="#" class="c-article-card">
+          <div class="c-article-card__thumbnails">
+            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=thumbnail-1" alt="">
+          </div>
+          <div class="c-article-card__body">
+            <h3 class="c-article-card__title">プロが教える!桃を一番美味しく食べる3つのコツ</h3>
+            <p class="c-article-card__description">保存方法や冷やし方を解説します。</p>
+          </div>
+        </a>
+        <a href="#" class="c-article-card">
+          <div class="c-article-card__thumbnails">
+            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=thumbnail-1" alt="">
+          </div>
+          <div class="c-article-card__body">
+            <h3 class="c-article-card__title">実は美容の味方?桃に含まれる栄養素と嬉しい効果</h3>
+            <p class="c-article-card__description">カリウムや食物繊維の働きを紹介します。</p>
+          </div>
+        </a>
+        <a href="#" class="c-article-card">
+          <div class="c-article-card__thumbnails">
+            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=thumbnail-1" alt="">
+          </div>
+          <div class="c-article-card__body">
+            <h3 class="c-article-card__title">硬い桃が好き?柔らかい桃が好き?追熟ガイド</h3>
+            <p class="c-article-card__description">食べ頃の見分け方を解説。</p>
+          </div>
+        </a>
+        <a href="#" class="c-article-card">
+          <div class="c-article-card__thumbnails">
+            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=thumbnail-1" alt="">
+          </div>
+          <div class="c-article-card__body">
+            <h3 class="c-article-card__title">桃を使った簡単スイーツレシピ集</h3>
+            <p class="c-article-card__description">おうちで作れる人気レシピを紹介。</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <pre><code>&lt;div class="p-articles p-articles--4-columns"&gt;
   {children}
 &lt;/div&gt;</code></pre>
   </div>
