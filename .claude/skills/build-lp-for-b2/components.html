@@ -22,12 +22,14 @@
 <link rel="stylesheet" href="rules/component/c-faq-item/c-faq-item.css">
 <link rel="stylesheet" href="rules/component/c-article-card/c-article-card.css">
 <link rel="stylesheet" href="rules/component/c-avatar/c-avatar.css">
+<link rel="stylesheet" href="rules/component/c-testimonial/c-testimonial.css">
 <link rel="stylesheet" href="rules/layout/l-header/l-header.css">
 <link rel="stylesheet" href="rules/layout/l-footer/l-footer.css">
 <link rel="stylesheet" href="rules/project/p-section/p-section.css">
 <link rel="stylesheet" href="rules/project/p-products/p-products.css">
 <link rel="stylesheet" href="rules/project/p-faq/p-faq.css">
 <link rel="stylesheet" href="rules/project/p-articles/p-articles.css">
+<link rel="stylesheet" href="rules/project/p-testimonials/p-testimonials.css">
 <style>
   * { box-sizing: border-box; }
   body {
@@ -337,6 +339,48 @@
 &lt;img class="c-avatar c-avatar--large" src={imageUrl} alt={alt} /&gt;
 &lt;img class="c-avatar c-avatar--extra-large" src={imageUrl} alt={alt} /&gt;</code></pre>
   </div>
+
+  <h3>c-testimonial(pattern-1・全項目あり)</h3>
+  <div class="sample sample--full">
+    <div class="sample__preview">
+      <article class="c-testimonial c-testimonial--pattern-1">
+        <h3 class="c-testimonial__title">毎年この時期が楽しみです</h3>
+        <img class="c-testimonial__image" src="https://placehold.jp/24/d1d5db/6b7280/400x300.png?text=testimonial-image" alt="">
+        <div class="c-testimonial__profile">
+          <img class="c-avatar c-avatar--medium" src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=avatar" alt="">
+          <p class="c-testimonial__customer-info">40代・女性</p>
+        </div>
+        <p class="c-testimonial__voice">毎年お中元に選んでいます。甘さと香りが格別で、贈った相手にとても喜ばれました。</p>
+      </article>
+    </div>
+    <pre><code>&lt;article class="c-testimonial c-testimonial--pattern-1"&gt;
+  &lt;h3 class="c-testimonial__title"&gt;{title}&lt;/h3&gt;
+  &lt;img class="c-testimonial__image" src={imageUrl} alt="" /&gt;
+  &lt;div class="c-testimonial__profile"&gt;
+    &lt;img class="c-avatar c-avatar--medium" src={avatarUrl} alt={avatarAlt} /&gt;
+    &lt;p class="c-testimonial__customer-info"&gt;{customerInfo}&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;p class="c-testimonial__voice"&gt;{voice}&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+  </div>
+
+  <h3>c-testimonial(pattern-1・必須項目のみ、アバター横並び)</h3>
+  <div class="sample sample--full">
+    <div class="sample__preview">
+      <article class="c-testimonial c-testimonial--pattern-1">
+        <div class="c-testimonial__profile">
+          <img class="c-avatar c-avatar--medium" src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=avatar" alt="">
+        </div>
+        <p class="c-testimonial__voice">毎年お中元に選んでいます。甘さと香りが格別で、贈った相手にとても喜ばれました。</p>
+      </article>
+    </div>
+    <pre><code>&lt;article class="c-testimonial c-testimonial--pattern-1"&gt;
+  &lt;div class="c-testimonial__profile"&gt;
+    &lt;img class="c-avatar c-avatar--medium" src={avatarUrl} alt={avatarAlt} /&gt;
+  &lt;/div&gt;
+  &lt;p class="c-testimonial__voice"&gt;{voice}&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+  </div>
 </section>
 
 <section class="block" id="project">
@@ -489,6 +533,67 @@
       </div>
     </div>
     <pre><code>&lt;div class="p-articles p-articles--4-columns"&gt;
+  {children}
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <h3>p-testimonials</h3>
+  <div class="sample sample--layout">
+    <div class="sample__preview">
+      <div class="p-testimonials">
+        <article class="c-testimonial c-testimonial--pattern-1">
+          <h3 class="c-testimonial__title">毎年この時期が楽しみです</h3>
+          <img class="c-testimonial__image" src="https://placehold.jp/24/d1d5db/6b7280/400x300.png?text=testimonial-image" alt="">
+          <div class="c-testimonial__profile">
+            <img class="c-avatar c-avatar--medium" src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=avatar" alt="">
+            <p class="c-testimonial__customer-info">40代・女性</p>
+          </div>
+          <p class="c-testimonial__voice">毎年お中元に選んでいます。甘さと香りが格別で、贈った相手にとても喜ばれました。</p>
+        </article>
+        <article class="c-testimonial c-testimonial--pattern-1">
+          <div class="c-testimonial__profile">
+            <img class="c-avatar c-avatar--medium" src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=avatar" alt="">
+          </div>
+          <p class="c-testimonial__voice">スーパーの桃とは全く違いました。家族みんな大満足です。</p>
+        </article>
+      </div>
+    </div>
+    <pre><code>&lt;div class="p-testimonials"&gt;
+  {children}
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <h3>p-testimonials(p-testimonials--4-columns)</h3>
+  <div class="sample sample--layout">
+    <div class="sample__preview">
+      <div class="p-testimonials p-testimonials--4-columns">
+        <article class="c-testimonial c-testimonial--pattern-1">
+          <div class="c-testimonial__profile">
+            <img class="c-avatar c-avatar--medium" src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=avatar" alt="">
+          </div>
+          <p class="c-testimonial__voice">甘くてとろける食感に感動しました。</p>
+        </article>
+        <article class="c-testimonial c-testimonial--pattern-1">
+          <div class="c-testimonial__profile">
+            <img class="c-avatar c-avatar--medium" src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=avatar" alt="">
+          </div>
+          <p class="c-testimonial__voice">贈り物にして本当に喜ばれました。</p>
+        </article>
+        <article class="c-testimonial c-testimonial--pattern-1">
+          <div class="c-testimonial__profile">
+            <img class="c-avatar c-avatar--medium" src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=avatar" alt="">
+          </div>
+          <p class="c-testimonial__voice">来年もリピートしたいです。</p>
+        </article>
+        <article class="c-testimonial c-testimonial--pattern-1">
+          <div class="c-testimonial__profile">
+            <img class="c-avatar c-avatar--medium" src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=avatar" alt="">
+          </div>
+          <p class="c-testimonial__voice">産地直送の鮮度に驚きました。</p>
+        </article>
+      </div>
+    </div>
+    <pre><code>&lt;div class="p-testimonials p-testimonials--4-columns"&gt;
   {children}
 &lt;/div&gt;</code></pre>
   </div>

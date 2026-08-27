@@ -1,0 +1,53 @@
+.c-testimonial {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-16);
+  background: var(--color-surface);
+  border: var(--border-width-medium) solid var(--color-border-secondary);
+  border-radius: var(--radius-medium);
+  padding: var(--spacing-24);
+}
+
+.c-testimonial__title {
+  margin: 0;
+  font-size: var(--font-heading-3);
+  font-weight: 700;
+}
+
+.c-testimonial__image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-medium);
+  object-fit: cover;
+}
+
+.c-testimonial__profile {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+}
+
+.c-testimonial__customer-info {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-label-small);
+}
+
+.c-testimonial__voice {
+  margin: 0;
+  font-size: var(--font-body);
+  line-height: 1.8;
+}
+
+/* pattern-1: タイトル → 画像 → プロフィール(アバター+お客様情報) → お客様の声、の表示順 */
+.c-testimonial--pattern-1 .c-testimonial__title { order: 1; }
+.c-testimonial--pattern-1 .c-testimonial__image { order: 2; }
+.c-testimonial--pattern-1 .c-testimonial__profile { order: 3; }
+.c-testimonial--pattern-1 .c-testimonial__voice { order: 4; }
+
+/* pattern-1: タイトル・画像・お客様情報がすべて無い(アバター+声のみ)場合は、
+   アバターの横にお客様の声を並べる */
+.c-testimonial--pattern-1:not(:has(.c-testimonial__title)):not(:has(.c-testimonial__image)):not(:has(.c-testimonial__customer-info)) {
+  flex-direction: row;
+  align-items: flex-start;
+}

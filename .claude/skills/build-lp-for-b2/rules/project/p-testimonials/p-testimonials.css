@@ -1,0 +1,15 @@
+.p-testimonials {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-24);
+}
+
+@media (min-width: 769px) {
+  .p-testimonials {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .p-testimonials.p-testimonials--4-columns {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

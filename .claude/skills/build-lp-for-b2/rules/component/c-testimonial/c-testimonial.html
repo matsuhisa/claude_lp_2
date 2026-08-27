@@ -1,0 +1,28 @@
+<!--
+- お客様の声(テスティモニアル)
+  - レイアウトパターン1(c-testimonial--pattern-1)。今後パターンが増える想定なので、
+    使うときは必ずパターンのmodifierを付ける
+  - 表示順(pattern-1): タイトル(任意) → 画像(任意) → アバター+お客様情報(任意) → お客様の声
+  - pattern-1では、タイトル・画像・お客様情報をすべて省略した場合(アバター+声のみ)、
+    自動的にアバターの横にお客様の声を並べる横並びレイアウトになる。任意要素の
+    `<h3>`/`<img>`/`<p class="c-testimonial__customer-info">` はデータが無い時、要素自体をHTMLから省く(空のまま残さない)
+
+interface Testimonial {
+  avatarUrl: string;
+  avatarAlt: string;
+  voice: string;
+  customerInfo?: string; // 任意: 年齢・性別など
+  title?: string; // 任意: 20字前後
+  imageUrl?: string; // 任意
+}
+-->
+
+<article class="c-testimonial c-testimonial--pattern-1">
+  <h3 class="c-testimonial__title">{title}</h3>
+  <img class="c-testimonial__image" src={imageUrl} alt="" />
+  <div class="c-testimonial__profile">
+    <img class="c-avatar c-avatar--medium" src={avatarUrl} alt={avatarAlt} />
+    <p class="c-testimonial__customer-info">{customerInfo}</p>
+  </div>
+  <p class="c-testimonial__voice">{voice}</p>
+</article>
