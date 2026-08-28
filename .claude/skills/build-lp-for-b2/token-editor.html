@@ -251,6 +251,10 @@
     <section class="ctrl-group">
       <h2>Radius</h2>
       <div id="radius-fields"></div>
+      <div class="field-row">
+        <label>radius-full</label>
+        <input type="text" id="radius-full-input">
+      </div>
     </section>
 
     <section class="ctrl-group">
@@ -344,7 +348,7 @@
   var FONTSIZE_KEYS = ['fontSize12','fontSize16','fontSize20','fontSize24','fontSize32','fontSize40','fontSize48','fontSize64'];
   var FONTSIZE_LABELS = { fontSize12:'font-size-12', fontSize16:'font-size-16', fontSize20:'font-size-20', fontSize24:'font-size-24', fontSize32:'font-size-32', fontSize40:'font-size-40', fontSize48:'font-size-48', fontSize64:'font-size-64' };
   // fixed (kept as-is from brand.css, not editable in this tool)
-  var FIXED = { radiusFull: '50%', elevationLow: '', elevationHigh: '' };
+  var FIXED = { elevationLow: '', elevationHigh: '' };
 
   var state = {};
   var originalState = {};
@@ -359,9 +363,9 @@
     SPACING_KEYS.forEach(function (k) { state[k] = pxToNum(s.getPropertyValue('--' + SPACING_LABELS[k])); });
     FONTSIZE_KEYS.forEach(function (k) { state[k] = pxToNum(s.getPropertyValue('--' + FONTSIZE_LABELS[k])); });
     state.fontFamily = s.getPropertyValue('--font-family-sans-serif').trim();
+    state.radiusFull = s.getPropertyValue('--radius-full').trim() || '50%';
     FIXED.elevationLow = s.getPropertyValue('--elevation-low').trim();
     FIXED.elevationHigh = s.getPropertyValue('--elevation-high').trim();
-    FIXED.radiusFull = s.getPropertyValue('--radius-full').trim() || '50%';
 
     // typography: figure out which font-size-* each semantic token currently points to,
     // by matching the resolved px value against the primitive scale.
@@ -436,6 +440,7 @@
       document.querySelector('[data-key="' + k + '"][data-kind="fontsize"]').value = state[k];
     });
     document.getElementById('font-family-input').value = state.fontFamily;
+    document.getElementById('radius-full-input').value = state.radiusFull;
 
     TYPO_KEYS.forEach(function (k) {
       var select = document.querySelector('select[data-key="' + k[0] + '"]');
@@ -466,7 +471,7 @@
     TYPO_KEYS.forEach(function (k) {
       el.style.setProperty(k[1], 'var(--font-size-' + fontSizeNum(state[k[0]]) + ')');
     });
-    el.style.setProperty('--radius-full', FIXED.radiusFull);
+    el.style.setProperty('--radius-full', state.radiusFull);
     el.style.setProperty('--elevation-low', FIXED.elevationLow);
     el.style.setProperty('--elevation-high', FIXED.elevationHigh);
   }
@@ -503,7 +508,7 @@
     RADIUS_KEYS.forEach(function (k) {
       br.innerHTML += '<div><div class="token-box" style="border: 1px solid var(--color-border-secondary); border-radius: var(--' + k[1] + ');">' + k[1].replace('radius-', '') + '</div><div class="token-label">' + state[k[0]] + 'px</div></div>';
     });
-    br.innerHTML += '<div><div class="token-box" style="border: 1px solid var(--color-border-secondary); border-radius: var(--radius-full);">full</div><div class="token-label">' + FIXED.radiusFull + '</div></div>';
+    br.innerHTML += '<div><div class="token-box" style="border: 1px solid var(--color-border-secondary); border-radius: var(--radius-full);">full</div><div class="token-label">' + state.radiusFull + '</div></div>';
 
     var sp = document.getElementById('preview-spacing');
     sp.innerHTML = '';
@@ -557,7 +562,7 @@
       '  --radius-small: ' + state.radiusSmall + 'px;\n' +
       '  --radius-medium: ' + state.radiusMedium + 'px;\n' +
       '  --radius-large: ' + state.radiusLarge + 'px;\n' +
-      '  --radius-full: ' + FIXED.radiusFull + ';\n' +
+      '  --radius-full: ' + state.radiusFull + ';\n' +
       '\n' +
       '  --elevation-low: ' + FIXED.elevationLow + ';\n' +
       '  --elevation-high: ' + FIXED.elevationHigh + ';\n' +
@@ -600,6 +605,9 @@
       if (!key) {
         if (target.id === 'font-family-input') {
           state.fontFamily = target.value;
+          render();
+        } else if (target.id === 'radius-full-input') {
+          state.radiusFull = target.value;
           render();
         }
         return;
