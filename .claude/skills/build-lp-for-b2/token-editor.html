@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Editor</title>
+<!--
+  ブランドトークン(brand.css)を調整するための編集用ページ。
+  左側のコントロールで値を変更するとプレビューが即座に反映され、下部のテキストエリアに
+  brand.css へそのまま貼り戻せる形式のCSSが生成される。
+  読み込み専用の確認ページは token.html を参照。
+-->
+<link id="palette-css" rel="stylesheet" href="tokens/brand.css">
+<style>
+  * { box-sizing: border-box; }
+  :root {
+    --ui-bg: #FFFFFF;
+    --ui-surface: #F5F6F8;
+    --ui-border: #D8DBE0;
+    --ui-text: #1A1D23;
+    --ui-text-secondary: #6B7280;
+    --ui-accent: #2563EB;
+    --ui-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--ui-surface);
+    color: var(--ui-text);
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+    line-height: 1.5;
+  }
+  header.page {
+    padding: 20px 24px;
+    background: var(--ui-bg);
+    border-bottom: 1px solid var(--ui-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  header.page h1 { font-size: 18px; margin: 0; }
+  header.page p { margin: 4px 0 0; font-size: 13px; color: var(--ui-text-secondary); }
+  header.page a { color: var(--ui-accent); }
+  .header-actions { display: flex; gap: 8px; }
+  button.ui-btn {
+    padding: 8px 14px;
+    border: 1px solid var(--ui-border);
+    border-radius: 6px;
+    background: var(--ui-bg);
+    color: var(--ui-text);
+    font-size: 13px;
+    cursor: pointer;
+  }
+  button.ui-btn:hover { background: var(--ui-surface); }
+  button.ui-btn.primary { background: var(--ui-accent); border-color: var(--ui-accent); color: #fff; }
+  button.ui-btn.primary:hover { opacity: 0.9; }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(320px, 420px) 1fr;
+    gap: 0;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+
+  .controls {
+    padding: 24px;
+    max-height: calc(100vh - 65px);
+    overflow-y: auto;
+    border-right: 1px solid var(--ui-border);
+  }
+  .preview-col {
+    padding: 24px;
+    max-height: calc(100vh - 65px);
+    overflow-y: auto;
+  }
+
+  section.ctrl-group { margin-bottom: 28px; }
+  section.ctrl-group h2 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ui-text-secondary);
+    margin: 0 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--ui-border);
+  }
+  .field-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+  }
+  .field-row label {
+    flex: 0 0 150px;
+    font-size: 12px;
+    font-family: var(--ui-mono);
+    color: var(--ui-text);
+  }
+  .field-row input[type="color"] {
+    width: 36px;
+    height: 28px;
+    padding: 0;
+    border: 1px solid var(--ui-border);
+    border-radius: 4px;
+    background: none;
+    cursor: pointer;
+  }
+  .field-row input[type="text"],
+  .field-row input[type="number"],
+  .field-row select {
+    flex: 1;
+    padding: 5px 8px;
+    border: 1px solid var(--ui-border);
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: var(--ui-mono);
+    background: var(--ui-bg);
+    color: var(--ui-text);
+    min-width: 0;
+  }
+  .field-row .unit { font-size: 12px; color: var(--ui-text-secondary); flex: 0 0 auto; }
+  .field-row.static label { color: var(--ui-text-secondary); }
+  .field-row.static .static-value { font-size: 12px; font-family: var(--ui-mono); color: var(--ui-text-secondary); }
+
+  /* Preview panel — this is the ONLY area where brand tokens are applied */
+  #preview {
+    background: var(--color-background, #fff);
+    color: var(--color-text-primary, #111);
+    border: 1px solid var(--ui-border);
+    border-radius: 8px;
+    padding: 24px;
+    font-family: var(--font-family-sans-serif, sans-serif);
+  }
+  #preview h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ui-text-secondary);
+    margin: 28px 0 10px;
+    font-family: -apple-system, sans-serif;
+  }
+  #preview h3:first-child { margin-top: 0; }
+
+  .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
+  .swatch { border: var(--border-width-medium, 1px) solid var(--color-border-secondary, #ccc); border-radius: var(--radius-medium, 8px); overflow: hidden; }
+  .swatch__color { height: 48px; }
+  .swatch__meta { padding: 6px 8px; }
+  .swatch__meta .name { display: block; font-size: 12px; font-weight: 600; }
+  .swatch__meta .value { display: block; font-size: 10px; color: var(--color-text-secondary, #777); font-family: var(--ui-mono); }
+
+  .font-sample { padding: 10px 0; border-bottom: 1px dashed var(--color-border-secondary, #ddd); }
+  .font-sample:last-child { border-bottom: none; }
+  .font-sample .tag { display: block; font-size: 10px; color: var(--color-text-secondary, #777); font-family: var(--ui-mono); margin-bottom: 2px; }
+
+  .token-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; }
+  .token-box {
+    width: 72px; height: 72px;
+    background: var(--color-surface, #f5f5f5);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--color-text-secondary, #777); text-align: center;
+  }
+  .token-label { margin-top: 4px; font-size: 10px; color: var(--color-text-secondary, #777); font-family: var(--ui-mono); text-align: center; }
+
+  .space-row { display: flex; align-items: flex-end; gap: 6px; flex-wrap: wrap; }
+  .space-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .space-box { width: 14px; background: var(--color-accent, #999); }
+
+  .mock-card {
+    border: var(--border-width-medium, 1px) solid var(--color-border-secondary, #ddd);
+    border-radius: var(--radius-large, 12px);
+    box-shadow: var(--elevation-low);
+    padding: var(--spacing-24, 24px);
+    max-width: 360px;
+  }
+  .mock-card h4 { margin: 0 0 8px; font-size: var(--font-heading-3, 20px); color: var(--color-text-primary, #111); }
+  .mock-card p { margin: 0 0 16px; font-size: var(--font-body, 16px); color: var(--color-text-secondary, #666); }
+  .mock-cta {
+    display: inline-block;
+    background: var(--color-primary, #2563EB);
+    color: var(--color-text-white, #fff);
+    padding: var(--spacing-8, 8px) var(--spacing-24, 24px);
+    border-radius: var(--radius-medium, 8px);
+    font-size: var(--font-label, 16px);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  /* Output CSS */
+  .output-block { margin-top: 28px; }
+  .output-block h2 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ui-text-secondary);
+    margin: 0 0 10px;
+  }
+  #css-output {
+    width: 100%;
+    min-height: 360px;
+    padding: 14px;
+    border: 1px solid var(--ui-border);
+    border-radius: 6px;
+    background: #1A1D23;
+    color: #E5E7EB;
+    font-family: var(--ui-mono);
+    font-size: 12px;
+    line-height: 1.6;
+    resize: vertical;
+    white-space: pre;
+  }
+  .copy-status { font-size: 12px; color: var(--ui-text-secondary); margin-left: 8px; }
+</style>
+</head>
+<body>
+
+<header class="page">
+  <div>
+    <h1>Token Editor</h1>
+    <p>ブランドトークンを調整してプレビューを確認し、下部のCSSを <code>tokens/brand.css</code> に貼り戻す。確認専用ページは <a href="token.html">token.html</a>。</p>
+  </div>
+  <div class="header-actions">
+    <button class="ui-btn" id="reset-btn" type="button">brand.css の値にリセット</button>
+    <button class="ui-btn primary" id="copy-btn" type="button">CSSをコピー</button>
+    <span class="copy-status" id="copy-status"></span>
+  </div>
+</header>
+
+<div class="layout">
+  <div class="controls" id="controls">
+
+    <section class="ctrl-group">
+      <h2>Colors (semantic)</h2>
+      <div id="color-fields"></div>
+    </section>
+
+    <section class="ctrl-group">
+      <h2>Typography (semantic)</h2>
+      <div id="typo-fields"></div>
+    </section>
+
+    <section class="ctrl-group">
+      <h2>Border width</h2>
+      <div id="border-fields"></div>
+    </section>
+
+    <section class="ctrl-group">
+      <h2>Radius</h2>
+      <div id="radius-fields"></div>
+    </section>
+
+    <section class="ctrl-group">
+      <h2>Elevation</h2>
+      <p style="font-size:12px; color:var(--ui-text-secondary); margin:0 0 8px;">box-shadowは複雑なため本エディタでは非対応。変更する場合は brand.css を直接編集してください。</p>
+    </section>
+
+    <section class="ctrl-group">
+      <h2>Primitive: Spacing</h2>
+      <div id="spacing-fields"></div>
+    </section>
+
+    <section class="ctrl-group">
+      <h2>Primitive: Font</h2>
+      <div class="field-row">
+        <label for="font-family-input">font-family</label>
+        <input type="text" id="font-family-input">
+      </div>
+      <div id="fontsize-fields"></div>
+    </section>
+
+  </div>
+
+  <div class="preview-col">
+    <div id="preview">
+      <h3>Colors</h3>
+      <div class="swatch-grid" id="preview-swatches"></div>
+
+      <h3>Typography</h3>
+      <div id="preview-fonts"></div>
+
+      <h3>Border width / Radius</h3>
+      <div class="token-row" id="preview-border-radius"></div>
+
+      <h3>Spacing</h3>
+      <div class="space-row" id="preview-spacing"></div>
+
+      <h3>Sample</h3>
+      <div class="mock-card">
+        <h4>プランのご案内</h4>
+        <p>トークンを変更すると、この見本カードとボタンの見た目も連動して変わります。</p>
+        <a class="mock-cta" href="#" onclick="return false;">詳しく見る</a>
+      </div>
+    </div>
+
+    <div class="output-block">
+      <h2>生成されたCSS(brand.css にそのまま貼り付け可)</h2>
+      <textarea id="css-output" readonly spellcheck="false"></textarea>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var COLOR_KEYS = [
+    ['colorPrimary', '--color-primary', 'primary'],
+    ['colorPrimaryDark', '--color-primary-dark', 'primary-dark'],
+    ['colorSecondary', '--color-secondary', 'secondary'],
+    ['colorAccent', '--color-accent', 'accent'],
+    ['colorSuccess', '--color-success', 'success'],
+    ['colorDanger', '--color-danger', 'danger'],
+    ['colorBackground', '--color-background', 'background'],
+    ['colorSurfacePrimary', '--color-surface-primary', 'surface-primary'],
+    ['colorSurface', '--color-surface', 'surface'],
+    ['colorTextPrimary', '--color-text-primary', 'text-primary'],
+    ['colorTextSecondary', '--color-text-secondary', 'text-secondary'],
+    ['colorTextWhite', '--color-text-white', 'text-white'],
+    ['colorBorderPrimary', '--color-border-primary', 'border-primary'],
+    ['colorBorderSecondary', '--color-border-secondary', 'border-secondary']
+  ];
+  var TYPO_KEYS = [
+    ['fontHeading1', '--font-heading-1', 'font-heading-1'],
+    ['fontHeading2', '--font-heading-2', 'font-heading-2'],
+    ['fontHeading3', '--font-heading-3', 'font-heading-3'],
+    ['fontBody', '--font-body', 'font-body'],
+    ['fontLabel', '--font-label', 'font-label'],
+    ['fontLabelSmall', '--font-label-small', 'font-label-small']
+  ];
+  var BORDER_KEYS = [
+    ['borderWidthMedium', 'border-width-medium'],
+    ['borderWidthLarge', 'border-width-large'],
+    ['borderWidthExtraLarge', 'border-width-extra-large']
+  ];
+  var RADIUS_KEYS = [
+    ['radiusSmall', 'radius-small'],
+    ['radiusMedium', 'radius-medium'],
+    ['radiusLarge', 'radius-large']
+  ];
+  var SPACING_KEYS = ['spacing8','spacing16','spacing20','spacing24','spacing32','spacing40','spacing48','spacing64','spacing80','spacing104'];
+  var SPACING_LABELS = { spacing8:'spacing-8', spacing16:'spacing-16', spacing20:'spacing-20', spacing24:'spacing-24', spacing32:'spacing-32', spacing40:'spacing-40', spacing48:'spacing-48', spacing64:'spacing-64', spacing80:'spacing-80', spacing104:'spacing-104' };
+  var FONTSIZE_KEYS = ['fontSize12','fontSize16','fontSize20','fontSize24','fontSize32','fontSize40','fontSize48','fontSize64'];
+  var FONTSIZE_LABELS = { fontSize12:'font-size-12', fontSize16:'font-size-16', fontSize20:'font-size-20', fontSize24:'font-size-24', fontSize32:'font-size-32', fontSize40:'font-size-40', fontSize48:'font-size-48', fontSize64:'font-size-64' };
+  // fixed (kept as-is from brand.css, not editable in this tool)
+  var FIXED = { radiusFull: '50%', elevationLow: '', elevationHigh: '' };
+
+  var state = {};
+  var originalState = {};
+
+  function pxToNum(v) { return parseFloat(String(v).replace('px', '')) || 0; }
+
+  function loadFromComputed() {
+    var s = getComputedStyle(document.documentElement);
+    COLOR_KEYS.forEach(function (k) { state[k[0]] = (s.getPropertyValue(k[1]).trim() || '#000000').toUpperCase(); });
+    BORDER_KEYS.forEach(function (k) { state[k[0]] = pxToNum(s.getPropertyValue('--' + k[1])); });
+    RADIUS_KEYS.forEach(function (k) { state[k[0]] = pxToNum(s.getPropertyValue('--' + k[1])); });
+    SPACING_KEYS.forEach(function (k) { state[k] = pxToNum(s.getPropertyValue('--' + SPACING_LABELS[k])); });
+    FONTSIZE_KEYS.forEach(function (k) { state[k] = pxToNum(s.getPropertyValue('--' + FONTSIZE_LABELS[k])); });
+    state.fontFamily = s.getPropertyValue('--font-family-sans-serif').trim();
+    FIXED.elevationLow = s.getPropertyValue('--elevation-low').trim();
+    FIXED.elevationHigh = s.getPropertyValue('--elevation-high').trim();
+    FIXED.radiusFull = s.getPropertyValue('--radius-full').trim() || '50%';
+
+    // typography: figure out which font-size-* each semantic token currently points to,
+    // by matching the resolved px value against the primitive scale.
+    TYPO_KEYS.forEach(function (k) {
+      var resolvedPx = pxToNum(s.getPropertyValue(k[1]));
+      var match = FONTSIZE_KEYS.find(function (fk) { return state[fk] === resolvedPx; });
+      state[k[0]] = match || 'fontSize16';
+    });
+
+    originalState = JSON.parse(JSON.stringify(state));
+  }
+
+  function buildColorFields() {
+    var wrap = document.getElementById('color-fields');
+    wrap.innerHTML = '';
+    COLOR_KEYS.forEach(function (k) {
+      var row = document.createElement('div');
+      row.className = 'field-row';
+      row.innerHTML =
+        '<label>' + k[2] + '</label>' +
+        '<input type="color" data-key="' + k[0] + '" data-kind="color">' +
+        '<input type="text" data-key="' + k[0] + '" data-kind="colortext">';
+      wrap.appendChild(row);
+    });
+  }
+
+  function buildTypoFields() {
+    var wrap = document.getElementById('typo-fields');
+    wrap.innerHTML = '';
+    TYPO_KEYS.forEach(function (k) {
+      var row = document.createElement('div');
+      row.className = 'field-row';
+      var label = document.createElement('label');
+      label.textContent = k[2];
+      var select = document.createElement('select');
+      select.setAttribute('data-key', k[0]);
+      select.setAttribute('data-kind', 'typo');
+      row.appendChild(label);
+      row.appendChild(select);
+      wrap.appendChild(row);
+    });
+  }
+
+  function buildNumberFields(containerId, keys, labelFn, kind) {
+    var wrap = document.getElementById(containerId);
+    wrap.innerHTML = '';
+    keys.forEach(function (k) {
+      var key = Array.isArray(k) ? k[0] : k;
+      var label = Array.isArray(k) ? k[1] : labelFn(k);
+      var row = document.createElement('div');
+      row.className = 'field-row';
+      row.innerHTML =
+        '<label>' + label + '</label>' +
+        '<input type="number" min="0" step="1" data-key="' + key + '" data-kind="' + kind + '">' +
+        '<span class="unit">px</span>';
+      wrap.appendChild(row);
+    });
+  }
+
+  function syncFieldsFromState() {
+    COLOR_KEYS.forEach(function (k) {
+      document.querySelector('[data-key="' + k[0] + '"][data-kind="color"]').value = state[k[0]];
+      document.querySelector('[data-key="' + k[0] + '"][data-kind="colortext"]').value = state[k[0]];
+    });
+    BORDER_KEYS.concat(RADIUS_KEYS).forEach(function (k) {
+      document.querySelector('[data-key="' + k[0] + '"]').value = state[k[0]];
+    });
+    SPACING_KEYS.forEach(function (k) {
+      document.querySelector('[data-key="' + k + '"][data-kind="spacing"]').value = state[k];
+    });
+    FONTSIZE_KEYS.forEach(function (k) {
+      document.querySelector('[data-key="' + k + '"][data-kind="fontsize"]').value = state[k];
+    });
+    document.getElementById('font-family-input').value = state.fontFamily;
+
+    TYPO_KEYS.forEach(function (k) {
+      var select = document.querySelector('select[data-key="' + k[0] + '"]');
+      select.innerHTML = '';
+      FONTSIZE_KEYS.forEach(function (fk) {
+        var opt = document.createElement('option');
+        opt.value = fk;
+        opt.textContent = FONTSIZE_LABELS[fk] + ' (' + state[fk] + 'px)';
+        if (fk === state[k[0]]) opt.selected = true;
+        select.appendChild(opt);
+      });
+    });
+  }
+
+  function fontSizeNum(key) {
+    // key like 'fontSize32' -> the number in its name, e.g. 32 (used for --font-size-32 var name)
+    return FONTSIZE_LABELS[key].replace('font-size-', '');
+  }
+
+  function applyToPreview() {
+    var el = document.getElementById('preview');
+    COLOR_KEYS.forEach(function (k) { el.style.setProperty(k[1], state[k[0]]); });
+    BORDER_KEYS.forEach(function (k) { el.style.setProperty('--' + k[1], state[k[0]] + 'px'); });
+    RADIUS_KEYS.forEach(function (k) { el.style.setProperty('--' + k[1], state[k[0]] + 'px'); });
+    SPACING_KEYS.forEach(function (k) { el.style.setProperty('--' + SPACING_LABELS[k], state[k] + 'px'); });
+    FONTSIZE_KEYS.forEach(function (k) { el.style.setProperty('--' + FONTSIZE_LABELS[k], state[k] + 'px'); });
+    el.style.setProperty('--font-family-sans-serif', state.fontFamily);
+    TYPO_KEYS.forEach(function (k) {
+      el.style.setProperty(k[1], 'var(--font-size-' + fontSizeNum(state[k[0]]) + ')');
+    });
+    el.style.setProperty('--radius-full', FIXED.radiusFull);
+    el.style.setProperty('--elevation-low', FIXED.elevationLow);
+    el.style.setProperty('--elevation-high', FIXED.elevationHigh);
+  }
+
+  function renderPreviewPanels() {
+    var swatches = document.getElementById('preview-swatches');
+    swatches.innerHTML = '';
+    COLOR_KEYS.forEach(function (k) {
+      var div = document.createElement('div');
+      div.className = 'swatch';
+      div.innerHTML =
+        '<div class="swatch__color" style="background: var(' + k[1] + ');"></div>' +
+        '<div class="swatch__meta"><span class="name">' + k[2] + '</span><span class="value">' + state[k[0]] + '</span></div>';
+      swatches.appendChild(div);
+    });
+
+    var fonts = document.getElementById('preview-fonts');
+    fonts.innerHTML = '';
+    var sampleLabels = { fontHeading1: '見出し1', fontHeading2: '見出し2', fontHeading3: '見出し3', fontBody: '本文', fontLabel: 'ラベル', fontLabelSmall: 'ラベル(small)' };
+    TYPO_KEYS.forEach(function (k) {
+      var div = document.createElement('div');
+      div.className = 'font-sample';
+      div.innerHTML =
+        '<span class="tag">' + k[2] + ': ' + state[fontSizeKeyName(k[0])] + '</span>' +
+        '<span style="font-size: var(' + k[1] + '); font-weight:' + (k[0].indexOf('Heading') === 0 ? 700 : 400) + ';">' + sampleLabels[k[0]] + 'の見本 ABC 123</span>';
+      fonts.appendChild(div);
+    });
+
+    var br = document.getElementById('preview-border-radius');
+    br.innerHTML = '';
+    BORDER_KEYS.forEach(function (k) {
+      br.innerHTML += '<div><div class="token-box" style="border: var(--' + k[1] + ') solid var(--color-border-primary);">' + k[1].replace('border-width-', '') + '</div><div class="token-label">' + state[k[0]] + 'px</div></div>';
+    });
+    RADIUS_KEYS.forEach(function (k) {
+      br.innerHTML += '<div><div class="token-box" style="border: 1px solid var(--color-border-secondary); border-radius: var(--' + k[1] + ');">' + k[1].replace('radius-', '') + '</div><div class="token-label">' + state[k[0]] + 'px</div></div>';
+    });
+    br.innerHTML += '<div><div class="token-box" style="border: 1px solid var(--color-border-secondary); border-radius: var(--radius-full);">full</div><div class="token-label">' + FIXED.radiusFull + '</div></div>';
+
+    var sp = document.getElementById('preview-spacing');
+    sp.innerHTML = '';
+    SPACING_KEYS.forEach(function (k) {
+      sp.innerHTML += '<div class="space-item"><div class="space-box" style="height: var(--' + SPACING_LABELS[k] + ');"></div><span class="token-label">' + state[k] + 'px</span></div>';
+    });
+  }
+
+  function fontSizeKeyName(typoKey) {
+    return state[typoKey];
+  }
+
+  function generateCSS() {
+    var t = function (fk) { return fontSizeNum(state[fk]); };
+    return '/*\n' +
+      ' * brand.css — design tokens for build-lp-for-b2 (colors, typography, radius, spacing).\n' +
+      ' * The build-lp-for-b2 skill reads this file before building any landing page and\n' +
+      ' * inlines these custom properties into the generated HTML\'s <style> block.\n' +
+      ' * Fill in the TODO values with this brand\'s real tokens; colors must be valid hex codes.\n' +
+      ' * Non-visual info (company name, tagline, logo, voice & tone) lives in brand.json.\n' +
+      ' */\n' +
+      ':root {\n' +
+      '  /* semantic */\n' +
+      '  --color-primary: ' + state.colorPrimary + ';\n' +
+      '  --color-primary-dark: ' + state.colorPrimaryDark + ';\n' +
+      '  --color-secondary: ' + state.colorSecondary + ';\n' +
+      '  --color-accent: ' + state.colorAccent + ';\n' +
+      '  --color-success: ' + state.colorSuccess + ';\n' +
+      '  --color-danger: ' + state.colorDanger + ';\n' +
+      '\n' +
+      '  --color-background: ' + state.colorBackground + ';\n' +
+      '  --color-surface-primary: ' + state.colorSurfacePrimary + ';\n' +
+      '  --color-surface: ' + state.colorSurface + ';\n' +
+      '  --color-text-primary: ' + state.colorTextPrimary + ';\n' +
+      '  --color-text-secondary: ' + state.colorTextSecondary + ';\n' +
+      '  --color-text-white: ' + state.colorTextWhite + ';\n' +
+      '  --color-border-primary: ' + state.colorBorderPrimary + ';\n' +
+      '  --color-border-secondary: ' + state.colorBorderSecondary + ';\n' +
+      '\n' +
+      '  --font-heading-1: var(--font-size-' + t('fontHeading1') + ');\n' +
+      '  --font-heading-2: var(--font-size-' + t('fontHeading2') + ');\n' +
+      '  --font-heading-3: var(--font-size-' + t('fontHeading3') + ');\n' +
+      '  --font-body: var(--font-size-' + t('fontBody') + ');\n' +
+      '  --font-label: var(--font-size-' + t('fontLabel') + ');\n' +
+      '  --font-label-small: var(--font-size-' + t('fontLabelSmall') + ');\n' +
+      '\n' +
+      '  --border-width-medium: ' + state.borderWidthMedium + 'px;\n' +
+      '  --border-width-large: ' + state.borderWidthLarge + 'px;\n' +
+      '  --border-width-extra-large: ' + state.borderWidthExtraLarge + 'px;\n' +
+      '\n' +
+      '  --radius-small: ' + state.radiusSmall + 'px;\n' +
+      '  --radius-medium: ' + state.radiusMedium + 'px;\n' +
+      '  --radius-large: ' + state.radiusLarge + 'px;\n' +
+      '  --radius-full: ' + FIXED.radiusFull + ';\n' +
+      '\n' +
+      '  --elevation-low: ' + FIXED.elevationLow + ';\n' +
+      '  --elevation-high: ' + FIXED.elevationHigh + ';\n' +
+      '\n' +
+      '  /* primitive */\n' +
+      '  --spacing-104: ' + state.spacing104 + 'px;\n' +
+      '  --spacing-80: ' + state.spacing80 + 'px;\n' +
+      '  --spacing-64: ' + state.spacing64 + 'px;\n' +
+      '  --spacing-48: ' + state.spacing48 + 'px;\n' +
+      '  --spacing-40: ' + state.spacing40 + 'px;\n' +
+      '  --spacing-32: ' + state.spacing32 + 'px;\n' +
+      '  --spacing-24: ' + state.spacing24 + 'px;\n' +
+      '  --spacing-20: ' + state.spacing20 + 'px;\n' +
+      '  --spacing-16: ' + state.spacing16 + 'px;\n' +
+      '  --spacing-8: ' + state.spacing8 + 'px;\n' +
+      '\n' +
+      '  --font-family-sans-serif: ' + state.fontFamily + ';\n' +
+      '  --font-size-64: ' + state.fontSize64 + 'px;\n' +
+      '  --font-size-48: ' + state.fontSize48 + 'px;\n' +
+      '  --font-size-40: ' + state.fontSize40 + 'px;\n' +
+      '  --font-size-32: ' + state.fontSize32 + 'px;\n' +
+      '  --font-size-24: ' + state.fontSize24 + 'px;\n' +
+      '  --font-size-20: ' + state.fontSize20 + 'px;\n' +
+      '  --font-size-16: ' + state.fontSize16 + 'px;\n' +
+      '  --font-size-12: ' + state.fontSize12 + 'px;\n' +
+      '}\n';
+  }
+
+  function render() {
+    applyToPreview();
+    renderPreviewPanels();
+    document.getElementById('css-output').value = generateCSS();
+  }
+
+  function bindEvents() {
+    document.getElementById('controls').addEventListener('input', function (e) {
+      var target = e.target;
+      var key = target.getAttribute('data-key');
+      var kind = target.getAttribute('data-kind');
+      if (!key) {
+        if (target.id === 'font-family-input') {
+          state.fontFamily = target.value;
+          render();
+        }
+        return;
+      }
+      if (kind === 'color') {
+        state[key] = target.value.toUpperCase();
+      } else if (kind === 'colortext') {
+        if (/^#[0-9A-Fa-f]{6}$/.test(target.value)) state[key] = target.value.toUpperCase();
+      } else if (kind === 'typo') {
+        state[key] = target.value;
+      } else {
+        state[key] = parseFloat(target.value) || 0;
+      }
+      syncFieldsFromState();
+      render();
+    });
+
+    document.getElementById('reset-btn').addEventListener('click', function () {
+      state = JSON.parse(JSON.stringify(originalState));
+      syncFieldsFromState();
+      render();
+    });
+
+    document.getElementById('copy-btn').addEventListener('click', function () {
+      var text = document.getElementById('css-output').value;
+      var status = document.getElementById('copy-status');
+      function showCopied() {
+        status.textContent = 'コピーしました';
+        setTimeout(function () { status.textContent = ''; }, 2000);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(showCopied, function () { fallbackCopy(text, showCopied); });
+      } else {
+        fallbackCopy(text, showCopied);
+      }
+    });
+
+    function fallbackCopy(text, cb) {
+      var ta = document.getElementById('css-output');
+      ta.focus();
+      ta.select();
+      try { document.execCommand('copy'); cb(); } catch (e) {}
+    }
+  }
+
+  function init() {
+    buildColorFields();
+    buildTypoFields();
+    buildNumberFields('border-fields', BORDER_KEYS, null, 'border');
+    buildNumberFields('radius-fields', RADIUS_KEYS, null, 'radius');
+    buildNumberFields('spacing-fields', SPACING_KEYS.map(function (k) { return [k, SPACING_LABELS[k]]; }), null, 'spacing');
+    buildNumberFields('fontsize-fields', FONTSIZE_KEYS.map(function (k) { return [k, FONTSIZE_LABELS[k]]; }), null, 'fontsize');
+    loadFromComputed();
+    syncFieldsFromState();
+    bindEvents();
+    render();
+  }
+
+  var paletteLink = document.getElementById('palette-css');
+  if (paletteLink.sheet) {
+    init();
+  } else {
+    paletteLink.addEventListener('load', init);
+  }
+})();
+</script>
+
+</body>
+</html>
