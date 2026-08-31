@@ -1,3 +1,112 @@
-.c-product-card {
-  max-width: 100rem;
+.c-productCard {
+  display: block;
+  width: 100%;
+  background-color: var(--color-background);
+  border-radius: var(--radius-large);
+
+  .c-productCard__item {
+    color: var(--color-text-primary);
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.5;
+    text-decoration: none;
+  }
+
+  .c-productCard__image {
+    border-radius: var(--radius-large) 0 0 var(--radius-large);
+  }
+
+  .c-productCard__photo {
+    border-radius: var(--radius-large) var(--radius-large) 0 0;
+    aspect-ratio: 4/3;
+    width: 100%;
+  }
+
+  .c-productCard__itemBody {
+    padding: var(--spacing-8);
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .c-productCard__name {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    white-space: normal;
+    overflow: hidden;
+  }
+
+  .c-productCard__price {
+    display: flex;
+    gap: var(--spacing-8);
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    text-align: right;
+
+    margin-top: auto;
+  }
+
+  .c-productCard__priceFreeShippingLabel {
+    display: inline-block;
+    color: var(--color-text-white);
+    font-size: 12px;
+    line-height: 1;
+
+    padding: var(--spacing-8);
+    background-color: var(--color-danger);
+    border-radius: var(--radius-small);
+  }
+
+  .c-productCard__campaignDiscountLabel {
+    border-radius: var(--radius-large);
+    background: var(--color-danger);
+
+    color: var(--color-text-white);
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.4px;
+    padding: var(--spacing-8) var(--spacing-8);
+    margin-right: var(--spacing-8);
+  }
+
+  .c-productCard__farmer {
+    display: grid;
+    gap: var(--spacing-8);
+    align-items: center;
+    grid-template-columns: minmax(25px, 50px) 75%;
+
+    color: var(--color-text-primary);
+    font-family: sans-serif;
+    line-height: 1.5;
+    text-decoration: none;
+
+    padding: var(--spacing-8);
+    border-top: 1px solid var(--color-border-secondary);
+  }
+
+  .c-productCard__farmerIconPhoto {
+    width: 100%;
+    border-radius: var(--radius-full);
+  }
+
+  .c-productCard__farmerArea {
+    font-size: 10px;
+  }
+
+  .c-productCard__farmerName {
+    font-size: 12px;
+    font-weight: bold;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+  }
 }

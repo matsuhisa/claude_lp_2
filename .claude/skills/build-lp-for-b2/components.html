@@ -12,7 +12,7 @@
   コンポーネント/プロジェクトを追加した場合は、下記 <link> に1行追加し、該当セクションに
   サブセクションを1つ追加する。
 -->
-<link rel="stylesheet" href="tokens/brand.css">
+<link id="palette-css" rel="stylesheet" href="tokens/brand.css">
 <link rel="stylesheet" href="rules/styles/reset.css">
 <link rel="stylesheet" href="rules/styles/u-typography.css">
 <link rel="stylesheet" href="rules/styles/u-list.css">
@@ -53,8 +53,25 @@
     border-bottom: 1px solid var(--color-border-secondary);
   }
   h3 { font-size: 13px; color: var(--color-text-secondary); margin: 24px 0 8px; }
-  header.page { margin-bottom: 40px; }
+  header.page {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
   header.page p { margin: 4px 0 0; color: var(--color-text-secondary); font-size: 14px; }
+  #toggle-palette {
+    white-space: nowrap;
+    padding: 8px 16px;
+    border: var(--border-width-medium) solid var(--color-border-primary);
+    border-radius: var(--radius-medium);
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    font-family: var(--font-family-sans-serif);
+    font-size: 13px;
+    cursor: pointer;
+  }
   section.block { margin-bottom: 48px; }
 
   /* サンプル(プレビュー + マークアップ) */
@@ -92,18 +109,6 @@
   }
   .sample--layout pre { margin-top: 12px; }
 
-  /* c-product-card のプレビュー用プレースホルダー画像 */
-  .c-product-card__image {
-    aspect-ratio: 4 / 3;
-    background: var(--color-surface);
-    border: var(--border-width-medium) dashed var(--color-border-secondary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-text-secondary);
-    font-size: 12px;
-  }
-
   /* l-header / l-footer はページ全体の骨格サンプルなので横並びにせず、そのまま表示する */
   .sample--full { display: block; }
   .sample--full .sample__preview { padding: 0; overflow: hidden; }
@@ -113,8 +118,11 @@
 <body>
 
 <header class="page">
-  <h1>Components Guide</h1>
-  <p>build-lp-for-b2 のユーティリティクラス・コンポーネント・プロジェクト(レイアウト)の確認用ページ。トークンの確認は <a href="token.html">token.html</a> を参照。</p>
+  <div>
+    <h1>Components Guide</h1>
+    <p>build-lp-for-b2 のユーティリティクラス・コンポーネント・プロジェクト(レイアウト)の確認用ページ。トークンの確認は <a href="token.html">token.html</a> を参照。</p>
+  </div>
+  <button id="toggle-palette" type="button">brand.draft.css を確認</button>
 </header>
 
 <section class="block" id="layout">
@@ -249,14 +257,58 @@
 
   <h3>c-product-card</h3>
   <div class="sample">
-    <div class="sample__preview">
-      <a href="#" class="c-product-card">
-        <div class="c-product-card__image">imageUrl</div>
-      </a>
+    <div class="sample__preview" style="max-width: 280px;">
+      <div class="c-productCard">
+        <a href="#" class="c-productCard__item">
+          <div class="c-productCard__image">
+            <img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product" alt="" class="c-productCard__photo" />
+          </div>
+          <div class="c-productCard__itemBody">
+            <div class="c-productCard__name">シャキシャキ！新食感の甘～いスナックミニトマト</div>
+            <div class="c-productCard__price">
+              <span class="c-productCard__priceFreeShippingLabel">送料無料</span>
+              <span class="c-productCard__campaignDiscountLabel">¥200引き</span>
+              <span>&yen;</span>
+              <span class="c-productCard__priceNumber">2,600</span>
+            </div>
+          </div>
+        </a>
+        <a href="#" class="c-productCard__farmer">
+          <div class="c-productCard__farmerIcon">
+            <img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=%20" alt="" class="c-productCard__farmerIconPhoto" />
+          </div>
+          <div class="c-productCard__farmerProfie">
+            <div class="c-productCard__farmerArea">安曇野市穂高</div>
+            <div class="c-productCard__farmerName">ナチュベリーズ安曇野自然農園</div>
+          </div>
+        </a>
+      </div>
     </div>
-    <pre><code>&lt;a href="#" class="c-product-card"&gt;
-  &lt;div class="c-product-card__image"&gt;&lt;/div&gt;
-&lt;/a&gt;</code></pre>
+    <pre><code>&lt;div class="c-productCard"&gt;
+  &lt;a href={"#"} class="c-productCard__item"&gt;
+    &lt;div class="c-productCard__image"&gt;
+      &lt;img src={imageUrl} alt="" class="c-productCard__photo" /&gt;
+    &lt;/div&gt;
+    &lt;div class="c-productCard__itemBody"&gt;
+      &lt;div class="c-productCard__name"&gt;{product.name}&lt;/div&gt;
+      &lt;div class="c-productCard__price"&gt;
+        { freeShipping &amp;&amp; &lt;span class="c-productCard__priceFreeShippingLabel"&gt;送料無料&lt;/span&gt; }
+        { hasMunicipalityDiscountCampaign &amp;&amp; &lt;span class="c-productCard__campaignDiscountLabel"&gt;¥{discountPrice.toLocaleString()}引き&lt;/span&gt; }
+        &lt;span&gt;&amp;yen;&lt;/span&gt;
+        &lt;span class="c-productCard__priceNumber"&gt;{price.toLocaleString()}&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/a&gt;
+  &lt;a href={"/producers/"} class="c-productCard__farmer"&gt;
+    &lt;div class="c-productCard__farmerIcon"&gt;
+      &lt;img src={producerImageUrl} alt="" class="c-productCard__farmerIconPhoto" /&gt;
+    &lt;/div&gt;
+    &lt;div class="c-productCard__farmerProfie"&gt;
+      &lt;div class="c-productCard__farmerArea"&gt;{producerCityName}&lt;/div&gt;
+      &lt;div class="c-productCard__farmerName"&gt;{producerName}&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/a&gt;
+&lt;/div&gt;</code></pre>
   </div>
 
   <h3>c-key-visual</h3>
@@ -462,11 +514,101 @@
   <div class="sample sample--layout">
     <div class="sample__preview">
       <div class="p-products">
-        <a href="#" class="c-product-card"><div class="c-product-card__image">imageUrl</div></a>
-        <a href="#" class="c-product-card"><div class="c-product-card__image">imageUrl</div></a>
-        <a href="#" class="c-product-card"><div class="c-product-card__image">imageUrl</div></a>
-        <a href="#" class="c-product-card"><div class="c-product-card__image">imageUrl</div></a>
-        <a href="#" class="c-product-card"><div class="c-product-card__image">imageUrl</div></a>
+        <div class="c-productCard">
+          <a href="#" class="c-productCard__item">
+            <div class="c-productCard__image">
+              <img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product" alt="" class="c-productCard__photo" />
+            </div>
+            <div class="c-productCard__itemBody">
+              <div class="c-productCard__name">シャキシャキ！新食感の甘～いスナックミニトマト</div>
+              <div class="c-productCard__price">
+                <span class="c-productCard__priceFreeShippingLabel">送料無料</span>
+                <span>&yen;</span>
+                <span class="c-productCard__priceNumber">2,600</span>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="c-productCard__farmer">
+            <div class="c-productCard__farmerIcon">
+              <img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=%20" alt="" class="c-productCard__farmerIconPhoto" />
+            </div>
+            <div class="c-productCard__farmerProfie">
+              <div class="c-productCard__farmerArea">安曇野市穂高</div>
+              <div class="c-productCard__farmerName">ナチュベリーズ安曇野自然農園</div>
+            </div>
+          </a>
+        </div>
+        <div class="c-productCard">
+          <a href="#" class="c-productCard__item">
+            <div class="c-productCard__image">
+              <img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product" alt="" class="c-productCard__photo" />
+            </div>
+            <div class="c-productCard__itemBody">
+              <div class="c-productCard__name">濃厚！朝採れ完熟いちご【章姫】</div>
+              <div class="c-productCard__price">
+                <span class="c-productCard__campaignDiscountLabel">¥200引き</span>
+                <span>&yen;</span>
+                <span class="c-productCard__priceNumber">1,800</span>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="c-productCard__farmer">
+            <div class="c-productCard__farmerIcon">
+              <img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=%20" alt="" class="c-productCard__farmerIconPhoto" />
+            </div>
+            <div class="c-productCard__farmerProfie">
+              <div class="c-productCard__farmerArea">静岡県磐田市</div>
+              <div class="c-productCard__farmerName">遠州いちご園</div>
+            </div>
+          </a>
+        </div>
+        <div class="c-productCard">
+          <a href="#" class="c-productCard__item">
+            <div class="c-productCard__image">
+              <img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product" alt="" class="c-productCard__photo" />
+            </div>
+            <div class="c-productCard__itemBody">
+              <div class="c-productCard__name">採れたて新鮮野菜の詰め合わせセット</div>
+              <div class="c-productCard__price">
+                <span>&yen;</span>
+                <span class="c-productCard__priceNumber">3,200</span>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="c-productCard__farmer">
+            <div class="c-productCard__farmerIcon">
+              <img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=%20" alt="" class="c-productCard__farmerIconPhoto" />
+            </div>
+            <div class="c-productCard__farmerProfie">
+              <div class="c-productCard__farmerArea">北海道富良野市</div>
+              <div class="c-productCard__farmerName">富良野ファーム</div>
+            </div>
+          </a>
+        </div>
+        <div class="c-productCard">
+          <a href="#" class="c-productCard__item">
+            <div class="c-productCard__image">
+              <img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product" alt="" class="c-productCard__photo" />
+            </div>
+            <div class="c-productCard__itemBody">
+              <div class="c-productCard__name">香り高い自家焙煎コーヒー豆(中煎り)</div>
+              <div class="c-productCard__price">
+                <span class="c-productCard__priceFreeShippingLabel">送料無料</span>
+                <span>&yen;</span>
+                <span class="c-productCard__priceNumber">1,200</span>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="c-productCard__farmer">
+            <div class="c-productCard__farmerIcon">
+              <img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=%20" alt="" class="c-productCard__farmerIconPhoto" />
+            </div>
+            <div class="c-productCard__farmerProfie">
+              <div class="c-productCard__farmerArea">鹿児島県霧島市</div>
+              <div class="c-productCard__farmerName">霧島珈琲農園</div>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
     <pre><code>&lt;div class="p-products"&gt;
@@ -714,6 +856,20 @@
 &lt;/div&gt;</code></pre>
   </div>
 </section>
+
+<script>
+(function () {
+  var paletteLink = document.getElementById('palette-css');
+  var toggleBtn = document.getElementById('toggle-palette');
+  var isDraft = false;
+
+  toggleBtn.addEventListener('click', function () {
+    isDraft = !isDraft;
+    paletteLink.href = isDraft ? 'tokens/brand.draft.css' : 'tokens/brand.css';
+    toggleBtn.textContent = isDraft ? 'brand.css に戻す' : 'brand.draft.css を確認';
+  });
+})();
+</script>
 
 </body>
 </html>

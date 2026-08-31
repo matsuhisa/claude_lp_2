@@ -1,12 +1,53 @@
 <!--
 interface ProductCard {
-  name: string;
-  price: number;
-  href: string;
-  imageUrl: string;
+  "id":5678;
+  "name":"【有機JAS 認証】シャキシャキ！新食感の甘～いスナックミニトマト【信州安曇野産】1㎏";
+  "farmingMethodId":1234;
+  "farmingMethodName":"農薬化学肥料不使用";
+  "price":2600;
+  "imageUrl":"https://placehold.jp/360x270.png";
+  "fewStock":false;
+  "hasStock":true;
+  "producerId":4649;
+  "producerName":"";
+  "producerPrefectureCode":20;
+  "producerPrefectureName":"長野県";
+  "producerCityName":"安曇野市穂高";
+  "producerImageUrl":"https://placehold.jp/300x300.png";
+  "freeShipping":true;
+  "hasMunicipalityDiscountCampaign": false;
+  "discountPrice": 0;
 }
 -->
 
-<a href={href} class="c-product-card">
-  <div class="c-product-card__image"></div>
-</a>
+    <div class="c-productCard">
+      <a href={"#"} class="c-productCard__item">
+        <div class="c-productCard__image">
+          <img src={imageUrl} alt="" class="c-productCard__photo" />
+        </div>
+        <div class="c-productCard__itemBody">
+          <div class="c-productCard__name">
+            {product.name}
+          </div>
+          <div class="c-productCard__price">
+            { freeShipping && <span class="c-productCard__priceFreeShippingLabel">送料無料</span> }
+            { hasMunicipalityDiscountCampaign && <span class="c-productCard__campaignDiscountLabel">¥{discountPrice.toLocaleString()}引き</span> }
+            <span>&yen;</span>
+            <span class="c-productCard__priceNumber">{price.toLocaleString()}</span>
+          </div>
+        </div>
+      </a>
+      <a href={"/producers/"} class="c-productCard__farmer">
+        <div class="c-productCard__farmerIcon">
+          <img src={producerImageUrl}  alt="" class="c-productCard__farmerIconPhoto" />
+        </div>
+        <div class="c-productCard__farmerProfie">
+          <div class="c-productCard__farmerArea">
+            {producerCityName}
+          </div>
+          <div class="c-productCard__farmerName">
+            {producerName}
+          </div>
+        </div>
+      </a>
+    </div>
