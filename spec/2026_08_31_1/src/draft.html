@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>そらいろ桃園 | 旬の桃予約(ドラフト)</title>
+<style>
+  :root {
+    /* colors — draft palette (tokens/brand.draft.css) */
+    --color-primary: #111827;
+    --color-primary-dark: #000000;
+    --color-secondary: #374151;
+    --color-accent: #6B7280;
+    --color-success: #4B5563;
+    --color-danger: #4B5563;
+    --color-background: #FFFFFF;
+    --color-surface-primary: #111827;
+    --color-surface: #F3F4F6;
+    --color-text-primary: #111827;
+    --color-text-secondary: #6B7280;
+    --color-text-white: #FFFFFF;
+    --color-border-primary: #374151;
+    --color-border-secondary: #D1D5DB;
+
+    /* typography / radius / border / elevation / spacing — tokens/brand.css */
+    --font-heading-1: var(--font-size-32);
+    --font-heading-2: var(--font-size-24);
+    --font-heading-3: var(--font-size-20);
+    --font-body: var(--font-size-16);
+    --font-label: var(--font-size-16);
+    --font-label-small: var(--font-size-12);
+
+    --border-width-medium: 1px;
+    --border-width-large: 2px;
+    --border-width-extra-large: 4px;
+
+    --radius-small: 4px;
+    --radius-medium: 8px;
+    --radius-large: 16px;
+    --radius-full: 50%;
+
+    --elevation-low: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+    --elevation-high: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.30);
+
+    --spacing-104: 104px;
+    --spacing-80: 80px;
+    --spacing-64: 64px;
+    --spacing-48: 48px;
+    --spacing-40: 40px;
+    --spacing-32: 32px;
+    --spacing-24: 24px;
+    --spacing-20: 20px;
+    --spacing-16: 16px;
+    --spacing-8: 8px;
+    --spacing-0: 0px;
+
+    --font-family-sans-serif: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+    --font-size-64: 64px;
+    --font-size-48: 48px;
+    --font-size-40: 40px;
+    --font-size-32: 32px;
+    --font-size-24: 24px;
+    --font-size-20: 20px;
+    --font-size-16: 16px;
+    --font-size-12: 12px;
+  }
+
+  /* rules/styles/reset.css */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { color-scheme: light dark; -webkit-text-size-adjust: none; text-size-adjust: none; scroll-behavior: smooth; }
+  body { min-height: 100svh; line-height: 1.6; -webkit-font-smoothing: antialiased; text-rendering: optimizeSpeed; overflow-x: hidden; }
+  img, picture, video, canvas, svg { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; text-decoration: none; }
+  button, input, select, textarea { font: inherit; background: transparent; border: none; border-radius: 0; appearance: none; }
+  button, a { cursor: pointer; }
+  ol, ul { list-style: none; }
+
+  /* rules/styles/u-typography.css(使用分のみ) */
+  .u-headline-2 { font-size: var(--font-heading-2); font-weight: 700; line-height: 1.4; letter-spacing: 0.1em; }
+  .u-text-body-medium { font-size: var(--font-body); font-weight: 400; line-height: 1.6; }
+  .u-text-body-small { font-size: var(--font-body); font-weight: 400; line-height: 1.4; }
+  .u-text-bold { font-weight: 700; }
+
+  /* rules/layout/l-header/l-header.css */
+  .l-header { background-color: var(--color-background); border-bottom: var(--border-width-medium) solid var(--color-border-secondary); }
+  .l-header__inner { display: flex; align-items: center; gap: var(--spacing-16); max-width: 1200px; margin-inline: auto; padding: var(--spacing-16) var(--spacing-20); }
+  .l-header__logo { display: block; flex-shrink: 0; }
+  .l-header__logo-image { display: block; height: 32px; width: auto; }
+  .l-header__with-string { margin: 0; color: var(--color-text-secondary); font-size: var(--font-label-small); }
+  @media (min-width: 769px) {
+    .l-header__inner { padding: var(--spacing-20) var(--spacing-32); }
+    .l-header__logo-image { height: 40px; }
+    .l-header__with-string { font-size: var(--font-label); }
+  }
+
+  /* rules/layout/l-footer/l-footer.css */
+  .l-footer { padding: var(--spacing-24) var(--spacing-20); background-color: var(--color-secondary); color: var(--color-text-white); text-align: center; }
+  .l-footer__copyright { margin: 0; font-size: var(--font-label-small); }
+  @media (min-width: 769px) { .l-footer { padding: var(--spacing-32); } }
+
+  /* rules/project/p-section/p-section.css */
+  .p-section { background-color: var(--color-background); }
+  .p-section.p-section--alt { background-color: var(--color-surface); }
+  .p-section__inner { max-width: 1200px; margin-inline: auto; padding: var(--spacing-48) var(--spacing-20); }
+  @media (min-width: 769px) { .p-section__inner { padding: var(--spacing-80) var(--spacing-32); } }
+
+  /* rules/component/c-key-visual/c-key-visual.css */
+  .c-key-visual { position: relative; color: var(--color-text-white); overflow: hidden; }
+  .c-key-visual::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 100%); pointer-events: none; }
+  .c-key-visual__media { display: block; aspect-ratio: 3 / 4; }
+  .c-key-visual__image { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .c-key-visual__body { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--spacing-8); padding: var(--spacing-24); text-align: center; }
+  .c-key-visual__title { margin: 0; font-size: var(--font-heading-1); font-weight: 700; }
+  .c-key-visual__sub-title { margin: 0; font-size: var(--font-body); }
+  @media (min-width: 769px) {
+    .c-key-visual__media { aspect-ratio: 16 / 6; }
+    .c-key-visual__title { font-size: var(--font-size-48); }
+  }
+
+  /* rules/component/c-variety-card/c-variety-card.css */
+  .c-variety-card { display: flex; flex-direction: column; gap: var(--spacing-8); }
+  .c-variety-card__photo { width: 100%; aspect-ratio: 4 / 3; border-radius: var(--radius-medium); object-fit: cover; }
+  .c-variety-card__tag { align-self: flex-start; display: inline-block; padding: var(--spacing-8) var(--spacing-16); border: var(--border-width-medium) solid var(--color-border-secondary); border-radius: var(--radius-full); color: var(--color-text-secondary); font-size: var(--font-label-small); }
+  .c-variety-card__name { margin: 0; font-size: var(--font-heading-3); font-weight: 700; }
+  .c-variety-card__description { margin: 0; color: var(--color-text-secondary); font-size: var(--font-body); line-height: 1.6; }
+
+  /* rules/project/p-varieties/p-varieties.css */
+  .p-varieties { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-16); }
+  @media (min-width: 769px) { .p-varieties { grid-template-columns: repeat(4, 1fr); gap: var(--spacing-24); } }
+
+  /* rules/component/c-article-card/c-article-card.css */
+  .c-article-card { display: block; color: var(--color-text-primary); text-decoration: none; }
+  .c-article-card__thumbnails { display: flex; gap: var(--spacing-8); margin-bottom: var(--spacing-16); }
+  .c-article-card__thumbnail { flex: 1; aspect-ratio: 4 / 3; border-radius: var(--radius-medium); object-fit: cover; }
+  .c-article-card__title { margin: 0 0 var(--spacing-8); font-size: var(--font-heading-3); font-weight: 700; line-height: 1.4; }
+  .c-article-card__description { margin: 0; color: var(--color-text-secondary); font-size: var(--font-body); line-height: 1.6; }
+
+  /* rules/component/c-producer/c-producer.css */
+  .c-producer { display: flex; flex-direction: column; gap: var(--spacing-16); }
+  .c-producer__photo { width: 100%; aspect-ratio: 3 / 4; border-radius: var(--radius-medium); object-fit: cover; }
+  .c-producer__name { margin: 0; font-size: var(--font-heading-3); font-weight: 700; }
+  .c-producer__varieties { display: flex; flex-wrap: wrap; gap: var(--spacing-8); }
+  .c-producer__variety { display: inline-block; padding: var(--spacing-8) var(--spacing-16); border: var(--border-width-medium) solid var(--color-border-secondary); border-radius: var(--radius-full); color: var(--color-text-secondary); font-size: var(--font-label-small); }
+  .c-producer__description { margin: 0; color: var(--color-text-secondary); font-size: var(--font-body); line-height: 1.6; }
+  .c-producer__link { align-self: flex-start; }
+
+  /* rules/component/c-cta-link/c-cta-link.css */
+  .c-cta-link { color: var(--color-text-white); font-size: var(--font-label); font-weight: 700; line-height: 1.4; text-decoration: none; background-color: var(--color-surface-primary); border: var(--border-width-medium) solid transparent; border-radius: var(--radius-medium); padding: var(--spacing-16) var(--spacing-32); display: inline-block; }
+  .c-cta-link.c-cta-link--secondary { color: var(--color-text-primary); background-color: #ffffff; border-color: var(--color-border-primary); }
+
+  /* rules/component/c-product-card/c-product-card.css(そのまま、命名はキャメルケースのため未修正) */
+  .c-productCard { display: block; width: 100%; background-color: var(--color-background); border-radius: var(--radius-large); }
+  .c-productCard .c-productCard__item { color: var(--color-text-primary); font-family: sans-serif; font-size: 14px; font-weight: bold; line-height: 1.5; text-decoration: none; display: block; }
+  .c-productCard .c-productCard__image { border-radius: var(--radius-large) var(--radius-large) 0 0; }
+  .c-productCard .c-productCard__photo { border-radius: var(--radius-large) var(--radius-large) 0 0; aspect-ratio: 4/3; width: 100%; }
+  .c-productCard .c-productCard__itemBody { padding: var(--spacing-8); min-height: 110px; display: flex; flex-direction: column; }
+  .c-productCard .c-productCard__name { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; white-space: normal; overflow: hidden; }
+  .c-productCard .c-productCard__price { display: flex; gap: var(--spacing-8); flex-direction: row; justify-content: flex-end; align-items: center; font-family: Arial, sans-serif; font-size: 18px; text-align: right; margin-top: auto; }
+  .c-productCard .c-productCard__farmer { display: grid; gap: var(--spacing-8); align-items: center; grid-template-columns: minmax(25px, 50px) 75%; color: var(--color-text-primary); font-family: sans-serif; line-height: 1.5; text-decoration: none; padding: var(--spacing-8); border-top: 1px solid var(--color-border-secondary); }
+  .c-productCard .c-productCard__farmerIconPhoto { width: 100%; border-radius: var(--radius-full); }
+  .c-productCard .c-productCard__farmerArea { font-size: 10px; }
+  .c-productCard .c-productCard__farmerName { font-size: 12px; font-weight: bold; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden; }
+
+  /* rules/project/p-products/p-products.css */
+  .p-products { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-16); }
+  @media (min-width: 769px) { .p-products { grid-template-columns: repeat(4, 1fr); gap: var(--spacing-24); } }
+
+  /* rules/project/p-articles/p-articles.css */
+  .p-articles { display: grid; grid-template-columns: 1fr; gap: var(--spacing-24); }
+  @media (min-width: 769px) { .p-articles { grid-template-columns: repeat(2, 1fr); } }
+
+  /* rules/project/p-producers/p-producers.css */
+  .p-producers { display: grid; grid-template-columns: 1fr; gap: var(--spacing-24); }
+  @media (min-width: 769px) { .p-producers { grid-template-columns: repeat(4, 1fr); } }
+
+  /* このLP固有(既存コンポーネントに該当が無い分) */
+  .section-head { text-align: center; margin-bottom: var(--spacing-40); display: flex; flex-direction: column; gap: var(--spacing-8); align-items: center; }
+  .interview { text-align: center; max-width: 640px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--spacing-16); }
+  .section-footer-cta { text-align: center; margin-top: var(--spacing-32); display: flex; flex-direction: column; align-items: center; gap: var(--spacing-16); }
+</style>
+</head>
+<body>
+
+<header class="l-header">
+  <div class="l-header__inner">
+    <a href="#" class="l-header__logo">
+      <img class="l-header__logo-image" src="https://placehold.jp/24/d1d5db/6b7280/160x40.png?text=logo" alt="そらいろ桃園">
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <section class="p-section">
+    <div class="c-key-visual">
+      <picture class="c-key-visual__media">
+        <source media="(min-width: 769px)" srcset="https://placehold.jp/24/d1d5db/6b7280/1200x450.png?text=key-visual-pc">
+        <img class="c-key-visual__image" src="https://placehold.jp/24/d1d5db/6b7280/750x1000.png?text=key-visual-sp" alt="">
+      </picture>
+      <div class="c-key-visual__body">
+        <h1 class="c-key-visual__title">一生に一度は食べたい、究極のひと玉。旬を閉じ込めた、とろける甘さを産地から。</h1>
+        <a class="c-cta-link" href="#products">今すぐ旬の桃を予約する</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section" id="varieties">
+    <div class="p-section__inner">
+      <div class="section-head">
+        <h2 class="u-headline-2">好みで選べる、4種の旬の桃</h2>
+      </div>
+      <div class="p-varieties">
+        <article class="c-variety-card">
+          <img class="c-variety-card__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=variety-1" alt="">
+          <span class="c-variety-card__tag">王道の風格</span>
+          <h3 class="c-variety-card__name">あかつき</h3>
+          <p class="c-variety-card__description">甘みが強く、肉質が緻密。日持ちも良いため、ギフト人気No.1。</p>
+        </article>
+        <article class="c-variety-card">
+          <img class="c-variety-card__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=variety-2" alt="">
+          <span class="c-variety-card__tag">大玉の満足感</span>
+          <h3 class="c-variety-card__name">川中島白桃</h3>
+          <p class="c-variety-card__description">ずっしりと大きく、食べ応え抜群。しっかりした食感と濃厚な甘みが特徴。</p>
+        </article>
+        <article class="c-variety-card">
+          <img class="c-variety-card__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=variety-3" alt="">
+          <span class="c-variety-card__tag">トロピカルな香り</span>
+          <h3 class="c-variety-card__name">黄金桃</h3>
+          <p class="c-variety-card__description">黄色の果肉。マンゴーのような芳醇な香りと、酸味と甘みの絶妙なバランス。</p>
+        </article>
+        <article class="c-variety-card">
+          <img class="c-variety-card__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=variety-4" alt="">
+          <span class="c-variety-card__tag">驚きの糖度</span>
+          <h3 class="c-variety-card__name">なつっこ</h3>
+          <p class="c-variety-card__description">酸味が少なく、とにかく甘さが際立つ。なめらかな口当たりで、お子様にも大人気。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section p-section--alt" id="products">
+    <div class="p-section__inner">
+      <div class="section-head">
+        <h2 class="u-headline-2">そらいろ桃園のこだわり商品</h2>
+      </div>
+      <div class="p-products">
+        <div class="c-productCard">
+          <a href="#" class="c-productCard__item">
+            <div class="c-productCard__image"><img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product-1" alt="" class="c-productCard__photo"></div>
+            <div class="c-productCard__itemBody">
+              <div class="c-productCard__name">【特選】あかつき 3kg箱(6〜9玉入)</div>
+              <div class="c-productCard__price"><span>&yen;</span><span class="c-productCard__priceNumber">5,980</span></div>
+            </div>
+          </a>
+          <a href="#" class="c-productCard__farmer">
+            <div class="c-productCard__farmerIcon"><img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=tanaka" alt="" class="c-productCard__farmerIconPhoto"></div>
+            <div class="c-productCard__farmerProfie">
+              <div class="c-productCard__farmerArea">長野県千曲市</div>
+              <div class="c-productCard__farmerName">田中一郎</div>
+            </div>
+          </a>
+        </div>
+        <div class="c-productCard">
+          <a href="#" class="c-productCard__item">
+            <div class="c-productCard__image"><img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product-2" alt="" class="c-productCard__photo"></div>
+            <div class="c-productCard__itemBody">
+              <div class="c-productCard__name">【極大玉】川中島白桃 プレミアム 5kg箱</div>
+              <div class="c-productCard__price"><span>&yen;</span><span class="c-productCard__priceNumber">7,480</span></div>
+            </div>
+          </a>
+          <a href="#" class="c-productCard__farmer">
+            <div class="c-productCard__farmerIcon"><img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=takahashi" alt="" class="c-productCard__farmerIconPhoto"></div>
+            <div class="c-productCard__farmerProfie">
+              <div class="c-productCard__farmerArea">長野県須坂市</div>
+              <div class="c-productCard__farmerName">高橋誠</div>
+            </div>
+          </a>
+        </div>
+        <div class="c-productCard">
+          <a href="#" class="c-productCard__item">
+            <div class="c-productCard__image"><img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product-3" alt="" class="c-productCard__photo"></div>
+            <div class="c-productCard__itemBody">
+              <div class="c-productCard__name">【希少種】黄金桃 食べ比べセット</div>
+              <div class="c-productCard__price"><span>&yen;</span><span class="c-productCard__priceNumber">4,980</span></div>
+            </div>
+          </a>
+          <a href="#" class="c-productCard__farmer">
+            <div class="c-productCard__farmerIcon"><img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=sato" alt="" class="c-productCard__farmerIconPhoto"></div>
+            <div class="c-productCard__farmerProfie">
+              <div class="c-productCard__farmerArea">山梨県笛吹市</div>
+              <div class="c-productCard__farmerName">佐藤花子</div>
+            </div>
+          </a>
+        </div>
+        <div class="c-productCard">
+          <a href="#" class="c-productCard__item">
+            <div class="c-productCard__image"><img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product-4" alt="" class="c-productCard__photo"></div>
+            <div class="c-productCard__itemBody">
+              <div class="c-productCard__name">【家庭用】なつっこ お得用パック</div>
+              <div class="c-productCard__price"><span>&yen;</span><span class="c-productCard__priceNumber">3,480</span></div>
+            </div>
+          </a>
+          <a href="#" class="c-productCard__farmer">
+            <div class="c-productCard__farmerIcon"><img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=suzuki" alt="" class="c-productCard__farmerIconPhoto"></div>
+            <div class="c-productCard__farmerProfie">
+              <div class="c-productCard__farmerArea">長野県中野市</div>
+              <div class="c-productCard__farmerName">鈴木健次</div>
+            </div>
+          </a>
+        </div>
+        <div class="c-productCard">
+          <a href="#" class="c-productCard__item">
+            <div class="c-productCard__image"><img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product-5" alt="" class="c-productCard__photo"></div>
+            <div class="c-productCard__itemBody">
+              <div class="c-productCard__name">【期間限定】完熟あかつき 訳あり2kg(家庭用)</div>
+              <div class="c-productCard__price"><span>&yen;</span><span class="c-productCard__priceNumber">2,980</span></div>
+            </div>
+          </a>
+          <a href="#" class="c-productCard__farmer">
+            <div class="c-productCard__farmerIcon"><img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=ito" alt="" class="c-productCard__farmerIconPhoto"></div>
+            <div class="c-productCard__farmerProfie">
+              <div class="c-productCard__farmerArea">長野県千曲市</div>
+              <div class="c-productCard__farmerName">伊藤直美</div>
+            </div>
+          </a>
+        </div>
+        <div class="c-productCard">
+          <a href="#" class="c-productCard__item">
+            <div class="c-productCard__image"><img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product-6" alt="" class="c-productCard__photo"></div>
+            <div class="c-productCard__itemBody">
+              <div class="c-productCard__name">【ギフト】4種食べ比べ 特選セット 2kg</div>
+              <div class="c-productCard__price"><span>&yen;</span><span class="c-productCard__priceNumber">6,980</span></div>
+            </div>
+          </a>
+          <a href="#" class="c-productCard__farmer">
+            <div class="c-productCard__farmerIcon"><img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=nakamura" alt="" class="c-productCard__farmerIconPhoto"></div>
+            <div class="c-productCard__farmerProfie">
+              <div class="c-productCard__farmerArea">長野県</div>
+              <div class="c-productCard__farmerName">中村隆</div>
+            </div>
+          </a>
+        </div>
+        <div class="c-productCard">
+          <a href="#" class="c-productCard__item">
+            <div class="c-productCard__image"><img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product-7" alt="" class="c-productCard__photo"></div>
+            <div class="c-productCard__itemBody">
+              <div class="c-productCard__name">【定期便】旬の桃 隔週お届けコース(初回限定)</div>
+              <div class="c-productCard__price"><span>&yen;</span><span class="c-productCard__priceNumber">3,980</span></div>
+            </div>
+          </a>
+          <a href="#" class="c-productCard__farmer">
+            <div class="c-productCard__farmerIcon"><img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=watanabe" alt="" class="c-productCard__farmerIconPhoto"></div>
+            <div class="c-productCard__farmerProfie">
+              <div class="c-productCard__farmerArea">長野県</div>
+              <div class="c-productCard__farmerName">渡辺淳</div>
+            </div>
+          </a>
+        </div>
+        <div class="c-productCard">
+          <a href="#" class="c-productCard__item">
+            <div class="c-productCard__image"><img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product-8" alt="" class="c-productCard__photo"></div>
+            <div class="c-productCard__itemBody">
+              <div class="c-productCard__name">【加工品】桃の完熟ジャム 200g×2本セット</div>
+              <div class="c-productCard__price"><span>&yen;</span><span class="c-productCard__priceNumber">1,780</span></div>
+            </div>
+          </a>
+          <a href="#" class="c-productCard__farmer">
+            <div class="c-productCard__farmerIcon"><img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=matsumoto" alt="" class="c-productCard__farmerIconPhoto"></div>
+            <div class="c-productCard__farmerProfie">
+              <div class="c-productCard__farmerArea">長野県</div>
+              <div class="c-productCard__farmerName">松本理恵</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="section-footer-cta">
+        <a href="#" class="c-cta-link c-cta-link--secondary">もっと見る</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section" id="interview">
+    <div class="p-section__inner">
+      <div class="interview">
+        <p class="u-text-body-small u-text-bold">生産者インタビュー</p>
+        <h2 class="u-headline-2">桃と対話し、一玉ずつに愛情を。私たちが「木の上完熟」にこだわる理由。</h2>
+        <p class="u-text-body-medium">桃は繊細な果物だからこそ、木の上で完熟するタイミングを毎日見極めています。もぎたての一玉をその日のうちに丁寧に梱包し、鮮度そのままにお届けすることが、私たちの何よりのこだわりです。</p>
+        <a href="#" class="c-cta-link c-cta-link--secondary">インタビューを読む</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section p-section--alt" id="articles">
+    <div class="p-section__inner">
+      <div class="section-head">
+        <h2 class="u-headline-2">桃をもっと楽しむ</h2>
+      </div>
+      <div class="p-articles">
+        <a href="#" class="c-article-card">
+          <div class="c-article-card__thumbnails">
+            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=article-1" alt="">
+          </div>
+          <div class="c-article-card__body">
+            <h3 class="c-article-card__title">プロが教える!桃を一番美味しく食べるための3つのコツ</h3>
+            <p class="c-article-card__description">保存方法や冷やし方の伝授。</p>
+          </div>
+        </a>
+        <a href="#" class="c-article-card">
+          <div class="c-article-card__thumbnails">
+            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=article-2" alt="">
+          </div>
+          <div class="c-article-card__body">
+            <h3 class="c-article-card__title">実は美容の味方?桃に含まれる栄養素と嬉しい効果</h3>
+            <p class="c-article-card__description">カリウム、食物繊維、ビタミンの解説。</p>
+          </div>
+        </a>
+        <a href="#" class="c-article-card">
+          <div class="c-article-card__thumbnails">
+            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=article-3" alt="">
+          </div>
+          <div class="c-article-card__body">
+            <h3 class="c-article-card__title">硬い桃が好き?柔らかい桃が好き?自分好みの追熟ガイド</h3>
+            <p class="c-article-card__description">食べ頃の判断基準。</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section" id="producers">
+    <div class="p-section__inner">
+      <div class="section-head">
+        <h2 class="u-headline-2">桃を育てる生産者たち</h2>
+      </div>
+      <div class="p-producers">
+        <a href="#" class="c-producer">
+          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-1" alt="">
+          <div class="c-producer__body">
+            <h3 class="c-producer__name">田中一郎</h3>
+            <div class="c-producer__varieties"><span class="c-producer__variety">あかつき</span></div>
+            <p class="c-producer__description">桃づくり30年。木の上で完熟させることにこだわり、一玉ずつ手をかけて育てています。</p>
+          </div>
+        </a>
+        <a href="#" class="c-producer">
+          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-2" alt="">
+          <div class="c-producer__body">
+            <h3 class="c-producer__name">佐藤花子</h3>
+            <div class="c-producer__varieties"><span class="c-producer__variety">黄金桃</span></div>
+            <p class="c-producer__description">香り豊かな黄金桃を専門に栽培。糖度と酸味のバランスにこだわっています。</p>
+          </div>
+        </a>
+        <a href="#" class="c-producer">
+          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-3" alt="">
+          <div class="c-producer__body">
+            <h3 class="c-producer__name">鈴木健次</h3>
+            <div class="c-producer__varieties"><span class="c-producer__variety">なつっこ</span></div>
+            <p class="c-producer__description">お子様にも人気のなつっこを、農薬を抑えて丁寧に育てています。</p>
+          </div>
+        </a>
+        <a href="#" class="c-producer">
+          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-4" alt="">
+          <div class="c-producer__body">
+            <h3 class="c-producer__name">高橋誠</h3>
+            <div class="c-producer__varieties">
+              <span class="c-producer__variety">川中島白桃</span>
+              <span class="c-producer__variety">なつっこ</span>
+            </div>
+            <p class="c-producer__description">大玉栽培にこだわり、樹上完熟の食べ応えある桃を届けています。</p>
+          </div>
+        </a>
+        <a href="#" class="c-producer">
+          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-5" alt="">
+          <div class="c-producer__body">
+            <h3 class="c-producer__name">伊藤直美</h3>
+            <div class="c-producer__varieties"><span class="c-producer__variety">あかつき</span></div>
+            <p class="c-producer__description">減農薬栽培にこだわり、安心して食べられる桃づくりを心がけています。</p>
+          </div>
+        </a>
+        <a href="#" class="c-producer">
+          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-6" alt="">
+          <div class="c-producer__body">
+            <h3 class="c-producer__name">渡辺淳</h3>
+            <div class="c-producer__varieties"><span class="c-producer__variety">川中島白桃</span></div>
+            <p class="c-producer__description">40年続く桃畑を受け継ぎ、伝統の剪定技術で大玉に育て上げています。</p>
+          </div>
+        </a>
+        <a href="#" class="c-producer">
+          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-7" alt="">
+          <div class="c-producer__body">
+            <h3 class="c-producer__name">山本恵子</h3>
+            <div class="c-producer__varieties"><span class="c-producer__variety">黄金桃</span></div>
+            <p class="c-producer__description">少量多品種栽培で、香りと甘みのバランスにこだわった黄金桃を育てています。</p>
+          </div>
+        </a>
+        <a href="#" class="c-producer">
+          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-8" alt="">
+          <div class="c-producer__body">
+            <h3 class="c-producer__name">中村隆</h3>
+            <div class="c-producer__varieties">
+              <span class="c-producer__variety">あかつき</span>
+              <span class="c-producer__variety">川中島白桃</span>
+            </div>
+            <p class="c-producer__description">土づくりから徹底し、ミネラル豊富な土壌で濃厚な甘みの桃を育てています。</p>
+          </div>
+        </a>
+        <a href="#" class="c-producer">
+          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-9" alt="">
+          <div class="c-producer__body">
+            <h3 class="c-producer__name">小林美咲</h3>
+            <div class="c-producer__varieties"><span class="c-producer__variety">なつっこ</span></div>
+            <p class="c-producer__description">家族3人で営む小さな農園。愛情込めて一玉ずつ手作業で収穫しています。</p>
+          </div>
+        </a>
+        <a href="#" class="c-producer">
+          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-10" alt="">
+          <div class="c-producer__body">
+            <h3 class="c-producer__name">加藤誠一</h3>
+            <div class="c-producer__varieties"><span class="c-producer__variety">川中島白桃</span></div>
+            <p class="c-producer__description">標高の高い畑で寒暖差を活かし、糖度の高い桃づくりに取り組んでいます。</p>
+          </div>
+        </a>
+        <a href="#" class="c-producer">
+          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-11" alt="">
+          <div class="c-producer__body">
+            <h3 class="c-producer__name">吉田久美</h3>
+            <div class="c-producer__varieties">
+              <span class="c-producer__variety">黄金桃</span>
+              <span class="c-producer__variety">なつっこ</span>
+            </div>
+            <p class="c-producer__description">無袋栽培で太陽をたっぷり浴びせ、色つやの良い桃に仕上げています。</p>
+          </div>
+        </a>
+        <a href="#" class="c-producer">
+          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-12" alt="">
+          <div class="c-producer__body">
+            <h3 class="c-producer__name">山田修</h3>
+            <div class="c-producer__varieties"><span class="c-producer__variety">あかつき</span></div>
+            <p class="c-producer__description">先代から受け継いだ剪定技術で、実付きの良いあかつきを育てています。</p>
+          </div>
+        </a>
+        <a href="#" class="c-producer">
+          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-13" alt="">
+          <div class="c-producer__body">
+            <h3 class="c-producer__name">松本理恵</h3>
+            <div class="c-producer__varieties"><span class="c-producer__variety">川中島白桃</span></div>
+            <p class="c-producer__description">有機質肥料にこだわり、まろやかな甘さの白桃を栽培しています。</p>
+          </div>
+        </a>
+      </div>
+      <div class="section-footer-cta">
+        <a href="#" class="c-cta-link c-cta-link--secondary">もっと見る</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="l-footer">
+  <p class="l-footer__copyright">Copyright © 2026 そらいろ桃園</p>
+</footer>
+
+</body>
+</html>
