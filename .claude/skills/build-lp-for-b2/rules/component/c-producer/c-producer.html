@@ -1,4 +1,5 @@
 <!--
+# 名前・目的
 - 生産者紹介コンテンツ
   - 写真は c-avatar(円形)とは異なる、矩形のポートレート写真
   - varieties には生産している品種のタグを数個並べる。1品種ごとに
@@ -9,17 +10,16 @@ interface Producer {
   photoAlt: string;
   name: string;
   varieties: ; // 品種タグ(c-producer__variety)を数個並べる
-  description: string; // 50〜100文字
+  description?: string; // 50〜100文字
   href?: string; // 任意
 }
 -->
 
-<article class="c-producer">
+<a href={href} class="c-producer">
   <img class="c-producer__photo" src={photoUrl} alt={photoAlt} />
   <div class="c-producer__body">
     <h3 class="c-producer__name">{name}</h3>
     <div class="c-producer__varieties">{varieties}</div>
     <p class="c-producer__description">{description}</p>
-    <a class="c-cta-link c-cta-link--secondary c-producer__link" href={href}>詳しく見る</a>
   </div>
-</article>
+</a>
