@@ -448,7 +448,7 @@
   <p class="component-desc">生産者紹介コンテンツ</p>
   <div class="sample sample--full">
     <div class="sample__preview">
-      <article class="c-producer">
+      <a href="#" class="c-producer">
         <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-1" alt="">
         <div class="c-producer__body">
           <h3 class="c-producer__name">田中 一郎</h3>
@@ -458,11 +458,10 @@
             <span class="c-producer__variety">黄金桃</span>
           </div>
           <p class="c-producer__description">桃づくり30年。木の上で完熟させることにこだわり、一玉ずつ手をかけて育てています。</p>
-          <a class="c-cta-link c-cta-link--secondary c-producer__link" href="#">詳しく見る</a>
         </div>
-      </article>
+      </a>
     </div>
-    <pre><code>&lt;article class="c-producer"&gt;
+    <pre><code>&lt;a href={href} class="c-producer"&gt;
   &lt;img class="c-producer__photo" src={photoUrl} alt={photoAlt} /&gt;
   &lt;div class="c-producer__body"&gt;
     &lt;h3 class="c-producer__name"&gt;{name}&lt;/h3&gt;
@@ -470,9 +469,8 @@
       &lt;span class="c-producer__variety"&gt;...&lt;/span&gt;
     &lt;/div&gt;
     &lt;p class="c-producer__description"&gt;{description}&lt;/p&gt;
-    &lt;a class="c-cta-link c-cta-link--secondary c-producer__link" href={href}&gt;詳しく見る&lt;/a&gt;
   &lt;/div&gt;
-&lt;/article&gt;</code></pre>
+&lt;/a&gt;</code></pre>
   </div>
 </section>
 
@@ -801,7 +799,7 @@
   <div class="sample sample--layout">
     <div class="sample__preview">
       <div class="p-producers">
-        <article class="c-producer">
+        <a href="#" class="c-producer">
           <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-1" alt="">
           <div class="c-producer__body">
             <h3 class="c-producer__name">田中 一郎</h3>
@@ -810,10 +808,9 @@
               <span class="c-producer__variety">川中島白桃</span>
             </div>
             <p class="c-producer__description">桃づくり30年。木の上で完熟させることにこだわり、一玉ずつ手をかけて育てています。</p>
-            <a class="c-cta-link c-cta-link--secondary c-producer__link" href="#">詳しく見る</a>
           </div>
-        </article>
-        <article class="c-producer">
+        </a>
+        <a href="#" class="c-producer">
           <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-2" alt="">
           <div class="c-producer__body">
             <h3 class="c-producer__name">佐藤 花子</h3>
@@ -821,10 +818,9 @@
               <span class="c-producer__variety">黄金桃</span>
             </div>
             <p class="c-producer__description">香り豊かな黄金桃を専門に栽培。糖度と酸味のバランスにこだわっています。</p>
-            <a class="c-cta-link c-cta-link--secondary c-producer__link" href="#">詳しく見る</a>
           </div>
-        </article>
-        <article class="c-producer">
+        </a>
+        <a href="#" class="c-producer">
           <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-3" alt="">
           <div class="c-producer__body">
             <h3 class="c-producer__name">鈴木 健次</h3>
@@ -832,10 +828,9 @@
               <span class="c-producer__variety">なつっこ</span>
             </div>
             <p class="c-producer__description">お子様にも人気のなつっこを、農薬を抑えて丁寧に育てています。</p>
-            <a class="c-cta-link c-cta-link--secondary c-producer__link" href="#">詳しく見る</a>
           </div>
-        </article>
-        <article class="c-producer">
+        </a>
+        <a href="#" class="c-producer">
           <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-4" alt="">
           <div class="c-producer__body">
             <h3 class="c-producer__name">高橋 誠</h3>
@@ -844,10 +839,9 @@
               <span class="c-producer__variety">なつっこ</span>
             </div>
             <p class="c-producer__description">大玉栽培にこだわり、樹上完熟の食べ応えある桃を届けています。</p>
-            <a class="c-cta-link c-cta-link--secondary c-producer__link" href="#">詳しく見る</a>
           </div>
-        </article>
-        <article class="c-producer">
+        </a>
+        <a href="#" class="c-producer">
           <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-5" alt="">
           <div class="c-producer__body">
             <h3 class="c-producer__name">伊藤 直美</h3>
@@ -855,9 +849,8 @@
               <span class="c-producer__variety">あかつき</span>
             </div>
             <p class="c-producer__description">減農薬栽培にこだわり、安心して食べられる桃づくりを心がけています。</p>
-            <a class="c-cta-link c-cta-link--secondary c-producer__link" href="#">詳しく見る</a>
           </div>
-        </article>
+        </a>
       </div>
     </div>
     <pre><code>&lt;div class="p-producers"&gt;
