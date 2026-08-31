@@ -24,6 +24,7 @@
 <link rel="stylesheet" href="rules/component/c-avatar/c-avatar.css">
 <link rel="stylesheet" href="rules/component/c-testimonial/c-testimonial.css">
 <link rel="stylesheet" href="rules/component/c-producer/c-producer.css">
+<link rel="stylesheet" href="rules/component/c-variety-card/c-variety-card.css">
 <link rel="stylesheet" href="rules/layout/l-header/l-header.css">
 <link rel="stylesheet" href="rules/layout/l-footer/l-footer.css">
 <link rel="stylesheet" href="rules/project/p-section/p-section.css">
@@ -32,6 +33,7 @@
 <link rel="stylesheet" href="rules/project/p-articles/p-articles.css">
 <link rel="stylesheet" href="rules/project/p-testimonials/p-testimonials.css">
 <link rel="stylesheet" href="rules/project/p-producers/p-producers.css">
+<link rel="stylesheet" href="rules/project/p-varieties/p-varieties.css">
 <style>
   * { box-sizing: border-box; }
   body {
@@ -472,6 +474,25 @@
   &lt;/div&gt;
 &lt;/a&gt;</code></pre>
   </div>
+
+  <h3>c-variety-card</h3>
+  <p class="component-desc">品種比較用のカード。購入導線は持たない(購入は c-product-card が担う)</p>
+  <div class="sample sample--full">
+    <div class="sample__preview">
+      <article class="c-variety-card">
+        <img class="c-variety-card__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=variety" alt="">
+        <span class="c-variety-card__tag">王道の風格</span>
+        <h3 class="c-variety-card__name">あかつき</h3>
+        <p class="c-variety-card__description">甘みが強く、肉質が緻密。日持ちも良いため、ギフト人気No.1。</p>
+      </article>
+    </div>
+    <pre><code>&lt;article class="c-variety-card"&gt;
+  &lt;img class="c-variety-card__photo" src={photoUrl} alt="" /&gt;
+  &lt;span class="c-variety-card__tag"&gt;{tag}&lt;/span&gt;
+  &lt;h3 class="c-variety-card__name"&gt;{name}&lt;/h3&gt;
+  &lt;p class="c-variety-card__description"&gt;{description}&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+  </div>
 </section>
 
 <section class="block" id="project">
@@ -854,6 +875,41 @@
       </div>
     </div>
     <pre><code>&lt;div class="p-producers"&gt;
+  {children}
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <h3>p-varieties</h3>
+  <div class="sample sample--layout">
+    <div class="sample__preview">
+      <div class="p-varieties">
+        <article class="c-variety-card">
+          <img class="c-variety-card__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=variety-1" alt="">
+          <span class="c-variety-card__tag">王道の風格</span>
+          <h3 class="c-variety-card__name">あかつき</h3>
+          <p class="c-variety-card__description">甘みが強く、肉質が緻密。日持ちも良いため、ギフト人気No.1。</p>
+        </article>
+        <article class="c-variety-card">
+          <img class="c-variety-card__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=variety-2" alt="">
+          <span class="c-variety-card__tag">大玉の満足感</span>
+          <h3 class="c-variety-card__name">川中島白桃</h3>
+          <p class="c-variety-card__description">ずっしりと大きく、食べ応え抜群。しっかりした食感と濃厚な甘みが特徴。</p>
+        </article>
+        <article class="c-variety-card">
+          <img class="c-variety-card__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=variety-3" alt="">
+          <span class="c-variety-card__tag">トロピカルな香り</span>
+          <h3 class="c-variety-card__name">黄金桃</h3>
+          <p class="c-variety-card__description">黄色の果肉。マンゴーのような芳醇な香りと、酸味と甘みの絶妙なバランス。</p>
+        </article>
+        <article class="c-variety-card">
+          <img class="c-variety-card__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=variety-4" alt="">
+          <span class="c-variety-card__tag">驚きの糖度</span>
+          <h3 class="c-variety-card__name">なつっこ</h3>
+          <p class="c-variety-card__description">酸味が少なく、とにかく甘さが際立つ。なめらかな口当たりで、お子様にも大人気。</p>
+        </article>
+      </div>
+    </div>
+    <pre><code>&lt;div class="p-varieties"&gt;
   {children}
 &lt;/div&gt;</code></pre>
   </div>

@@ -1,0 +1,20 @@
+<!--
+# 名前・目的
+- 品種比較(味・特徴を並べて選んでもらう)ためのカード。購入導線は持たない
+  (購入は c-product-card / p-products が担う)
+- tag には「王道の風格」のような一言の特徴ラベルを入れる
+
+interface VarietyCard {
+  photoUrl: string;
+  tag: string;
+  name: string;
+  description: string;
+}
+-->
+
+<article class="c-variety-card">
+  <img class="c-variety-card__photo" src={photoUrl} alt="" />
+  <span class="c-variety-card__tag">{tag}</span>
+  <h3 class="c-variety-card__name">{name}</h3>
+  <p class="c-variety-card__description">{description}</p>
+</article>
