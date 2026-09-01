@@ -1,10 +1,10 @@
-.c-productCard {
+.c-product-card {
   display: block;
   width: 100%;
   background-color: var(--color-background);
   border-radius: var(--radius-large);
 
-  .c-productCard__item {
+  .c-product-card__item {
     color: var(--color-text-primary);
     font-family: sans-serif;
     font-size: 14px;
@@ -13,24 +13,24 @@
     text-decoration: none;
   }
 
-  .c-productCard__image {
+  .c-product-card__image {
     border-radius: var(--radius-large) 0 0 var(--radius-large);
   }
 
-  .c-productCard__photo {
+  .c-product-card__photo {
     border-radius: var(--radius-large) var(--radius-large) 0 0;
     aspect-ratio: 4/3;
     width: 100%;
   }
 
-  .c-productCard__itemBody {
+  .c-product-card__item-body {
     padding: var(--spacing-8);
     height: 110px;
     display: flex;
     flex-direction: column;
   }
 
-  .c-productCard__name {
+  .c-product-card__name {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
@@ -38,7 +38,7 @@
     overflow: hidden;
   }
 
-  .c-productCard__price {
+  .c-product-card__price {
     display: flex;
     gap: var(--spacing-8);
     flex-direction: row;
@@ -52,7 +52,7 @@
     margin-top: auto;
   }
 
-  .c-productCard__priceFreeShippingLabel {
+  .c-product-card__price-free-shipping-label {
     display: inline-block;
     color: var(--color-text-white);
     font-size: 12px;
@@ -63,7 +63,7 @@
     border-radius: var(--radius-small);
   }
 
-  .c-productCard__campaignDiscountLabel {
+  .c-product-card__campaign-discount-label {
     border-radius: var(--radius-large);
     background: var(--color-danger);
 
@@ -76,7 +76,7 @@
     margin-right: var(--spacing-8);
   }
 
-  .c-productCard__farmer {
+  .c-product-card__farmer {
     display: grid;
     gap: var(--spacing-8);
     align-items: center;
@@ -91,16 +91,16 @@
     border-top: 1px solid var(--color-border-secondary);
   }
 
-  .c-productCard__farmerIconPhoto {
+  .c-product-card__farmer-icon-photo {
     width: 100%;
     border-radius: var(--radius-full);
   }
 
-  .c-productCard__farmerArea {
+  .c-product-card__farmer-area {
     font-size: 10px;
   }
 
-  .c-productCard__farmerName {
+  .c-product-card__farmer-name {
     font-size: 12px;
     font-weight: bold;
 

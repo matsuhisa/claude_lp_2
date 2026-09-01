@@ -263,54 +263,54 @@
   <p class="component-desc">商品カード</p>
   <div class="sample">
     <div class="sample__preview" style="max-width: 280px;">
-      <div class="c-productCard">
-        <a href="#" class="c-productCard__item">
-          <div class="c-productCard__image">
-            <img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product" alt="" class="c-productCard__photo" />
+      <div class="c-product-card">
+        <a href="#" class="c-product-card__item">
+          <div class="c-product-card__image">
+            <img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product" alt="" class="c-product-card__photo" />
           </div>
-          <div class="c-productCard__itemBody">
-            <div class="c-productCard__name">シャキシャキ！新食感の甘～いスナックミニトマト</div>
-            <div class="c-productCard__price">
-              <span class="c-productCard__priceFreeShippingLabel">送料無料</span>
-              <span class="c-productCard__campaignDiscountLabel">¥200引き</span>
+          <div class="c-product-card__item-body">
+            <div class="c-product-card__name">シャキシャキ！新食感の甘～いスナックミニトマト</div>
+            <div class="c-product-card__price">
+              <span class="c-product-card__price-free-shipping-label">送料無料</span>
+              <span class="c-product-card__campaign-discount-label">¥200引き</span>
               <span>&yen;</span>
-              <span class="c-productCard__priceNumber">2,600</span>
+              <span class="c-product-card__price-number">2,600</span>
             </div>
           </div>
         </a>
-        <a href="#" class="c-productCard__farmer">
-          <div class="c-productCard__farmerIcon">
-            <img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=%20" alt="" class="c-productCard__farmerIconPhoto" />
+        <a href="#" class="c-product-card__farmer">
+          <div class="c-product-card__farmer-icon">
+            <img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=%20" alt="" class="c-product-card__farmer-icon-photo" />
           </div>
-          <div class="c-productCard__farmerProfie">
-            <div class="c-productCard__farmerArea">安曇野市穂高</div>
-            <div class="c-productCard__farmerName">ナチュベリーズ安曇野自然農園</div>
+          <div class="c-product-card__farmer-profile">
+            <div class="c-product-card__farmer-area">安曇野市穂高</div>
+            <div class="c-product-card__farmer-name">ナチュベリーズ安曇野自然農園</div>
           </div>
         </a>
       </div>
     </div>
-    <pre><code>&lt;div class="c-productCard"&gt;
-  &lt;a href={"#"} class="c-productCard__item"&gt;
-    &lt;div class="c-productCard__image"&gt;
-      &lt;img src={imageUrl} alt="" class="c-productCard__photo" /&gt;
+    <pre><code>&lt;div class="c-product-card"&gt;
+  &lt;a href={"#"} class="c-product-card__item"&gt;
+    &lt;div class="c-product-card__image"&gt;
+      &lt;img src={imageUrl} alt="" class="c-product-card__photo" /&gt;
     &lt;/div&gt;
-    &lt;div class="c-productCard__itemBody"&gt;
-      &lt;div class="c-productCard__name"&gt;{product.name}&lt;/div&gt;
-      &lt;div class="c-productCard__price"&gt;
-        { freeShipping &amp;&amp; &lt;span class="c-productCard__priceFreeShippingLabel"&gt;送料無料&lt;/span&gt; }
-        { hasMunicipalityDiscountCampaign &amp;&amp; &lt;span class="c-productCard__campaignDiscountLabel"&gt;¥{discountPrice.toLocaleString()}引き&lt;/span&gt; }
+    &lt;div class="c-product-card__item-body"&gt;
+      &lt;div class="c-product-card__name"&gt;{product.name}&lt;/div&gt;
+      &lt;div class="c-product-card__price"&gt;
+        { freeShipping &amp;&amp; &lt;span class="c-product-card__price-free-shipping-label"&gt;送料無料&lt;/span&gt; }
+        { hasMunicipalityDiscountCampaign &amp;&amp; &lt;span class="c-product-card__campaign-discount-label"&gt;¥{discountPrice.toLocaleString()}引き&lt;/span&gt; }
         &lt;span&gt;&amp;yen;&lt;/span&gt;
-        &lt;span class="c-productCard__priceNumber"&gt;{price.toLocaleString()}&lt;/span&gt;
+        &lt;span class="c-product-card__price-number"&gt;{price.toLocaleString()}&lt;/span&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/a&gt;
-  &lt;a href={"/producers/"} class="c-productCard__farmer"&gt;
-    &lt;div class="c-productCard__farmerIcon"&gt;
-      &lt;img src={producerImageUrl} alt="" class="c-productCard__farmerIconPhoto" /&gt;
+  &lt;a href={"/producers/"} class="c-product-card__farmer"&gt;
+    &lt;div class="c-product-card__farmer-icon"&gt;
+      &lt;img src={producerImageUrl} alt="" class="c-product-card__farmer-icon-photo" /&gt;
     &lt;/div&gt;
-    &lt;div class="c-productCard__farmerProfie"&gt;
-      &lt;div class="c-productCard__farmerArea"&gt;{producerCityName}&lt;/div&gt;
-      &lt;div class="c-productCard__farmerName"&gt;{producerName}&lt;/div&gt;
+    &lt;div class="c-product-card__farmer-profile"&gt;
+      &lt;div class="c-product-card__farmer-area"&gt;{producerCityName}&lt;/div&gt;
+      &lt;div class="c-product-card__farmer-name"&gt;{producerName}&lt;/div&gt;
     &lt;/div&gt;
   &lt;/a&gt;
 &lt;/div&gt;</code></pre>
@@ -364,8 +364,8 @@
     <div class="sample__preview">
       <a href="#" class="c-article-card">
         <div class="c-article-card__thumbnails">
-          <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=thumbnail-1" alt="">
-          <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=thumbnail-2" alt="">
+          <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/286x150.png?text=thumbnail-1" alt="">
+          <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/286x150.png?text=thumbnail-2" alt="">
         </div>
         <div class="c-article-card__body">
           <h3 class="c-article-card__title">プロが教える!桃を一番美味しく食べるための3つのコツ</h3>
@@ -451,13 +451,13 @@
   <div class="sample sample--full">
     <div class="sample__preview">
       <a href="#" class="c-producer">
-        <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-1" alt="">
+        <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x300.png?text=producer-1" alt="">
         <div class="c-producer__body">
           <h3 class="c-producer__name">田中 一郎</h3>
-          <div class="c-producer__varieties">
-            <span class="c-producer__variety">あかつき</span>
-            <span class="c-producer__variety">川中島白桃</span>
-            <span class="c-producer__variety">黄金桃</span>
+          <div class="c-producer__labels">
+            <span class="c-producer__label">あかつき</span>
+            <span class="c-producer__label">川中島白桃</span>
+            <span class="c-producer__label">黄金桃</span>
           </div>
           <p class="c-producer__description">桃づくり30年。木の上で完熟させることにこだわり、一玉ずつ手をかけて育てています。</p>
         </div>
@@ -467,8 +467,8 @@
   &lt;img class="c-producer__photo" src={photoUrl} alt={photoAlt} /&gt;
   &lt;div class="c-producer__body"&gt;
     &lt;h3 class="c-producer__name"&gt;{name}&lt;/h3&gt;
-    &lt;div class="c-producer__varieties"&gt;
-      &lt;span class="c-producer__variety"&gt;...&lt;/span&gt;
+    &lt;div class="c-producer__labels"&gt;
+      &lt;span class="c-producer__label"&gt;...&lt;/span&gt;
     &lt;/div&gt;
     &lt;p class="c-producer__description"&gt;{description}&lt;/p&gt;
   &lt;/div&gt;
@@ -481,14 +481,14 @@
     <div class="sample__preview">
       <article class="c-variety-card">
         <img class="c-variety-card__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=variety" alt="">
-        <span class="c-variety-card__tag">王道の風格</span>
+        <span class="c-variety-card__label">王道の風格</span>
         <h3 class="c-variety-card__name">あかつき</h3>
         <p class="c-variety-card__description">甘みが強く、肉質が緻密。日持ちも良いため、ギフト人気No.1。</p>
       </article>
     </div>
     <pre><code>&lt;article class="c-variety-card"&gt;
   &lt;img class="c-variety-card__photo" src={photoUrl} alt="" /&gt;
-  &lt;span class="c-variety-card__tag"&gt;{tag}&lt;/span&gt;
+  &lt;span class="c-variety-card__label"&gt;{tag}&lt;/span&gt;
   &lt;h3 class="c-variety-card__name"&gt;{name}&lt;/h3&gt;
   &lt;p class="c-variety-card__description"&gt;{description}&lt;/p&gt;
 &lt;/article&gt;</code></pre>
@@ -542,98 +542,98 @@
   <div class="sample sample--layout">
     <div class="sample__preview">
       <div class="p-products">
-        <div class="c-productCard">
-          <a href="#" class="c-productCard__item">
-            <div class="c-productCard__image">
-              <img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product" alt="" class="c-productCard__photo" />
+        <div class="c-product-card">
+          <a href="#" class="c-product-card__item">
+            <div class="c-product-card__image">
+              <img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product" alt="" class="c-product-card__photo" />
             </div>
-            <div class="c-productCard__itemBody">
-              <div class="c-productCard__name">シャキシャキ！新食感の甘～いスナックミニトマト</div>
-              <div class="c-productCard__price">
-                <span class="c-productCard__priceFreeShippingLabel">送料無料</span>
+            <div class="c-product-card__item-body">
+              <div class="c-product-card__name">シャキシャキ！新食感の甘～いスナックミニトマト</div>
+              <div class="c-product-card__price">
+                <span class="c-product-card__price-free-shipping-label">送料無料</span>
                 <span>&yen;</span>
-                <span class="c-productCard__priceNumber">2,600</span>
+                <span class="c-product-card__price-number">2,600</span>
               </div>
             </div>
           </a>
-          <a href="#" class="c-productCard__farmer">
-            <div class="c-productCard__farmerIcon">
-              <img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=%20" alt="" class="c-productCard__farmerIconPhoto" />
+          <a href="#" class="c-product-card__farmer">
+            <div class="c-product-card__farmer-icon">
+              <img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=%20" alt="" class="c-product-card__farmer-icon-photo" />
             </div>
-            <div class="c-productCard__farmerProfie">
-              <div class="c-productCard__farmerArea">安曇野市穂高</div>
-              <div class="c-productCard__farmerName">ナチュベリーズ安曇野自然農園</div>
+            <div class="c-product-card__farmer-profile">
+              <div class="c-product-card__farmer-area">安曇野市穂高</div>
+              <div class="c-product-card__farmer-name">ナチュベリーズ安曇野自然農園</div>
             </div>
           </a>
         </div>
-        <div class="c-productCard">
-          <a href="#" class="c-productCard__item">
-            <div class="c-productCard__image">
-              <img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product" alt="" class="c-productCard__photo" />
+        <div class="c-product-card">
+          <a href="#" class="c-product-card__item">
+            <div class="c-product-card__image">
+              <img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product" alt="" class="c-product-card__photo" />
             </div>
-            <div class="c-productCard__itemBody">
-              <div class="c-productCard__name">濃厚！朝採れ完熟いちご【章姫】</div>
-              <div class="c-productCard__price">
-                <span class="c-productCard__campaignDiscountLabel">¥200引き</span>
+            <div class="c-product-card__item-body">
+              <div class="c-product-card__name">濃厚！朝採れ完熟いちご【章姫】</div>
+              <div class="c-product-card__price">
+                <span class="c-product-card__campaign-discount-label">¥200引き</span>
                 <span>&yen;</span>
-                <span class="c-productCard__priceNumber">1,800</span>
+                <span class="c-product-card__price-number">1,800</span>
               </div>
             </div>
           </a>
-          <a href="#" class="c-productCard__farmer">
-            <div class="c-productCard__farmerIcon">
-              <img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=%20" alt="" class="c-productCard__farmerIconPhoto" />
+          <a href="#" class="c-product-card__farmer">
+            <div class="c-product-card__farmer-icon">
+              <img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=%20" alt="" class="c-product-card__farmer-icon-photo" />
             </div>
-            <div class="c-productCard__farmerProfie">
-              <div class="c-productCard__farmerArea">静岡県磐田市</div>
-              <div class="c-productCard__farmerName">遠州いちご園</div>
+            <div class="c-product-card__farmer-profile">
+              <div class="c-product-card__farmer-area">静岡県磐田市</div>
+              <div class="c-product-card__farmer-name">遠州いちご園</div>
             </div>
           </a>
         </div>
-        <div class="c-productCard">
-          <a href="#" class="c-productCard__item">
-            <div class="c-productCard__image">
-              <img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product" alt="" class="c-productCard__photo" />
+        <div class="c-product-card">
+          <a href="#" class="c-product-card__item">
+            <div class="c-product-card__image">
+              <img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product" alt="" class="c-product-card__photo" />
             </div>
-            <div class="c-productCard__itemBody">
-              <div class="c-productCard__name">採れたて新鮮野菜の詰め合わせセット</div>
-              <div class="c-productCard__price">
+            <div class="c-product-card__item-body">
+              <div class="c-product-card__name">採れたて新鮮野菜の詰め合わせセット</div>
+              <div class="c-product-card__price">
                 <span>&yen;</span>
-                <span class="c-productCard__priceNumber">3,200</span>
+                <span class="c-product-card__price-number">3,200</span>
               </div>
             </div>
           </a>
-          <a href="#" class="c-productCard__farmer">
-            <div class="c-productCard__farmerIcon">
-              <img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=%20" alt="" class="c-productCard__farmerIconPhoto" />
+          <a href="#" class="c-product-card__farmer">
+            <div class="c-product-card__farmer-icon">
+              <img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=%20" alt="" class="c-product-card__farmer-icon-photo" />
             </div>
-            <div class="c-productCard__farmerProfie">
-              <div class="c-productCard__farmerArea">北海道富良野市</div>
-              <div class="c-productCard__farmerName">富良野ファーム</div>
+            <div class="c-product-card__farmer-profile">
+              <div class="c-product-card__farmer-area">北海道富良野市</div>
+              <div class="c-product-card__farmer-name">富良野ファーム</div>
             </div>
           </a>
         </div>
-        <div class="c-productCard">
-          <a href="#" class="c-productCard__item">
-            <div class="c-productCard__image">
-              <img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product" alt="" class="c-productCard__photo" />
+        <div class="c-product-card">
+          <a href="#" class="c-product-card__item">
+            <div class="c-product-card__image">
+              <img src="https://placehold.jp/24/d1d5db/6b7280/360x270.png?text=product" alt="" class="c-product-card__photo" />
             </div>
-            <div class="c-productCard__itemBody">
-              <div class="c-productCard__name">香り高い自家焙煎コーヒー豆(中煎り)</div>
-              <div class="c-productCard__price">
-                <span class="c-productCard__priceFreeShippingLabel">送料無料</span>
+            <div class="c-product-card__item-body">
+              <div class="c-product-card__name">香り高い自家焙煎コーヒー豆(中煎り)</div>
+              <div class="c-product-card__price">
+                <span class="c-product-card__price-free-shipping-label">送料無料</span>
                 <span>&yen;</span>
-                <span class="c-productCard__priceNumber">1,200</span>
+                <span class="c-product-card__price-number">1,200</span>
               </div>
             </div>
           </a>
-          <a href="#" class="c-productCard__farmer">
-            <div class="c-productCard__farmerIcon">
-              <img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=%20" alt="" class="c-productCard__farmerIconPhoto" />
+          <a href="#" class="c-product-card__farmer">
+            <div class="c-product-card__farmer-icon">
+              <img src="https://placehold.jp/24/d1d5db/6b7280/48x48.png?text=%20" alt="" class="c-product-card__farmer-icon-photo" />
             </div>
-            <div class="c-productCard__farmerProfie">
-              <div class="c-productCard__farmerArea">鹿児島県霧島市</div>
-              <div class="c-productCard__farmerName">霧島珈琲農園</div>
+            <div class="c-product-card__farmer-profile">
+              <div class="c-product-card__farmer-area">鹿児島県霧島市</div>
+              <div class="c-product-card__farmer-name">霧島珈琲農園</div>
             </div>
           </a>
         </div>
@@ -669,7 +669,7 @@
       <div class="p-articles">
         <a href="#" class="c-article-card">
           <div class="c-article-card__thumbnails">
-            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=thumbnail-1" alt="">
+            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/286x150.png?text=thumbnail-1" alt="">
           </div>
           <div class="c-article-card__body">
             <h3 class="c-article-card__title">実は美容の味方?桃に含まれる栄養素と嬉しい効果</h3>
@@ -678,8 +678,8 @@
         </a>
         <a href="#" class="c-article-card">
           <div class="c-article-card__thumbnails">
-            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=thumbnail-1" alt="">
-            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=thumbnail-2" alt="">
+            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/286x150.png?text=thumbnail-1" alt="">
+            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/286x150.png?text=thumbnail-2" alt="">
           </div>
           <div class="c-article-card__body">
             <h3 class="c-article-card__title">硬い桃が好き?柔らかい桃が好き?自分好みの追熟ガイド</h3>
@@ -699,7 +699,7 @@
       <div class="p-articles p-articles--4-columns">
         <a href="#" class="c-article-card">
           <div class="c-article-card__thumbnails">
-            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=thumbnail-1" alt="">
+            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/286x150.png?text=thumbnail-1" alt="">
           </div>
           <div class="c-article-card__body">
             <h3 class="c-article-card__title">プロが教える!桃を一番美味しく食べる3つのコツ</h3>
@@ -708,7 +708,7 @@
         </a>
         <a href="#" class="c-article-card">
           <div class="c-article-card__thumbnails">
-            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=thumbnail-1" alt="">
+            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/286x150.png?text=thumbnail-1" alt="">
           </div>
           <div class="c-article-card__body">
             <h3 class="c-article-card__title">実は美容の味方?桃に含まれる栄養素と嬉しい効果</h3>
@@ -717,7 +717,7 @@
         </a>
         <a href="#" class="c-article-card">
           <div class="c-article-card__thumbnails">
-            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=thumbnail-1" alt="">
+            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/286x150.png?text=thumbnail-1" alt="">
           </div>
           <div class="c-article-card__body">
             <h3 class="c-article-card__title">硬い桃が好き?柔らかい桃が好き?追熟ガイド</h3>
@@ -726,7 +726,7 @@
         </a>
         <a href="#" class="c-article-card">
           <div class="c-article-card__thumbnails">
-            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=thumbnail-1" alt="">
+            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/286x150.png?text=thumbnail-1" alt="">
           </div>
           <div class="c-article-card__body">
             <h3 class="c-article-card__title">桃を使った簡単スイーツレシピ集</h3>
@@ -735,7 +735,7 @@
         </a>
         <a href="#" class="c-article-card">
           <div class="c-article-card__thumbnails">
-            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=thumbnail-1" alt="">
+            <img class="c-article-card__thumbnail" src="https://placehold.jp/24/d1d5db/6b7280/286x150.png?text=thumbnail-1" alt="">
           </div>
           <div class="c-article-card__body">
             <h3 class="c-article-card__title">桃の選び方、失敗しないポイント</h3>
@@ -821,53 +821,53 @@
     <div class="sample__preview">
       <div class="p-producers">
         <a href="#" class="c-producer">
-          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-1" alt="">
+          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x300.png?text=producer-1" alt="">
           <div class="c-producer__body">
             <h3 class="c-producer__name">田中 一郎</h3>
-            <div class="c-producer__varieties">
-              <span class="c-producer__variety">あかつき</span>
-              <span class="c-producer__variety">川中島白桃</span>
+            <div class="c-producer__labels">
+              <span class="c-producer__label">あかつき</span>
+              <span class="c-producer__label">川中島白桃</span>
             </div>
             <p class="c-producer__description">桃づくり30年。木の上で完熟させることにこだわり、一玉ずつ手をかけて育てています。</p>
           </div>
         </a>
         <a href="#" class="c-producer">
-          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-2" alt="">
+          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x300.png?text=producer-2" alt="">
           <div class="c-producer__body">
             <h3 class="c-producer__name">佐藤 花子</h3>
-            <div class="c-producer__varieties">
-              <span class="c-producer__variety">黄金桃</span>
+            <div class="c-producer__labels">
+              <span class="c-producer__label">黄金桃</span>
             </div>
             <p class="c-producer__description">香り豊かな黄金桃を専門に栽培。糖度と酸味のバランスにこだわっています。</p>
           </div>
         </a>
         <a href="#" class="c-producer">
-          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-3" alt="">
+          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x300.png?text=producer-3" alt="">
           <div class="c-producer__body">
             <h3 class="c-producer__name">鈴木 健次</h3>
-            <div class="c-producer__varieties">
-              <span class="c-producer__variety">なつっこ</span>
+            <div class="c-producer__labels">
+              <span class="c-producer__label">なつっこ</span>
             </div>
             <p class="c-producer__description">お子様にも人気のなつっこを、農薬を抑えて丁寧に育てています。</p>
           </div>
         </a>
         <a href="#" class="c-producer">
-          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-4" alt="">
+          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x300.png?text=producer-4" alt="">
           <div class="c-producer__body">
             <h3 class="c-producer__name">高橋 誠</h3>
-            <div class="c-producer__varieties">
-              <span class="c-producer__variety">川中島白桃</span>
-              <span class="c-producer__variety">なつっこ</span>
+            <div class="c-producer__labels">
+              <span class="c-producer__label">川中島白桃</span>
+              <span class="c-producer__label">なつっこ</span>
             </div>
             <p class="c-producer__description">大玉栽培にこだわり、樹上完熟の食べ応えある桃を届けています。</p>
           </div>
         </a>
         <a href="#" class="c-producer">
-          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x400.png?text=producer-5" alt="">
+          <img class="c-producer__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x300.png?text=producer-5" alt="">
           <div class="c-producer__body">
             <h3 class="c-producer__name">伊藤 直美</h3>
-            <div class="c-producer__varieties">
-              <span class="c-producer__variety">あかつき</span>
+            <div class="c-producer__labels">
+              <span class="c-producer__label">あかつき</span>
             </div>
             <p class="c-producer__description">減農薬栽培にこだわり、安心して食べられる桃づくりを心がけています。</p>
           </div>
@@ -885,25 +885,25 @@
       <div class="p-varieties">
         <article class="c-variety-card">
           <img class="c-variety-card__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=variety-1" alt="">
-          <span class="c-variety-card__tag">王道の風格</span>
+          <span class="c-variety-card__label">王道の風格</span>
           <h3 class="c-variety-card__name">あかつき</h3>
           <p class="c-variety-card__description">甘みが強く、肉質が緻密。日持ちも良いため、ギフト人気No.1。</p>
         </article>
         <article class="c-variety-card">
           <img class="c-variety-card__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=variety-2" alt="">
-          <span class="c-variety-card__tag">大玉の満足感</span>
+          <span class="c-variety-card__label">大玉の満足感</span>
           <h3 class="c-variety-card__name">川中島白桃</h3>
           <p class="c-variety-card__description">ずっしりと大きく、食べ応え抜群。しっかりした食感と濃厚な甘みが特徴。</p>
         </article>
         <article class="c-variety-card">
           <img class="c-variety-card__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=variety-3" alt="">
-          <span class="c-variety-card__tag">トロピカルな香り</span>
+          <span class="c-variety-card__label">トロピカルな香り</span>
           <h3 class="c-variety-card__name">黄金桃</h3>
           <p class="c-variety-card__description">黄色の果肉。マンゴーのような芳醇な香りと、酸味と甘みの絶妙なバランス。</p>
         </article>
         <article class="c-variety-card">
           <img class="c-variety-card__photo" src="https://placehold.jp/24/d1d5db/6b7280/300x225.png?text=variety-4" alt="">
-          <span class="c-variety-card__tag">驚きの糖度</span>
+          <span class="c-variety-card__label">驚きの糖度</span>
           <h3 class="c-variety-card__name">なつっこ</h3>
           <p class="c-variety-card__description">酸味が少なく、とにかく甘さが際立つ。なめらかな口当たりで、お子様にも大人気。</p>
         </article>

@@ -11,11 +11,10 @@
   object-fit: cover;
 }
 
-.c-variety-card__tag {
+.c-variety-card__label {
   align-self: flex-start;
   display: inline-block;
   padding: var(--spacing-8) var(--spacing-16);
-  border: var(--border-width-medium) solid var(--color-border-secondary);
   border-radius: var(--radius-full);
   color: var(--color-text-secondary);
   font-size: var(--font-label-small);
