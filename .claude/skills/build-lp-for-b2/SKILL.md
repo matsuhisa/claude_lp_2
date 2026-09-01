@@ -30,6 +30,7 @@ description: このプロジェクトのブランドトークンを使って、�
 spec/<取り組み名>/
 ├── content-draft.md   # 検討中のドラフト構成・コピー
 ├── content.md         # 確定した原稿
+├── assets/             # このLP限定の入力素材(ロゴ・実写真・ブランドトークン上書きなど)
 └── src/                # 生成したHTMLの出力先
 ```
 
@@ -45,6 +46,14 @@ spec/<取り組み名>/
 **出力先:** 生成したHTMLファイルは `spec/<取り組み名>/src/` に保存する。ファイル名は、`content-draft.md` を元にしたドラフトの場合は `draft.html`、`content.md` を元にした確定版の場合は `index.html` とする。
 
 **再生成(2回目以降の実行):** 既存の `draft.html` / `index.html` は上書きせずそのまま残す。そのうえで、実行日+連番のファイル `draft_<YYYYMMDD>_<連番>.html`(確定版は `index_<YYYYMMDD>_<連番>.html`)を同じ `src/` に追加保存し、実行ごとの履歴として残す。連番は同日中の実行回数で `1` から採番する(例: 2026-08-27の1回目なら `draft_20260827_1.html`、同日2回目なら `draft_20260827_2.html`)。
+
+**`assets/` フォルダー(このLP限定の入力素材):**
+
+`.claude/skills/build-lp-for-b2/tokens/` 配下のブランドトークン・ロゴは全LP共通の正式な情報源だが、このLP(このキャンペーン)限定でロゴや配色を差し替えたい場合は `spec/<取り組み名>/assets/` に置いてもらう。
+
+- **画像(ロゴ・実写真など)**: `assets/` 内のファイルは、生成HTMLの `<img src>` にBase64のdata URIとして埋め込む(単体HTMLファイルの原則を保つため、相対パスでは参照しない)。
+- **`assets/brand-override.css`(トークンの部分上書き)**: 全プロパティを書き直すのではなく、**このLPで変更したいCSSカスタムプロパティだけ**を書いた部分的な上書きファイルとして扱う(例: `:root { --color-accent: #E85D75; }` だけ書いてあれば、そのプロパティだけ差し替える)。生成時は、通常どおりのベース(`content.md` なら `tokens/brand.css`、`content-draft.md` なら `tokens/brand.draft.css`)を読み込んだうえで、`assets/brand-override.css` にある値だけをそのベースの値に上書きしてから `<style>` に埋め込む。`.claude/skills/build-lp-for-b2/tokens/brand.css` 自体は書き換えない(このLP限定の一時的な上書きであり、他のLPには影響しない)。
+- `assets/` が無い場合は、通常どおり `tokens/` 配下の値をそのまま使う。
 
 ## ドラフト時のグレースケール配色
 
