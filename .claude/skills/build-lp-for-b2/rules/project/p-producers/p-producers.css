@@ -1,11 +1,16 @@
 .p-producers {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-24);
 }
 
+.p-producers.p-producers--1-column {
+  grid-template-columns: 1fr;
+}
+
 @media (min-width: 769px) {
-  .p-producers {
+  .p-producers,
+  .p-producers.p-producers--1-column {
     grid-template-columns: repeat(4, 1fr);
   }
 }
