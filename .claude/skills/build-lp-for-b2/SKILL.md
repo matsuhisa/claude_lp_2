@@ -69,6 +69,17 @@ spec/<取り組み名>/
 
 実データのないセクションは、無理に埋めずに省略してください。中身の薄い10セクションより、内容の濃い7セクションの方が優れています。
 
+## 既存ルールに無いUIが必要な場合
+
+`content.md` / `content-draft.md` や会話の要件の中に、`.claude/skills/build-lp-for-b2/rules/component/`・`rules/project/`・`rules/layout/` のいずれにも当てはまるコンポーネントが無いUI(例:「品種の比較カードを4つ並べる」のような一覧比較UI)が出てきた場合は、自己判断でその場限りのHTML/CSSを組み立てず、実装前に必ずユーザーに提案すること。
+
+提案する内容:
+- どんな見た目・役割のUIが必要か(近い既存コンポーネントがあれば、それとの違いも添える)
+- `c-*`(component) / `p-*`(project) / `l-*`(layout) のどの階層に該当しそうか
+- 選択肢として、(a) `rules/component/c-<名前>/`(または `rules/project/p-<名前>/`)として正式にルール化し他のLPでも再利用できるようにするか、(b) このLP限定のワンオフとして`<style>`内に直接書くか、をユーザーに選んでもらう
+
+ユーザーの回答を待ってから実装する。(a) 正式にルール化する場合は `.claude/skills/build-lp-for-b2/rules/coding.md` の命名・構造規約(TypeScript風interfaceコメント、`.html`+`.css`を1組にする、など)に従って追加し、`.claude/skills/build-lp-for-b2/components.html` のプレビューにも反映する。
+
 ## 出力要件
 
 - **単体で完結する1つのHTMLファイル**: `<style>` はインライン、アセットもインラインまたはdata URI化し、外部CDN・外部フォント・外部スクリプトへの依存を持たせないこと。これによりArtifactとしても公開可能になります(Artifactは厳格なCSPを課すため)。**例外として、実画像が未確定の箇所のダミー画像だけは `.claude/skills/build-lp-for-b2/rules/coding.md` のダミー画像ルールに従い `https://placehold.jp/` の外部URLを使ってよい。** ただしArtifactとして公開した場合はこのダミー画像だけCSPでブロックされて表示されないため、最終納品前に実画像へ差し替えること。
