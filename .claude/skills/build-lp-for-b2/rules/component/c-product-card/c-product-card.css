@@ -3,6 +3,7 @@
   width: 100%;
   background-color: var(--color-background);
   border-radius: var(--radius-large);
+  box-shadow: var(--elevation-low);
 
   .c-product-card__item {
     color: var(--color-text-primary);
