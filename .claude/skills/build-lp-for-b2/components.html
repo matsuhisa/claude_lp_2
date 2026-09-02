@@ -519,6 +519,12 @@
     <div class="sample__preview">
       <section class="p-section">
         <div class="p-section__inner">
+          <header class="p-section__header">
+            <div class="c-section-head">
+              <h2 class="c-section-head__title">p-section の見出し</h2>
+              <p class="c-section-head__sub-title">c-section-head をheaderとして使うサンプルです。</p>
+            </div>
+          </header>
           <div class="p-section__body">
             <p class="u-text-body-medium">p-section の中身(children)のサンプルです。</p>
           </div>
@@ -527,6 +533,9 @@
     </div>
     <pre><code>&lt;section class="p-section"&gt;
   &lt;div class="p-section__inner"&gt;
+    &lt;header class="p-section__header"&gt;
+      {c-section-head}
+    &lt;/header&gt;
     &lt;div class="p-section__body"&gt;
       {children}
     &lt;/div&gt;
@@ -539,14 +548,23 @@
     <div class="sample__preview">
       <section class="p-section p-section--alt">
         <div class="p-section__inner">
+          <header class="p-section__header">
+            <div class="c-section-head">
+              <h2 class="c-section-head__title">p-section の見出し</h2>
+              <p class="c-section-head__sub-title">背景が異なるsectionTypeのサンプルです。</p>
+            </div>
+          </header>
           <div class="p-section__body">
-            <p class="u-text-body-medium">背景が異なるsectionTypeのサンプルです。</p>
+            <p class="u-text-body-medium">p-section の中身(children)のサンプルです。</p>
           </div>
         </div>
       </section>
     </div>
     <pre><code>&lt;section class="p-section p-section--alt"&gt;
   &lt;div class="p-section__inner"&gt;
+    &lt;header class="p-section__header"&gt;
+      {c-section-head}
+    &lt;/header&gt;
     &lt;div class="p-section__body"&gt;
       {children}
     &lt;/div&gt;

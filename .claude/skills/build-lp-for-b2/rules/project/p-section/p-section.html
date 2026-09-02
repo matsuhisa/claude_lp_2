@@ -7,13 +7,17 @@
   - inner が PC と スマートフォンで padding が異なる
 
 interface Section {
-  children: ;
   sectionType: string;
+  header: c-section-head;
+  children: ;
 }
 -->
 
 <section class="p-section {sectionType}">
   <div class="p-section__inner">
+    <header class="p-section__header">
+      {c-section-head}
+    </header>
     <div class="p-section__body">
       {children}
     </div>

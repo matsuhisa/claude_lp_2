@@ -17,3 +17,13 @@
     padding: var(--spacing-80) var(--spacing-32);
   }
 }
+
+.p-section__header {
+  margin-bottom: var(--spacing-32);
+}
+
+@media (min-width: 769px) {
+  .p-section__header {
+    margin-bottom: var(--spacing-48);
+  }
+}
