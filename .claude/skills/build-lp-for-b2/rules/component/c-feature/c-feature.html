@@ -1,0 +1,26 @@
+<!--
+- 特徴(1項目)
+  - 写真 + タイトル + サブタイトル(任意) + テキストで1つの特徴を伝える
+  - PCは写真とテキストを左右に並べる。左右どちらに写真を置くかはこのコンポーネント単体では
+    指定せず、`p-features` 側が項目の並び順(偶数番目)で自動的に反転させる
+  - SPは常に「写真→テキスト」の縦積み
+  - 写真は角丸(既定)。有機的な形にしたい場合は `c-feature__photo--shape` を付ける
+  - subTitleが無い場合は `<p class="c-feature__sub-title">` 要素ごと省く(空のまま残さない)
+
+interface Feature {
+  photoUrl: string;
+  photoAlt: string;
+  title: string;
+  subTitle?: string; // 任意
+  text: string;
+}
+-->
+
+<article class="c-feature">
+  <img class="c-feature__photo" src={photoUrl} alt={photoAlt} />
+  <div class="c-feature__body">
+    <h3 class="c-feature__title">{title}</h3>
+    <p class="c-feature__sub-title">{subTitle}</p>
+    <p class="c-feature__text">{text}</p>
+  </div>
+</article>

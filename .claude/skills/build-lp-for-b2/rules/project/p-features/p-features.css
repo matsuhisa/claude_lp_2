@@ -1,0 +1,33 @@
+.p-features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-48);
+}
+
+@media (min-width: 769px) {
+  .p-features {
+    gap: var(--spacing-80);
+  }
+
+  .p-features > .c-feature:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+}
+
+/* p-features--2-columns: 内容が短い特徴向けに、交互配置ではなくグリッドで並べる */
+.p-features.p-features--2-columns {
+  gap: var(--spacing-24);
+}
+
+@media (min-width: 769px) {
+  .p-features.p-features--2-columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-32);
+  }
+
+  .p-features.p-features--2-columns > .c-feature,
+  .p-features.p-features--2-columns > .c-feature:nth-child(even) {
+    flex-direction: column;
+  }
+}

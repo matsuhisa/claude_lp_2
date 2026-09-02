@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="rules/component/c-testimonial/c-testimonial.css">
 <link rel="stylesheet" href="rules/component/c-producer/c-producer.css">
 <link rel="stylesheet" href="rules/component/c-variety-card/c-variety-card.css">
+<link rel="stylesheet" href="rules/component/c-feature/c-feature.css">
 <link rel="stylesheet" href="rules/component/c-section-head/c-section-head.css">
 <link rel="stylesheet" href="rules/layout/l-header/l-header.css">
 <link rel="stylesheet" href="rules/layout/l-footer/l-footer.css">
@@ -35,6 +36,7 @@
 <link rel="stylesheet" href="rules/project/p-testimonials/p-testimonials.css">
 <link rel="stylesheet" href="rules/project/p-producers/p-producers.css">
 <link rel="stylesheet" href="rules/project/p-varieties/p-varieties.css">
+<link rel="stylesheet" href="rules/project/p-features/p-features.css">
 <style>
   * { box-sizing: border-box; }
   body {
@@ -492,6 +494,50 @@
   &lt;span class="c-variety-card__label"&gt;{tag}&lt;/span&gt;
   &lt;h3 class="c-variety-card__name"&gt;{name}&lt;/h3&gt;
   &lt;p class="c-variety-card__description"&gt;{description}&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+  </div>
+
+  <h3>c-feature</h3>
+  <p class="component-desc">特徴紹介(1項目)。写真+タイトル+サブタイトル(任意)+テキスト。左右の向きは p-features 側で交互反転する</p>
+  <div class="sample sample--full">
+    <div class="sample__preview">
+      <article class="c-feature">
+        <img class="c-feature__photo" src="https://placehold.jp/24/d1d5db/6b7280/400x300.png?text=feature-1" alt="">
+        <div class="c-feature__body">
+          <h3 class="c-feature__title">毎日にちょうどいい</h3>
+          <p class="c-feature__sub-title">日々の業務にすぐ馴染む</p>
+          <p class="c-feature__text">メール対応やレポート作成、日々のタスク管理まで。導入初日から現場になじみ、業務のスピードを落としません。</p>
+        </div>
+      </article>
+    </div>
+    <pre><code>&lt;article class="c-feature"&gt;
+  &lt;img class="c-feature__photo" src={photoUrl} alt={photoAlt} /&gt;
+  &lt;div class="c-feature__body"&gt;
+    &lt;h3 class="c-feature__title"&gt;{title}&lt;/h3&gt;
+    &lt;p class="c-feature__sub-title"&gt;{subTitle}&lt;/p&gt;
+    &lt;p class="c-feature__text"&gt;{text}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+  </div>
+
+  <h3>c-feature(c-feature__photo--shape)</h3>
+  <p class="component-desc">写真を有機的な形にしたい場合のmodifier</p>
+  <div class="sample sample--full">
+    <div class="sample__preview">
+      <article class="c-feature">
+        <img class="c-feature__photo c-feature__photo--shape" src="https://placehold.jp/24/d1d5db/6b7280/400x300.png?text=feature-2" alt="">
+        <div class="c-feature__body">
+          <h3 class="c-feature__title">仕事は軽やかに</h3>
+          <p class="c-feature__text">スプレッドシートの作成から申請の管理まで、幅広い業務をこなせます。</p>
+        </div>
+      </article>
+    </div>
+    <pre><code>&lt;article class="c-feature"&gt;
+  &lt;img class="c-feature__photo c-feature__photo--shape" src={photoUrl} alt={photoAlt} /&gt;
+  &lt;div class="c-feature__body"&gt;
+    &lt;h3 class="c-feature__title"&gt;{title}&lt;/h3&gt;
+    &lt;p class="c-feature__text"&gt;{text}&lt;/p&gt;
+  &lt;/div&gt;
 &lt;/article&gt;</code></pre>
   </div>
 
@@ -977,6 +1023,66 @@
       </div>
     </div>
     <pre><code>&lt;div class="p-varieties"&gt;
+  {children}
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <h3>p-features</h3>
+  <p class="component-desc">既定は1列で、項目ごとに写真とテキストの左右を交互反転する(SPは常に写真→テキストの縦積み)</p>
+  <div class="sample sample--layout">
+    <div class="sample__preview">
+      <div class="p-features">
+        <article class="c-feature">
+          <img class="c-feature__photo" src="https://placehold.jp/24/d1d5db/6b7280/400x300.png?text=feature-1" alt="">
+          <div class="c-feature__body">
+            <h3 class="c-feature__title">毎日にちょうどいい</h3>
+            <p class="c-feature__sub-title">日々の業務にすぐ馴染む</p>
+            <p class="c-feature__text">メール対応やレポート作成、日々のタスク管理まで。導入初日から現場になじみ、業務のスピードを落としません。</p>
+          </div>
+        </article>
+        <article class="c-feature">
+          <img class="c-feature__photo c-feature__photo--shape" src="https://placehold.jp/24/d1d5db/6b7280/400x300.png?text=feature-2" alt="">
+          <div class="c-feature__body">
+            <h3 class="c-feature__title">勉強のお手伝いもします</h3>
+            <p class="c-feature__text">資料の要点整理から、プレゼン資料の作成まで。学びのシーンでも活躍します。</p>
+          </div>
+        </article>
+        <article class="c-feature">
+          <img class="c-feature__photo" src="https://placehold.jp/24/d1d5db/6b7280/400x300.png?text=feature-3" alt="">
+          <div class="c-feature__body">
+            <h3 class="c-feature__title">仕事は軽やかに</h3>
+            <p class="c-feature__text">スプレッドシートの作成から申請の管理まで、幅広い業務をこなせます。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+    <pre><code>&lt;div class="p-features"&gt;
+  {children}
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <h3>p-features(p-features--2-columns)</h3>
+  <p class="component-desc">内容が短く2列に収まる場合のmodifier。この場合は交互配置ではなく縦積みカードが並ぶ</p>
+  <div class="sample sample--layout">
+    <div class="sample__preview">
+      <div class="p-features p-features--2-columns">
+        <article class="c-feature">
+          <img class="c-feature__photo" src="https://placehold.jp/24/d1d5db/6b7280/400x300.png?text=feature-1" alt="">
+          <div class="c-feature__body">
+            <h3 class="c-feature__title">毎日にちょうどいい</h3>
+            <p class="c-feature__text">日々のタスクをすばやくこなせます。</p>
+          </div>
+        </article>
+        <article class="c-feature">
+          <img class="c-feature__photo" src="https://placehold.jp/24/d1d5db/6b7280/400x300.png?text=feature-2" alt="">
+          <div class="c-feature__body">
+            <h3 class="c-feature__title">仕事は軽やかに</h3>
+            <p class="c-feature__text">幅広い業務をこなせます。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+    <pre><code>&lt;div class="p-features p-features--2-columns"&gt;
   {children}
 &lt;/div&gt;</code></pre>
   </div>
