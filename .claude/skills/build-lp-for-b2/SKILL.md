@@ -104,5 +104,24 @@ spec/<取り組み名>/
 
 - **生成後のセルフチェック:** ユーザーに提示する前に、`content.md`/`content-draft.md`を最初から読み直し、構成要素の各項目(見出し・本文・件数・CTA文言など)が生成したHTMLに反映されているかを1つずつ確認する。ドキュメントの方が情報が多い・食い違いがある場合は、その場で直すか、不明な点はユーザーに確認してから提示する。
 - `spec/<取り組み名>/` を起点に作業した場合は、まず `spec/<取り組み名>/src/` にHTMLファイルを保存する。
+- **キャプチャー画像の書き出し:** HTMLファイルを保存したら、そのつどPC幅・スマホ幅のキャプチャー画像を書き出し、HTMLと同じディレクトリ(`spec/` 配下なら `spec/<取り組み名>/src/`、`spec/` を使わない場合はHTMLの保存先と同じディレクトリ)に保存する。ヘッドレスChromeを使い、以下のように実行する(macOSの場合):
+
+  ```
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+    --headless --disable-gpu --hide-scrollbars \
+    --window-size=1280,<十分な高さ(px)> \
+    --screenshot="<出力先>/capture_pc_<YYYYMMDD>_<連番>.png" \
+    "file://<生成したHTMLの絶対パス>"
+
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+    --headless --disable-gpu --hide-scrollbars \
+    --window-size=390,<十分な高さ(px)> \
+    --screenshot="<出力先>/capture_sp_<YYYYMMDD>_<連番>.png" \
+    "file://<生成したHTMLの絶対パス>"
+  ```
+
+  - PC幅は1280px(769px以上のPCブレークポイントを再現)、スマホ幅は390px(〜768pxのモバイルブレークポイントを再現)を使う。
+  - `--window-size` の高さは `--screenshot` が可視範囲しか撮らないため、ページ全体(フッターまで)が収まるよう大きめの値を指定する。撮影後は必ずReadツールで画像を確認し、フッターが見切れている場合は高さを増やして撮り直す。
+  - ファイル名の `<YYYYMMDD>_<連番>` は、対応するHTMLファイル名(`draft_<YYYYMMDD>_<連番>.html` / `index_<YYYYMMDD>_<連番>.html`、初回は連番なしの `draft.html` / `index.html`)の命名と揃える。
 - そのうえで、ページをArtifactとして公開し、即座にプレビュー・共有できるようにするかをユーザーに確認してください。希望する場合は Artifact ツールを使い、その指示に従って先に `artifact-design` スキルを読み込んだ上で、`brand.json` の `logo.faviconEmoji` をfaviconとして使用してください。
-- `spec/` を使わない場合は、ユーザーが指定したパスにHTMLファイルを保存するだけで構いません。
+- `spec/` を使わない場合は、ユーザーが指定したパスにHTMLファイルとキャプチャー画像を保存するだけで構いません。
