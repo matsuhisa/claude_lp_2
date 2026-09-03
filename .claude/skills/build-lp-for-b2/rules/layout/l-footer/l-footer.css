@@ -7,7 +7,7 @@
 
 .l-footer__copyright {
   margin: 0;
-  font-size: var(--font-label-small);
+  font-size: var(--font-label);
 }
 
 @media (min-width: 769px) {
