@@ -1,6 +1,6 @@
 # claude_lp_2
 
-Claude Code のスキル `build-lp-for-b2` を使って、ブランドトークンに沿ったB2B向けランディングページ(LP)を単体HTMLファイルとして生成するためのプロジェクトです。
+Claude Code のスキル `build-lp-for-b2` を使って、ブランドトークンに沿ったB2B向けランディングページ(LP)を単体HTMLファイルとして生成するためのプロジェクトです。ブランドトークンをFigmaの変数として使うための `export-figma-tokens` スキルも含みます。
 
 ## 使い方
 
@@ -49,6 +49,10 @@ spec_sample/               # spec/ の運用イメージを示すサンプル(�
 ## ブランドトークンの確認・編集
 
 `.claude/skills/build-lp-for-b2/index.html` をブラウザで開くと、`token.html`(確認)・`token-editor.html`(編集)・`components.html`(コンポーネント一覧)にまとめてアクセスできます。
+
+## ブランドトークンをFigmaへエクスポート
+
+`export-figma-tokens` スキルを使うと、`brand.css` の色・spacingなどをFigmaの「Variables」インポート機能が読み込めるJSON(`Mode 1.tokens.json` など)に変換できます。詳細は [`.claude/skills/export-figma-tokens/SKILL.md`](.claude/skills/export-figma-tokens/SKILL.md) を参照してください。
 
 ## 注意事項
 
