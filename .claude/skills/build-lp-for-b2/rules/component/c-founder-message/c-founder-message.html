@@ -1,0 +1,23 @@
+<!--
+- 代表メッセージ
+  - 写真1枚 + タイトル(h2) + メッセージ本文 + 名前で、代表者からのメッセージを伝える
+  - PCは既定で写真が右・テキストが左。写真を左にしたい場合は `c-founder-message--photo-left` を付ける
+  - SPは常に「写真 → タイトル → メッセージ →名前」の縦積み(左右パターンの区別なし)
+
+interface FounderMessage {
+  photoUrl: string;
+  photoAlt: string;
+  title: string;
+  message: string;
+  name: string;
+}
+-->
+
+<article class="c-founder-message">
+  <img class="c-founder-message__photo" src={photoUrl} alt={photoAlt} />
+  <div class="c-founder-message__body">
+    <h2 class="c-founder-message__title">{title}</h2>
+    <p class="c-founder-message__message">{message}</p>
+    <p class="c-founder-message__name">{name}</p>
+  </div>
+</article>

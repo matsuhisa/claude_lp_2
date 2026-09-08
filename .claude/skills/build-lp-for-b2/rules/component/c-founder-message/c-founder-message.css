@@ -1,0 +1,67 @@
+.c-founder-message {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-24);
+}
+
+.c-founder-message__photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 0;
+  object-fit: cover;
+}
+
+.c-founder-message__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-16);
+}
+
+.c-founder-message__title {
+  margin: 0;
+  font-size: var(--font-heading-2);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+}
+
+.c-founder-message__message {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-body);
+  line-height: 1.8;
+}
+
+.c-founder-message__message::before {
+  content: "「";
+}
+
+.c-founder-message__message::after {
+  content: "」";
+}
+
+.c-founder-message__name {
+  margin: 0;
+  text-align: right;
+  font-weight: 700;
+}
+
+@media (min-width: 769px) {
+  .c-founder-message {
+    flex-direction: row-reverse; /* 既定: 写真が右、テキストが左 */
+    align-items: center;
+    gap: var(--spacing-48);
+  }
+
+  .c-founder-message.c-founder-message--photo-left {
+    flex-direction: row; /* 写真を左にしたいパターン */
+  }
+
+  .c-founder-message__photo {
+    flex: 1 1 45%;
+  }
+
+  .c-founder-message__body {
+    flex: 1 1 55%;
+  }
+}

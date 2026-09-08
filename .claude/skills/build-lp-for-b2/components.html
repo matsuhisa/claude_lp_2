@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="rules/component/c-article-card/c-article-card.css">
 <link rel="stylesheet" href="rules/component/c-avatar/c-avatar.css">
 <link rel="stylesheet" href="rules/component/c-testimonial/c-testimonial.css">
+<link rel="stylesheet" href="rules/component/c-founder-message/c-founder-message.css">
 <link rel="stylesheet" href="rules/component/c-producer/c-producer.css">
 <link rel="stylesheet" href="rules/component/c-variety-card/c-variety-card.css">
 <link rel="stylesheet" href="rules/component/c-feature/c-feature.css">
@@ -446,6 +447,52 @@
     &lt;img class="c-avatar c-avatar--medium" src={avatarUrl} alt={avatarAlt} /&gt;
   &lt;/div&gt;
   &lt;p class="c-testimonial__voice"&gt;{voice}&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+  </div>
+
+  <h3>c-founder-message</h3>
+  <p class="component-desc">代表メッセージ(写真1枚+タイトル+メッセージ+名前)。PCは既定で写真が右</p>
+  <div class="sample sample--full">
+    <div class="sample__preview">
+      <article class="c-founder-message">
+        <img class="c-founder-message__photo" src="https://placehold.jp/24/d1d5db/6b7280/400x300.png?text=founder" alt="">
+        <div class="c-founder-message__body">
+          <h2 class="c-founder-message__title">価値ある出会いに、もっと確実性を。</h2>
+          <p class="c-founder-message__message">はじめまして、代表の田中です。お客様お一人おひとりに真摯に向き合い、確かな安心をお届けすることをお約束します。</p>
+          <p class="c-founder-message__name">代表 田中 一郎</p>
+        </div>
+      </article>
+    </div>
+    <pre><code>&lt;article class="c-founder-message"&gt;
+  &lt;img class="c-founder-message__photo" src={photoUrl} alt={photoAlt} /&gt;
+  &lt;div class="c-founder-message__body"&gt;
+    &lt;h2 class="c-founder-message__title"&gt;{title}&lt;/h2&gt;
+    &lt;p class="c-founder-message__message"&gt;{message}&lt;/p&gt;
+    &lt;p class="c-founder-message__name"&gt;{name}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+  </div>
+
+  <h3>c-founder-message(c-founder-message--photo-left)</h3>
+  <p class="component-desc">PCで写真を左にしたい場合のmodifier</p>
+  <div class="sample sample--full">
+    <div class="sample__preview">
+      <article class="c-founder-message c-founder-message--photo-left">
+        <img class="c-founder-message__photo" src="https://placehold.jp/24/d1d5db/6b7280/400x300.png?text=founder" alt="">
+        <div class="c-founder-message__body">
+          <h2 class="c-founder-message__title">価値ある出会いに、もっと確実性を。</h2>
+          <p class="c-founder-message__message">はじめまして、代表の田中です。お客様お一人おひとりに真摯に向き合い、確かな安心をお届けすることをお約束します。</p>
+          <p class="c-founder-message__name">代表 田中 一郎</p>
+        </div>
+      </article>
+    </div>
+    <pre><code>&lt;article class="c-founder-message c-founder-message--photo-left"&gt;
+  &lt;img class="c-founder-message__photo" src={photoUrl} alt={photoAlt} /&gt;
+  &lt;div class="c-founder-message__body"&gt;
+    &lt;h2 class="c-founder-message__title"&gt;{title}&lt;/h2&gt;
+    &lt;p class="c-founder-message__message"&gt;{message}&lt;/p&gt;
+    &lt;p class="c-founder-message__name"&gt;{name}&lt;/p&gt;
+  &lt;/div&gt;
 &lt;/article&gt;</code></pre>
   </div>
 
