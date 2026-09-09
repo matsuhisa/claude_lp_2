@@ -13,6 +13,7 @@
  - カードのタイトルぐらいは、title なんだけれど、Webなので headline3 ぐらい
  */
 .u-headline-1 {
+  color: var(--color-text-primary);
   font-size: var(--font-heading-1);
   font-weight: 700;
   line-height: 1.4;
@@ -20,6 +21,7 @@
 }
 
 .u-headline-2 {
+  color: var(--color-text-primary);
   font-size: var(--font-heading-2);
   font-weight: 700;
   line-height: 1.4;
@@ -27,6 +29,7 @@
 }
 
 .u-headline-3 {
+  color: var(--color-text-primary);
   font-size: var(--font-heading-3);
   font-weight: 700;
   line-height: 1.4;

@@ -8,6 +8,7 @@
 
 .c-section-head__title {
   margin: 0;
+  color: var(--color-text-primary);
   font-size: var(--font-heading-2);
   font-weight: 700;
   line-height: 1.4;
