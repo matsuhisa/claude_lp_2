@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="rules/styles/reset.css">
 <link rel="stylesheet" href="rules/styles/u-typography.css">
 <link rel="stylesheet" href="rules/styles/u-list.css">
+<link rel="stylesheet" href="rules/styles/u-visually-hidden.css">
 <link rel="stylesheet" href="rules/component/c-cta-link/c-cta-link.css">
 <link rel="stylesheet" href="rules/component/c-product-card/c-product-card.css">
 <link rel="stylesheet" href="rules/component/c-key-visual/c-key-visual.css">
@@ -352,13 +353,25 @@
   <div class="sample sample--full">
     <div class="sample__preview">
       <article class="c-faq-item">
-        <h3 class="c-faq-item__question">導入までどのくらいの期間がかかりますか?</h3>
-        <p class="c-faq-item__answer">お申し込みから最短2週間でご利用いただけます。既存システムとの連携が必要な場合は、別途スケジュールをご相談させてください。</p>
+        <h3 class="c-faq-item__question">
+          <span class="c-faq-item__mark" aria-hidden="true">Q</span>
+          <span class="u-visually-hidden">質問: </span>導入までどのくらいの期間がかかりますか?
+        </h3>
+        <p class="c-faq-item__answer">
+          <span class="c-faq-item__mark" aria-hidden="true">A</span>
+          <span class="u-visually-hidden">回答: </span>お申し込みから最短2週間でご利用いただけます。既存システムとの連携が必要な場合は、別途スケジュールをご相談させてください。
+        </p>
       </article>
     </div>
     <pre><code>&lt;article class="c-faq-item"&gt;
-  &lt;h3 class="c-faq-item__question"&gt;{question}&lt;/h3&gt;
-  &lt;p class="c-faq-item__answer"&gt;{answer}&lt;/p&gt;
+  &lt;h3 class="c-faq-item__question"&gt;
+    &lt;span class="c-faq-item__mark" aria-hidden="true"&gt;Q&lt;/span&gt;
+    &lt;span class="u-visually-hidden"&gt;質問: &lt;/span&gt;{question}
+  &lt;/h3&gt;
+  &lt;p class="c-faq-item__answer"&gt;
+    &lt;span class="c-faq-item__mark" aria-hidden="true"&gt;A&lt;/span&gt;
+    &lt;span class="u-visually-hidden"&gt;回答: &lt;/span&gt;{answer}
+  &lt;/p&gt;
 &lt;/article&gt;</code></pre>
   </div>
 
@@ -776,12 +789,24 @@
     <div class="sample__preview">
       <div class="p-faq">
         <article class="c-faq-item">
-          <h3 class="c-faq-item__question">セキュリティ体制について教えてください。</h3>
-          <p class="c-faq-item__answer">第三者機関による監査を定期的に受けており、通信・保存データはすべて暗号化されています。</p>
+          <h3 class="c-faq-item__question">
+            <span class="c-faq-item__mark" aria-hidden="true">Q</span>
+            <span class="u-visually-hidden">質問: </span>セキュリティ体制について教えてください。
+          </h3>
+          <p class="c-faq-item__answer">
+            <span class="c-faq-item__mark" aria-hidden="true">A</span>
+            <span class="u-visually-hidden">回答: </span>第三者機関による監査を定期的に受けており、通信・保存データはすべて暗号化されています。
+          </p>
         </article>
         <article class="c-faq-item">
-          <h3 class="c-faq-item__question">既存システムと連携できますか?</h3>
-          <p class="c-faq-item__answer">主要なSaaSとのAPI連携に対応しています。個別の連携要件についてはお問い合わせください。</p>
+          <h3 class="c-faq-item__question">
+            <span class="c-faq-item__mark" aria-hidden="true">Q</span>
+            <span class="u-visually-hidden">質問: </span>既存システムと連携できますか?
+          </h3>
+          <p class="c-faq-item__answer">
+            <span class="c-faq-item__mark" aria-hidden="true">A</span>
+            <span class="u-visually-hidden">回答: </span>主要なSaaSとのAPI連携に対応しています。個別の連携要件についてはお問い合わせください。
+          </p>
         </article>
       </div>
     </div>

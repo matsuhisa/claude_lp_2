@@ -10,13 +10,6 @@
   color: var(--color-text-primary);
   font-size: var(--font-body);
   font-weight: 700;
-
-  &::before {
-    content: "Q";
-    position: absolute;
-    left: 0;
-    color: var(--color-primary);
-  }
 }
 
 .c-faq-item__answer {
@@ -26,11 +19,10 @@
   color: var(--color-text-primary);
   font-size: var(--font-body);
   line-height: 1.6;
+}
 
-  &::before {
-    content: "A";
-    position: absolute;
-    left: 0;
-    color: var(--color-primary);
-  }
+.c-faq-item__mark {
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
 }

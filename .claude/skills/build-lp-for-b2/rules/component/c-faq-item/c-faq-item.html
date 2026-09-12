@@ -5,6 +5,9 @@
 
 # 注意点
 - アコーディオンにはしない、静的なQ&A表示
+- 「Q」「A」の記号は装飾(`aria-hidden="true"`)。CSSの`::before`だけに頼ると
+  スクリーンリーダーが読み上げるかどうか実装依存になるため、意味は`u-visually-hidden`の
+  テキスト(「質問:」「回答:」)で担保する
 
 interface FaqItem {
   question: string;
@@ -13,6 +16,12 @@ interface FaqItem {
 -->
 
 <article class="c-faq-item">
-  <h3 class="c-faq-item__question">{question}</h3>
-  <p class="c-faq-item__answer">{answer}</p>
+  <h3 class="c-faq-item__question">
+    <span class="c-faq-item__mark" aria-hidden="true">Q</span>
+    <span class="u-visually-hidden">質問: </span>{question}
+  </h3>
+  <p class="c-faq-item__answer">
+    <span class="c-faq-item__mark" aria-hidden="true">A</span>
+    <span class="u-visually-hidden">回答: </span>{answer}
+  </p>
 </article>
