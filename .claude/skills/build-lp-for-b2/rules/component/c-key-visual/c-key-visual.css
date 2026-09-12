@@ -7,7 +7,10 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.55) 100%);
+    /* タイトルは縦中央に置かれるため、下端だけでなく全面をベースで暗くしておく。
+       写真の内容に関わらず白文字のコントラストを確保するための保険で、
+       .c-key-visual__title / __sub-title の text-shadow と合わせて担保する。 */
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.45) 50%, rgba(0, 0, 0, 0.6) 100%);
     pointer-events: none;
   }
 }
@@ -40,11 +43,13 @@
   margin: 0;
   font-size: var(--font-heading-1);
   font-weight: 700;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 .c-key-visual__sub-title {
   margin: 0;
   font-size: var(--font-body);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 @media (min-width: 769px) {
