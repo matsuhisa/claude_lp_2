@@ -2,6 +2,7 @@
 
 - build-lp-for-b2 が生成するHTML/CSSに適用する規約。
 - ブランドトークン(`tokens/brand.css` / `tokens/brand.draft.css` / `tokens/brand.json`)とは別に、構造・命名の一貫性を保つためのルール。
+- アクセシビリティ関連のルールは、このファイルにも一部書いてあるが、網羅的なチェック項目は `.claude/skills/build-lp-for-b2/rules/accessibility-checklist.md` にまとめている。コンポーネントの追加・変更時とLP生成後のセルフチェックで必ず参照すること(`SKILL.md` から誘導している)。
 
 ## CSSクラス命名
 
