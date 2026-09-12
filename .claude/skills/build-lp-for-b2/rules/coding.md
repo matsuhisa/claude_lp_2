@@ -43,6 +43,10 @@
 - `<a>`(カード全体・ヘッダーロゴなどを含む)や `<button>` など操作可能な要素には、`:focus-visible` で明示的なフォーカス表示を必ず定義する。ブラウザ既定の枠線に任せない(ボタン自体の色と被って見えなくなる場合があるため)。
 - スタイルは `outline: var(--border-width-large) solid var(--color-text-primary); outline-offset: 2px;` を基本形にする(既存コンポーネントの `c-cta-link` / `c-article-card` / `c-producer` / `c-product-card__item` / `c-product-card__farmer` / `l-header__logo` を参照)。`--color-text-primary` は要素自身の背景色に関わらず、周囲のページ背景(白系)に対して確実にコントラストが取れるため採用している。
 
+## リストのマークアップ(アクセシビリティ)
+
+- `rules/styles/reset.css` がすべての `<ul>`/`<ol>` に `list-style: none` を適用しているため、Safari+VoiceOverの既知の問題でリストとして読み上げられなくなる。実際に `<ul>`/`<ol>`(`u-list`/`u-list--note` を含む)を使う箇所では、必ず `role="list"` をその要素に付与してリスト構造を補うこと(例: `<ul class="u-list" role="list">`)。
+
 ## HTMLセクションの方針
 
 - 1セクション = `SKILL.md` の「セクション構成」の1項目に対応する `<section>` 要素1つ。複数の項目を1つの `<section>` に詰め込まない。
