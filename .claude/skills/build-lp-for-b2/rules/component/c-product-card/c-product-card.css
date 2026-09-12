@@ -12,6 +12,11 @@
     font-weight: bold;
     line-height: 1.5;
     text-decoration: none;
+
+    &:focus-visible {
+      outline: var(--border-width-large) solid var(--color-text-primary);
+      outline-offset: 2px;
+    }
   }
 
   .c-product-card__image {
@@ -90,6 +95,11 @@
 
     padding: var(--spacing-8);
     border-top: 1px solid var(--color-border-secondary);
+
+    &:focus-visible {
+      outline: var(--border-width-large) solid var(--color-text-primary);
+      outline-offset: 2px;
+    }
   }
 
   .c-product-card__farmer-icon-photo {

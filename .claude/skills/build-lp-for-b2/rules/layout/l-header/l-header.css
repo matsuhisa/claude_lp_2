@@ -15,6 +15,11 @@
 .l-header__logo {
   display: block;
   flex-shrink: 0;
+
+  &:focus-visible {
+    outline: var(--border-width-large) solid var(--color-text-primary);
+    outline-offset: 2px;
+  }
 }
 
 .l-header__logo-image {

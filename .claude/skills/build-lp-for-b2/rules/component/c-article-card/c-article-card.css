@@ -2,6 +2,11 @@
   display: block;
   color: var(--color-text-primary);
   text-decoration: none;
+
+  &:focus-visible {
+    outline: var(--border-width-large) solid var(--color-text-primary);
+    outline-offset: 2px;
+  }
 }
 
 .c-article-card__thumbnails {

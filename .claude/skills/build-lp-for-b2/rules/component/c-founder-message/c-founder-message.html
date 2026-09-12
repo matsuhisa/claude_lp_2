@@ -4,6 +4,11 @@
   - PCは既定で写真が右・テキストが左。写真を左にしたい場合は `c-founder-message--photo-left` を付ける
   - SPは常に「写真 → タイトル → メッセージ →名前」の縦積み(左右パターンの区別なし)
 
+# 使い方の注意点
+- c-key-visual と同様、これ単体で1つの `<section>` として使う(このコンポーネントの `title` がそのセクションの見出しを兼ねる)。
+  `p-section` + `c-section-head` ではラップしないこと。ラップすると `c-section-head__title` の `<h2>` と
+  この `c-founder-message__title` の `<h2>` が1セクション内に2つできてしまい、見出し階層が崩れる。
+
 interface FounderMessage {
   photoUrl: string;
   photoAlt: string;

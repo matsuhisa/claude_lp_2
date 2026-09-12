@@ -11,6 +11,11 @@
 
   padding: var(--spacing-16) var(--spacing-32);
 
+  &:focus-visible {
+    outline: var(--border-width-large) solid var(--color-text-primary);
+    outline-offset: 2px;
+  }
+
   &.c-cta-link--secondary {
     color: var(--color-text-primary);
     background-color: #ffffff;
