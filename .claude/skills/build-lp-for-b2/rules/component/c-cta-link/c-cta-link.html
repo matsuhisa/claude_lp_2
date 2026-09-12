@@ -3,6 +3,10 @@
 - CTA
   - 購入動線などを設置する
 
+# 使い方の注意点
+- target="_blank" を指定する場合、新しいタブで開くことをスクリーンリーダーにも
+  伝えるため u-visually-hidden で隠した「(新しいタブで開きます)」を自動的に付与する
+
 interface CtaLink {
   label: string;
   href: string;
@@ -10,4 +14,7 @@ interface CtaLink {
 }
 -->
 
-<a href={href} class="c-cta-link" target={target}>{label}</a>
+<a href={href} class="c-cta-link" target={target}>
+  {label}
+  { target === "_blank" && <span class="u-visually-hidden">(新しいタブで開きます)</span> }
+</a>
