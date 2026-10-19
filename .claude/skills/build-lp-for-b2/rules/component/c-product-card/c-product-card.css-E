@@ -1,0 +1,123 @@
+.c-product-card {
+  display: block;
+  width: 100%;
+  background-color: var(--color-background);
+  border-radius: var(--radius-large);
+  box-shadow: var(--elevation-low);
+
+  .c-product-card__item {
+    color: var(--color-text-primary);
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.5;
+    text-decoration: none;
+
+    &:focus-visible {
+      outline: var(--border-width-large) solid var(--color-text-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  .c-product-card__image {
+    border-radius: var(--radius-large) 0 0 var(--radius-large);
+  }
+
+  .c-product-card__photo {
+    border-radius: var(--radius-large) var(--radius-large) 0 0;
+    aspect-ratio: 4/3;
+    width: 100%;
+  }
+
+  .c-product-card__item-body {
+    padding: var(--spacing-8);
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .c-product-card__name {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    white-space: normal;
+    overflow: hidden;
+  }
+
+  .c-product-card__price {
+    display: flex;
+    gap: var(--spacing-8);
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    text-align: right;
+
+    margin-top: auto;
+  }
+
+  .c-product-card__price-free-shipping-label {
+    display: inline-block;
+    color: var(--color-text-white);
+    font-size: 12px;
+    line-height: 1;
+
+    padding: var(--spacing-8);
+    background-color: var(--color-danger);
+    border-radius: var(--radius-small);
+  }
+
+  .c-product-card__campaign-discount-label {
+    border-radius: var(--radius-large);
+    background: var(--color-danger);
+
+    color: var(--color-text-white);
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.4px;
+    padding: var(--spacing-8) var(--spacing-8);
+    margin-right: var(--spacing-8);
+  }
+
+  .c-product-card__farmer {
+    display: grid;
+    gap: var(--spacing-8);
+    align-items: center;
+    grid-template-columns: minmax(25px, 50px) 75%;
+
+    color: var(--color-text-primary);
+    font-family: sans-serif;
+    line-height: 1.5;
+    text-decoration: none;
+
+    padding: var(--spacing-8);
+    border-top: 1px solid var(--color-border-secondary);
+
+    &:focus-visible {
+      outline: var(--border-width-large) solid var(--color-text-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  .c-product-card__farmer-icon-photo {
+    width: 100%;
+    border-radius: var(--radius-full);
+  }
+
+  .c-product-card__farmer-area {
+    font-size: 10px;
+  }
+
+  .c-product-card__farmer-name {
+    font-size: 12px;
+    font-weight: bold;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+  }
+}

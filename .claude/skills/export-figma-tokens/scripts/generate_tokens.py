@@ -40,7 +40,8 @@ GROUP_RULES = [
 CUSTOM_PROP_RE = re.compile(r"--([a-zA-Z0-9-]+)\s*:\s*([^;]+);(.*)")
 VAR_REF_RE = re.compile(r"^var\(--([a-zA-Z0-9-]+)\)$")
 HEX_RE = re.compile(r"^#([0-9a-fA-F]{6})$")
-PX_RE = re.compile(r"^(-?\d+(?:\.\d+)?)px$")
+PX_RE = re.compile(r"^(-?\d+(?:\.\d+)?)(px|rem)$")
+ROOT_FONT_SIZE_PX = 16  # rem → px 換算(ブラウザ標準のルートフォントサイズ)
 
 
 def f32(x):
@@ -116,8 +117,10 @@ def build_entry(name, info, tokens):
     if info["type"] == "number":
         pm = PX_RE.match(raw)
         if not pm:
-            return None, f"px単位の数値として解釈できない値です: {raw}"
+            return None, f"px/rem単位の数値として解釈できない値です: {raw}"
         val = float(pm.group(1))
+        if pm.group(2) == "rem":
+            val *= ROOT_FONT_SIZE_PX
         if val.is_integer():
             val = int(val)
         return {

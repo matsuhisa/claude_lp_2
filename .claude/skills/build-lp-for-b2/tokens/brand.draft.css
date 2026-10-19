@@ -43,25 +43,25 @@
   --elevation-high: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.30);
 
   /* primitive */
-  --spacing-104: 104px;
-  --spacing-80: 80px;
-  --spacing-64: 64px;
-  --spacing-48: 48px;
-  --spacing-40: 40px;
-  --spacing-32: 32px;
-  --spacing-24: 24px;
-  --spacing-20: 20px;
-  --spacing-16: 16px;
-  --spacing-8: 8px;
-  --spacing-0: 0px;
+  --spacing-104: 6.5rem;
+  --spacing-80: 5rem;
+  --spacing-64: 4rem;
+  --spacing-48: 3rem;
+  --spacing-40: 2.5rem;
+  --spacing-32: 2rem;
+  --spacing-24: 1.5rem;
+  --spacing-20: 1.25rem;
+  --spacing-16: 1rem;
+  --spacing-8: 0.5rem;
+  --spacing-0: 0rem;
 
   --font-family-sans-serif: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
-  --font-size-64: 64px;
-  --font-size-48: 48px;
-  --font-size-40: 40px;
-  --font-size-32: 32px;
-  --font-size-24: 24px;
-  --font-size-20: 20px;
-  --font-size-16: 16px;
-  --font-size-12: 12px;
+  --font-size-64: 4rem;
+  --font-size-48: 3rem;
+  --font-size-40: 2.5rem;
+  --font-size-32: 2rem;
+  --font-size-24: 1.5rem;
+  --font-size-20: 1.25rem;
+  --font-size-16: 1rem;
+  --font-size-12: 0.75rem;
 }

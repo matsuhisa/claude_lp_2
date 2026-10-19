@@ -21,6 +21,12 @@
 - `l-*`(layout)は `layout/l-<名前>/` にディレクトリを作り、`l-<名前>.html` と `l-<名前>.css` を1組にして置く。ページ全体で1回しか使わない前提の骨格(ヘッダー・フッターなど)が対象で、`c-*`/`p-*` と同じくpropsが決まっている場合はTypeScriptの `interface` 風コメントを添える(例: `layout/l-header/l-header.html` + `l-header.css`)。
 
 
+## 単位(rem)
+
+- フォントサイズと余白(`font-size` / `margin` / `padding` / `gap` など)は `rem` で指定する。`tokens/brand.css` の `--font-size-*` と `--spacing-*` は `rem`(1rem = 16px)で定義済みなので、できるだけ `var(--...)` 経由で使う。
+- トークンにない値を直接書く場合も `px` ではなく `rem` にする(例: 14px → `0.875rem`)。
+- `border` / `outline` / `outline-offset` / `box-shadow` / `text-shadow` / `letter-spacing` などの細い線・装飾や、画像・アイコンの固定サイズ、`max-width`、`@media` の条件式は `px` のままでよい。
+
 ## レスポンシブ / ブレイクポイント
 
 - PCとスマートフォンの2段階のみ。境界は以下で固定する。
