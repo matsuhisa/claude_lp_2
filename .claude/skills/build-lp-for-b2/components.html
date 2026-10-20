@@ -29,6 +29,7 @@
 <link rel="stylesheet" href="rules/component/c-variety-card/c-variety-card.css">
 <link rel="stylesheet" href="rules/component/c-feature/c-feature.css">
 <link rel="stylesheet" href="rules/component/c-section-head/c-section-head.css">
+<link rel="stylesheet" href="rules/component/c-action-card/c-action-card.css">
 <link rel="stylesheet" href="rules/layout/l-header/l-header.css">
 <link rel="stylesheet" href="rules/layout/l-footer/l-footer.css">
 <link rel="stylesheet" href="rules/project/p-section/p-section.css">
@@ -39,6 +40,7 @@
 <link rel="stylesheet" href="rules/project/p-producers/p-producers.css">
 <link rel="stylesheet" href="rules/project/p-varieties/p-varieties.css">
 <link rel="stylesheet" href="rules/project/p-features/p-features.css">
+<link rel="stylesheet" href="rules/project/p-action-cards/p-action-cards.css">
 <style>
   * { box-sizing: border-box; }
   body {
@@ -400,6 +402,31 @@
     &lt;p class="c-article-card__description"&gt;{description}&lt;/p&gt;
   &lt;/div&gt;
 &lt;/a&gt;</code></pre>
+  </div>
+
+  <h3>c-action-card</h3>
+  <p class="component-desc">行動を促すカード(画像 + タイトル + 説明 + CTA)。<code>p-action-cards</code> に並べて使う</p>
+  <div class="sample">
+    <div class="sample__preview">
+      <article class="c-action-card">
+        <img class="c-action-card__image" src="https://placehold.jp/24/d1d5db/6b7280/600x338.png?text=action-card" alt="">
+        <div class="c-action-card__body">
+          <h3 class="c-action-card__title">生産者登録</h3>
+          <p class="c-action-card__text">こだわりの農産物・海産物を、全国のお客様へ直接届けませんか。</p>
+          <a href="#" class="c-cta-link c-action-card__cta">生産者登録へ進む</a>
+        </div>
+      </article>
+    </div>
+    <pre><code>&lt;article class="c-action-card"&gt;
+  &lt;img class="c-action-card__image" src={imageUrl} alt={imageAlt} /&gt;
+  &lt;div class="c-action-card__body"&gt;
+    &lt;h3 class="c-action-card__title"&gt;{title}&lt;/h3&gt;
+    &lt;p class="c-action-card__text"&gt;{text}&lt;/p&gt;
+    &lt;a href={ctaHref} class="c-cta-link c-action-card__cta" target={ctaTarget}&gt;
+      {ctaLabel}
+    &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
   </div>
 
   <h3>c-avatar</h3>
@@ -1155,6 +1182,41 @@
       </div>
     </div>
     <pre><code>&lt;div class="p-features p-features--2-columns"&gt;
+  {children}
+&lt;/div&gt;</code></pre>
+  </div>
+  <h3>p-action-cards</h3>
+  <p class="component-desc">c-action-card の集まり。PCは3列(既定)、<code>p-action-cards--2-columns</code> で2列、スマートフォンは1列</p>
+  <div class="sample sample--layout">
+    <div class="sample__preview">
+      <div class="p-action-cards">
+        <article class="c-action-card">
+          <img class="c-action-card__image" src="https://placehold.jp/24/d1d5db/6b7280/600x338.png?text=action-card-1" alt="">
+          <div class="c-action-card__body">
+            <h3 class="c-action-card__title">生産者登録</h3>
+            <p class="c-action-card__text">こだわりの農産物を、全国のお客様へ直接届けませんか。</p>
+            <a href="#" class="c-cta-link c-action-card__cta">生産者登録へ進む</a>
+          </div>
+        </article>
+        <article class="c-action-card">
+          <img class="c-action-card__image" src="https://placehold.jp/24/d1d5db/6b7280/600x338.png?text=action-card-2" alt="">
+          <div class="c-action-card__body">
+            <h3 class="c-action-card__title">自治体・法人のお問い合わせ</h3>
+            <p class="c-action-card__text">産地や地域との連携について、お気軽にご相談ください。</p>
+            <a href="#" class="c-cta-link c-action-card__cta">連携について問い合わせる</a>
+          </div>
+        </article>
+        <article class="c-action-card">
+          <img class="c-action-card__image" src="https://placehold.jp/24/d1d5db/6b7280/600x338.png?text=action-card-3" alt="">
+          <div class="c-action-card__body">
+            <h3 class="c-action-card__title">採用情報</h3>
+            <p class="c-action-card__text">私たちと一緒に、一次産業の次の10年に挑みませんか。</p>
+            <a href="#" class="c-cta-link c-action-card__cta">採用情報を見る</a>
+          </div>
+        </article>
+      </div>
+    </div>
+    <pre><code>&lt;div class="p-action-cards"&gt;
   {children}
 &lt;/div&gt;</code></pre>
   </div>

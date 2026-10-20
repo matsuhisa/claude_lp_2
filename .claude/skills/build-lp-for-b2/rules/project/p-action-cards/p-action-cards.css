@@ -1,0 +1,15 @@
+.p-action-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-24);
+}
+
+@media (min-width: 769px) {
+  .p-action-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .p-action-cards.p-action-cards--2-columns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

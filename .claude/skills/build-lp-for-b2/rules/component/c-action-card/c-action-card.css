@@ -1,0 +1,49 @@
+.c-action-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-background);
+  border: var(--border-width-medium) solid var(--color-border-secondary);
+  border-radius: var(--radius-large);
+  overflow: hidden;
+}
+
+.c-action-card__image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.c-action-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  padding: var(--spacing-24);
+}
+
+.c-action-card__title {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: var(--font-heading-3);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.c-action-card__text {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-body);
+  line-height: 1.8;
+}
+
+/* CTA はカード下端に揃え、ボタン幅はカード幅いっぱいにする(タップしやすさのため) */
+.c-action-card__cta {
+  display: block;
+  margin-top: auto;
+  padding-block: var(--spacing-16);
+  text-align: center;
+}
+
+.c-action-card__text + .c-action-card__cta {
+  margin-top: var(--spacing-16);
+}
