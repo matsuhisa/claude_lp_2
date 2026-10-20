@@ -1,0 +1,34 @@
+<!--
+# 名前・目的
+- 行動を促すカード(画像 + タイトル + 説明 + CTA)
+  - 生産者登録・問い合わせ・採用応募など、読者に次の行動をとってもらう入口として並べて使う
+  - カード全体ではなく、中の CTA(`c-cta-link`)だけがリンクになる
+
+# 使い方の注意点
+- 見出しは `<h3>`。`p-section`(`c-section-head` が h2 を出す)の中で使う前提
+- CTA の `label` は、カードが複数並んでも遷移先が区別できる文言にする
+  (「詳しくはこちら」だけにしない。例: 「生産者登録へ進む」)
+- `target="_blank"` を指定する場合の注意は `c-cta-link` に従う
+- 画像が装飾目的(隣接テキストで内容が伝わる)なら `imageAlt` は空文字にする
+
+interface ActionCard {
+  imageUrl: string;
+  imageAlt: string;
+  title: string;
+  text: string;
+  ctaLabel: string;
+  ctaHref: string;
+  ctaTarget?: string; // 任意
+}
+-->
+
+<article class="c-action-card">
+  <img class="c-action-card__image" src={imageUrl} alt={imageAlt} />
+  <div class="c-action-card__body">
+    <h3 class="c-action-card__title">{title}</h3>
+    <p class="c-action-card__text">{text}</p>
+    <a href={ctaHref} class="c-cta-link c-action-card__cta" target={ctaTarget}>
+      {ctaLabel}
+    </a>
+  </div>
+</article>
