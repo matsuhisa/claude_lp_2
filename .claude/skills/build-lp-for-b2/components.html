@@ -1220,6 +1220,32 @@
   {children}
 &lt;/div&gt;</code></pre>
   </div>
+  <h3>p-features(連続して複数置く)</h3>
+  <p class="component-desc"><code>p-features</code> が隣り合うときは、項目同士の gap と同じ値のスペースが間に入る</p>
+  <div class="sample sample--layout">
+    <div class="sample__preview">
+      <div class="p-features">
+        <article class="c-feature">
+          <img class="c-feature__photo" src="https://placehold.jp/24/d1d5db/6b7280/400x300.png?text=feature-1" alt="">
+          <div class="c-feature__body">
+            <h3 class="c-feature__title">毎日にちょうどいい</h3>
+            <p class="c-feature__text">日々のタスクをすばやくこなせます。</p>
+          </div>
+        </article>
+      </div>
+      <div class="p-features">
+        <article class="c-feature">
+          <img class="c-feature__photo" src="https://placehold.jp/24/d1d5db/6b7280/400x300.png?text=feature-2" alt="">
+          <div class="c-feature__body">
+            <h3 class="c-feature__title">仕事は軽やかに</h3>
+            <p class="c-feature__text">日々のタスクをすばやくこなせます。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+    <pre><code>&lt;div class="p-features"&gt;{children}&lt;/div&gt;
+&lt;div class="p-features"&gt;{children}&lt;/div&gt;</code></pre>
+  </div>
 </section>
 
 <script>

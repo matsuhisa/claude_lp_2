@@ -4,6 +4,8 @@
   - 既定はPCでも1列(縦list)で、項目ごとに写真とテキストの左右を交互反転する
   - 項目内容が短く2列に収まる場合に限り `p-features--2-columns` を付けるとPCで2列グリッドになる
     (この場合は交互配置ではなく、写真→テキストを縦に積んだカードが並ぶ)
+  - `p-features` を続けて複数置いたときは、隣接セレクター(`.p-features + .p-features`)で、
+    自身の gap と同じ値のスペースを間に開ける(個々の `p-features` に margin は持たせない)
 
 interface Features {
   children: ;
