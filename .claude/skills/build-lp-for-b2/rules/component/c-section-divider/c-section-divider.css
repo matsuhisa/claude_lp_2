@@ -19,6 +19,12 @@
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 80' preserveAspectRatio='none'%3E%3Cpath d='M0 40 Q150 0 300 40 T600 40 V80 H0 Z'/%3E%3C/svg%3E") repeat-x bottom / 600px 100%;
 }
 
+/* グラデーション: 上のセクションの色(--section-divider-bg)から下のセクションの色(--section-divider-color)へ変化させる。
+   --section-divider-gradient で、グラデーション全体(角度・色止まりなど)を外から差し替えられる */
+.c-section-divider--gradient {
+  background-image: var(--section-divider-gradient, linear-gradient(to bottom, var(--section-divider-bg, var(--color-background)), var(--section-divider-color, var(--color-surface))));
+}
+
 @media (min-width: 769px) {
   .c-section-divider {
     height: var(--spacing-80);

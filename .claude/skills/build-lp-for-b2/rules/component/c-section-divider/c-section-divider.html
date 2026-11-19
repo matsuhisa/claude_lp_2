@@ -11,15 +11,19 @@
   - --section-divider-bg: 上のセクションの背景色(ブロック自体の背景)
   - --section-divider-color: 下のセクションの背景色(波の塗り色)
   - p-section--alt の直前/直後に置く場合は、どちらが alt かに合わせて上下を入れ替える
+- グラデーションにする場合は c-section-divider--gradient を付ける(wave とは併用しない)
+  - 上のセクションの色(--section-divider-bg)から下のセクションの色(--section-divider-color)へ変化する
+  - 角度や色止まりを変えたい場合は --section-divider-gradient に linear-gradient(...) を丸ごと渡す
 - 背景画像を使う場合は --section-divider-image に url(...) を渡す
   (画像は左右に繰り返し、高さに合わせて表示される。波と併用してもよい)
 - 高さはSP/PCで自動的に切り替わる(SP: --spacing-48 / PC: --spacing-80)
 
 interface SectionDivider {
-  modifier?: "wave"; // 任意。未指定なら形のない帯(背景画像だけを敷く用途)
+  modifier?: "wave" | "gradient"; // 任意。未指定なら形のない帯(背景画像だけを敷く用途)
   bgColor?: string; // 任意。--section-divider-bg
   color?: string; // 任意。--section-divider-color
   imageUrl?: string; // 任意。--section-divider-image
+  gradient?: string; // 任意。--section-divider-gradient(gradient 用。linear-gradient(...) を丸ごと)
 }
 -->
 
