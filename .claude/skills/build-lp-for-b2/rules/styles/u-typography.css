@@ -67,6 +67,13 @@
 .u-text-normal { font-weight: 400; }
 .u-text-bold { font-weight: 700; }
 
+/* マーカー(文中の一部に蛍光ペン風の下線を引く。<span class="u-marker"> で囲む) */
+.u-marker {
+  background-image: linear-gradient(transparent 60%, color-mix(in srgb, var(--color-accent) 45%, transparent) 60%);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
 /* 配置 */
 .u-text-center { text-align: center; }
 .u-text-left { text-align: left; }
