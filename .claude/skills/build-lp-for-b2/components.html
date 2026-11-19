@@ -29,6 +29,7 @@
 <link rel="stylesheet" href="rules/component/c-variety-card/c-variety-card.css">
 <link rel="stylesheet" href="rules/component/c-feature/c-feature.css">
 <link rel="stylesheet" href="rules/component/c-section-head/c-section-head.css">
+<link rel="stylesheet" href="rules/component/c-section-divider/c-section-divider.css">
 <link rel="stylesheet" href="rules/component/c-action-card/c-action-card.css">
 <link rel="stylesheet" href="rules/layout/l-header/l-header.css">
 <link rel="stylesheet" href="rules/layout/l-footer/l-footer.css">
@@ -651,6 +652,26 @@
   &lt;h2 class="c-section-head__title"&gt;{title}&lt;/h2&gt;
   &lt;p class="c-section-head__sub-title"&gt;{subTitle}&lt;/p&gt;
 &lt;/div&gt;</code></pre>
+  </div>
+
+  <h3>c-section-divider</h3>
+  <p class="component-desc">セクション間の装飾ブロック(波など)。装飾のみなので aria-hidden。上下のセクション色は --section-divider-bg(上)/ --section-divider-color(下)で指定。背景画像は --section-divider-image</p>
+  <div class="sample">
+    <div class="sample__preview" style="padding: 0;">
+      <div style="background: var(--color-background); padding: var(--spacing-24); text-align: center;">上のセクション</div>
+      <div class="c-section-divider c-section-divider--wave" aria-hidden="true"></div>
+      <div style="background: var(--color-surface); padding: var(--spacing-24); text-align: center;">下のセクション</div>
+    </div>
+    <pre><code>&lt;div class="c-section-divider c-section-divider--wave" aria-hidden="true"&gt;&lt;/div&gt;</code></pre>
+  </div>
+  <div class="sample">
+    <div class="sample__preview" style="padding: 0;">
+      <div style="background: var(--color-surface); padding: var(--spacing-24); text-align: center;">上のセクション(alt)</div>
+      <div class="c-section-divider c-section-divider--wave" aria-hidden="true" style="--section-divider-bg: var(--color-surface); --section-divider-color: var(--color-background);"></div>
+      <div style="background: var(--color-background); padding: var(--spacing-24); text-align: center;">下のセクション</div>
+    </div>
+    <pre><code>&lt;div class="c-section-divider c-section-divider--wave" aria-hidden="true"
+     style="--section-divider-bg: var(--color-surface); --section-divider-color: var(--color-background);"&gt;&lt;/div&gt;</code></pre>
   </div>
 </section>
 
