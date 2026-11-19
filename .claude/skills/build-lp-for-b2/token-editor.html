@@ -329,6 +329,7 @@
     ['fontHeading1', '--font-heading-1', 'font-heading-1'],
     ['fontHeading2', '--font-heading-2', 'font-heading-2'],
     ['fontHeading3', '--font-heading-3', 'font-heading-3'],
+    ['fontHeading4', '--font-heading-4', 'font-heading-4'],
     ['fontBody', '--font-body', 'font-body'],
     ['fontLabel', '--font-label', 'font-label'],
     ['fontLabelSmall', '--font-label-small', 'font-label-small']
@@ -494,7 +495,7 @@
 
     var fonts = document.getElementById('preview-fonts');
     fonts.innerHTML = '';
-    var sampleLabels = { fontHeading1: '見出し1', fontHeading2: '見出し2', fontHeading3: '見出し3', fontBody: '本文', fontLabel: 'ラベル', fontLabelSmall: 'ラベル(small)' };
+    var sampleLabels = { fontHeading1: '見出し1', fontHeading2: '見出し2', fontHeading3: '見出し3', fontHeading4: '見出し4', fontBody: '本文', fontLabel: 'ラベル', fontLabelSmall: 'ラベル(small)' };
     TYPO_KEYS.forEach(function (k) {
       var div = document.createElement('div');
       div.className = 'font-sample';
@@ -555,6 +556,7 @@
       '  --font-heading-1: var(--font-size-' + t('fontHeading1') + ');\n' +
       '  --font-heading-2: var(--font-size-' + t('fontHeading2') + ');\n' +
       '  --font-heading-3: var(--font-size-' + t('fontHeading3') + ');\n' +
+      '  --font-heading-4: var(--font-size-' + t('fontHeading4') + ');\n' +
       '  --font-body: var(--font-size-' + t('fontBody') + ');\n' +
       '  --font-label: var(--font-size-' + t('fontLabel') + ');\n' +
       '  --font-label-small: var(--font-size-' + t('fontLabelSmall') + ');\n' +
